@@ -246,6 +246,11 @@ export const lessonContent: Record<string, LessonContent> = {
         code: 'Mijn Chrome extensie woordenteller ziet er basic uit. Redesign de popup.html en CSS zodat het er professioneel uitziet. Gebruik een wit/grijs kleurenschema met blauwe accenten. Voeg subtiele hover-effecten toe aan de statistieken. Maak het modern en clean, vergelijkbaar met een SaaS product. Behoud alle bestaande functionaliteit.',
       },
       {
+        title: 'Het nieuwe bestand opslaan',
+        body: 'Claude geeft je een nieuw `popup.html` terug. Doe het volgende:\n\n1. Klik op **Download all** onderaan de bestandenlijst in Claude\n2. Pak de ZIP uit\n3. Kopieer het nieuwe `popup.html` bestand naar je `woordenteller-extensie` map — overschrijf het oude bestand\n4. Ga naar `chrome://extensions/` en klik op het ververs-icoontje (↺) bij je extensie\n5. Klik opnieuw op je extensie om het nieuwe ontwerp te zien',
+        type: 'tip',
+      },
+      {
         title: 'Een icoontje toevoegen',
         body: 'Download een 128x128px PNG van emojipng.com of flaticon.com en sla op als `icon.png` in je extensie map.\n\nVoeg dit toe aan manifest.json:',
         code: '"icons": {\n  "16": "icon.png",\n  "48": "icon.png",\n  "128": "icon.png"\n}',
