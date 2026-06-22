@@ -397,11 +397,11 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Map aanmaken in de Verkenner',
-        body: '**Windows:**\n1. Open de Verkenner (de gele map in je taakbalk)\n2. Navigeer naar je `clavify-projecten` map — die heb je aangemaakt in module 1\n3. Klik met de rechtermuisknop op een lege plek → "Nieuwe map"\n4. Noem de map `mijn-agent`\n\n**Mac:**\n1. Open Finder\n2. Navigeer naar je `clavify-projecten` map\n3. Rechtsklik op een lege plek → "Nieuwe map"\n4. Noem de map `mijn-agent`',
+        body: 'Kies zelf een naam voor je agent — iets wat past bij wat je gaat bouwen. Bijvoorbeeld `weer-agent`, `mail-agent`, of gewoon `mijn-agent`. Gebruik geen spaties in de naam, gebruik een koppelteken in plaats daarvan.\n\n**Windows:**\n1. Open de Verkenner (de gele map in je taakbalk)\n2. Navigeer naar je `clavify-projecten` map — die heb je aangemaakt in module 1\n3. Klik met de rechtermuisknop op een lege plek → "Nieuwe map"\n4. Geef de map jouw gekozen naam\n\n**Mac:**\n1. Open Finder\n2. Navigeer naar je `clavify-projecten` map\n3. Rechtsklik op een lege plek → "Nieuwe map"\n4. Geef de map jouw gekozen naam',
       },
       {
         title: 'Stap 2: Map openen in VS Code',
-        body: 'Open VS Code. Klik op **File → Open Folder** (Windows) of **File → Open...** (Mac).\n\nNavigeer naar je `clavify-projecten` map, klik op de `mijn-agent` map die je net hebt aangemaakt, en klik op "Map selecteren" (Windows) of "Open" (Mac).\n\nJe ziet nu `MIJN-AGENT` verschijnen in de Explorer links — de map is leeg, dat klopt.',
+        body: 'Open VS Code. Klik op **File → Open Folder** (Windows) of **File → Open...** (Mac).\n\nNavigeer naar je `clavify-projecten` map, klik op de map die je net hebt aangemaakt, en klik op "Map selecteren" (Windows) of "Open" (Mac).\n\nJe ziet nu jouw map verschijnen in de Explorer links — de map is leeg, dat klopt.',
         type: 'tip',
       },
       {
