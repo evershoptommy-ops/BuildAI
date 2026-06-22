@@ -541,7 +541,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
     ],
     checklist: [
-      'OpenWeatherMap API key staat in `.env` en opgeslagen (Ctrl+S / Cmd+S)',
+      'WeatherAPI key staat in `.env` en opgeslagen (Ctrl+S / Cmd+S)',
       '`directives/weer_rapport.md` is aangemaakt door Claude',
       '`execution/weer_ophalen.py` heeft `load_dotenv()` als eerste regel',
       '`.tmp/weer_rapport.txt` bevat een correct weerrapport',
@@ -624,7 +624,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Jouw directives zijn jouw kennisbank',
-        body: 'Na elke klant wordt je systeem slimmer. De directives bevatten alle lessen die het systeem heeft geleerd. Klant 2 profiteert van alles wat je bij klant 1 hebt geleerd — zonder extra werk. Dit is wat jou onderscheidt van iemand die elke keer opnieuw begint.\n\nDit is een leverbaar product. ZIP de map, installeer het bij de klant, vraag €300–€500 voor de bouw en €50/maand voor onderhoud.',
+        body: 'Na elke klant wordt je systeem slimmer. De directives bevatten alle lessen die het systeem heeft geleerd. Klant 2 profiteert van alles wat je bij klant 1 hebt geleerd — zonder extra werk. Dit is wat jou onderscheidt van iemand die elke keer opnieuw begint.\n\nDit is een leverbaar product. ZIP de map en installeer het bij de klant. In module 4 leer je hoe je dit verkoopt en wat je ervoor kunt vragen.',
         type: 'tip',
       },
     ],
