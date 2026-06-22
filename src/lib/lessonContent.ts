@@ -505,23 +505,23 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: API key ophalen',
-        body: 'Ga naar **openweathermap.org** → "Sign In" → "Create an Account". Bevestig je e-mail. Na inloggen: klik rechtsboven op je gebruikersnaam → "My API keys". Kopieer de sleutel onder "Default".\n\nOpen `.env` in VS Code door erop te klikken in de Explorer links. Voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
-        code: 'WEATHER_API_KEY=plak_hier_jouw_key',
+        body: 'Ga naar **weatherapi.com** → klik op "Sign Up" → maak een gratis account aan en bevestig je e-mail. Na inloggen zie je direct je API key op het dashboard. Kopieer hem.\n\nDe API key werkt direct — geen wachttijd.',
+        type: 'tip',
       },
       {
-        title: 'Nieuwe API key — wacht even',
-        body: 'Een nieuw aangemaakte API key duurt tot 2 uur voordat hij actief is. Krijg je een 401-fout vlak na het aanmaken? Wacht een uur en probeer opnieuw. Dit is geen fout in je code.',
-        type: 'warning',
+        title: 'API key opslaan in .env',
+        body: 'Open `.env` in VS Code door erop te klikken in de Explorer links. Voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
+        code: 'WEATHER_API_KEY=plak_hier_jouw_key',
       },
       {
         title: 'Stap 2: Directive schrijven',
         body: 'Typ in het Claude-paneel:',
-        code: 'Maak directives/weer_rapport.md aan met een volledige directive in het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Weerdata ophaalt via OpenWeatherMap API voor een opgegeven stad\n- Resultaat opslaat als leesbare tekst in .tmp/weer_rapport.txt\n- Toont: datum en tijd, stadsnaam, temperatuur in Celsius, feels like,\n  weerbeschrijving, luchtvochtigheid, windsnelheid in km/h\n\nInclusief:\n- Doel\n- Input parameters (stad en output bestandspad)\n- Hoe het script aan te roepen\n- Vereisten (.env variabelen en geïnstalleerde packages)\n- Edge cases: stad niet gevonden, ongeldige API key, netwerk fout,\n  ontbrekende .env variabele\n- Instructie voor zelfherstel bij fouten',
+        code: 'Maak directives/weer_rapport.md aan met een volledige directive in het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Weerdata ophaalt via OpenWeatherMap API voor een opgegeven stad\n- Resultaat opslaat als leesbare tekst in .tmp/weer_rapport.txt\n- Toont: datum en tijd, stadsnaam, temperatuur in Celsius, feels like,\n  weerbeschrijving, luchtvochtigheid, windsnelheid in km/h\n\nInclusief:\n- Doel\n- Input parameters (stad en output bestandspad)\n- Hoe het script aan te roepen\n- Vereisten (.env variabelen en geïnstalleerde packages)\n- API: WeatherAPI.com (weatherapi.com), endpoint /v1/current.json\n- Edge cases: stad niet gevonden, ongeldige API key, netwerk fout,\n  ontbrekende .env variabele\n- Instructie voor zelfherstel bij fouten',
       },
       {
         title: 'Stap 3: Script bouwen',
         body: 'Typ in het paneel:',
-        code: 'Lees directives/weer_rapport.md en bouw execution/weer_ophalen.py\n\nTechnisch:\n- argparse voor --stad en --output argumenten\n- load_dotenv() als allereerste actie\n- WEATHER_API_KEY laden via os.getenv()\n- Endpoint: https://api.openweathermap.org/data/2.5/weather\n- Windsnelheid: m/s × 3.6 = km/h\n- Schrijf resultaat naar het outputbestand\n- Volg alle edge cases uit de directive\n- Commentaar bij elke sectie',
+        code: 'Lees directives/weer_rapport.md en bouw execution/weer_ophalen.py\n\nTechnisch:\n- argparse voor --stad en --output argumenten\n- load_dotenv() als allereerste actie\n- WEATHER_API_KEY laden via os.getenv()\n- Endpoint: https://api.weatherapi.com/v1/current.json?key={key}&q={stad}&lang=nl\n- Haal op: temperatuur (°C), feels like (°C), weerbeschrijving, luchtvochtigheid, windsnelheid (km/h)\n- Schrijf resultaat naar het outputbestand\n- Volg alle edge cases uit de directive\n- Commentaar bij elke sectie',
       },
       {
         title: 'load_dotenv() als eerste',
