@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     model: anthropic('claude-haiku-4-5-20251001'),
     system: SYSTEM_PROMPT,
     messages,
-    maxTokens: 1024,
+    maxOutputTokens: 1024,
   })
 
   return result.toDataStreamResponse()
