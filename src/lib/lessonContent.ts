@@ -416,8 +416,8 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: '.env.example invullen',
-        body: 'Klik op `.env.example`. Voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
-        code: '# Kopieer dit bestand naar .env en vul de echte waarden in\n# .env.example mag je delen — .env nooit\nWEATHER_API_KEY=jouw_openweathermap_key_hier\nGMAIL_USER=jouw@gmail.com\nGMAIL_APP_PASSWORD=jouw_app_wachtwoord_hier',
+        body: 'Klik op `.env.example` in de Explorer links. Dit bestand is een sjabloon — het laat zien welke variabelen jouw project nodig heeft, zonder de echte waarden. Anderen mogen dit bestand zien; `.env` nooit.\n\nVoeg deze starttekst toe en sla op (Ctrl+S op Windows, Cmd+S op Mac). Naarmate je verder gaat in de module voeg je hier variabelen aan toe:',
+        code: '# Kopieer dit bestand naar .env en vul de echte waarden in\n# .env.example mag je delen — .env nooit\n\n# Variabelen komen hier te staan naarmate je verder gaat in de module',
       },
       {
         title: 'VS Code heropen in mijn-agent',
