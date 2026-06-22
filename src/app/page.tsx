@@ -8,7 +8,7 @@ export default function LandingPage() {
       {/* NAV */}
       <nav style={{ borderBottom: '1px solid #1e1e30' }} className="flex items-center justify-between px-12 py-5">
         <div className="text-xl font-bold tracking-tight">
-          Build<span style={{ color: '#a855f7' }}>AI</span>
+          Clavi<span style={{ color: '#a855f7' }}>fy</span>
         </div>
         <div className="flex gap-8">
           {['Cursus', 'Hoe het werkt', 'Prijzen'].map(item => (

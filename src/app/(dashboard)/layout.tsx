@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* SIDEBAR */}
       <aside className="flex flex-col" style={{ width: 240, background: '#111118', borderRight: '1px solid #1e1e30', flexShrink: 0 }}>
         <div className="text-lg font-bold px-6 py-7" style={{ borderBottom: '1px solid #1e1e30' }}>
-          Build<span style={{ color: '#a855f7' }}>AI</span>
+          Clavi<span style={{ color: '#a855f7' }}>fy</span>
         </div>
 
         <nav className="flex-1 py-4">
