@@ -19,6 +19,16 @@ export default function LessonPage() {
 
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
+  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())
+
+  function toggleCheck(i: number) {
+    setCheckedItems(prev => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
 
   useEffect(() => {
     fetch('/api/progress')
@@ -161,12 +171,17 @@ export default function LessonPage() {
                 <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 14, padding: '20px 24px', marginBottom: 32 }}>
                   <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#6b7280' }}>Checklist</div>
                   <div className="flex flex-col gap-2">
-                    {content.checklist.map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 text-sm" style={{ color: '#9ca3af' }}>
-                        <div style={{ width: 18, height: 18, borderRadius: 4, border: '1px solid #2a2a3a', background: '#16161f', flexShrink: 0 }} />
-                        {item}
-                      </div>
-                    ))}
+                    {content.checklist.map((item, i) => {
+                      const checked = checkedItems.has(i)
+                      return (
+                        <div key={i} className="flex items-center gap-3 text-sm cursor-pointer select-none" style={{ color: checked ? '#e5e7eb' : '#9ca3af' }} onClick={() => toggleCheck(i)}>
+                          <div style={{ width: 18, height: 18, borderRadius: 4, border: `1px solid ${checked ? '#7c3aed' : '#2a2a3a'}`, background: checked ? '#7c3aed' : '#16161f', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, color: '#fff', transition: 'all 0.15s' }}>
+                            {checked ? '✓' : ''}
+                          </div>
+                          {item}
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
