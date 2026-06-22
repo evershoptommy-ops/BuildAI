@@ -660,8 +660,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Jouw eigen sausje',
-        body: 'Wil je de mail personaliseren voor een specifieke klant? Typ in het paneel:',
-        code: 'Pas de HTML template in execution/send_html_email.py aan:\n- Gebruik het kleurenschema [kleur naar keuze, bijv. donkerblauw en wit]\n- Voeg bovenaan een tekstregel toe: "Goedemorgen [naam klant], hier is uw dagelijkse update"\n- Vervang de footer door "[jouw naam] | AI Tools"\nSla op en test opnieuw.',
+        body: 'Dit is het moment om Claude gewoon te vragen wat jij wil. Je hoeft geen technische kennis te hebben — beschrijf wat je wilt zien en Claude past het aan.\n\nDenk aan dingen als: een andere kleur die past bij je klant, een persoonlijke begroeting met de naam van de ontvanger, je eigen naam in de footer, een andere volgorde van de gegevens, of een extra sectie met een dagelijkse tip. Vraag het gewoon in het Claude-paneel — hij weet waar de code staat en regelt de rest.',
       },
       {
         title: 'Dit is wat je verkoopt',
