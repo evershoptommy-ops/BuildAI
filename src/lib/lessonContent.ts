@@ -252,8 +252,13 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Een icoontje toevoegen',
-        body: 'Download een 128x128px PNG van emojipng.com of flaticon.com en sla op als `icon.png` in je extensie map.\n\nVoeg dit toe aan manifest.json:',
-        code: '"icons": {\n  "16": "icon.png",\n  "48": "icon.png",\n  "128": "icon.png"\n}',
+        body: 'Download een 128x128px PNG van emojipng.com of flaticon.com. Sla het bestand op als `icon.png` direct in je `woordenteller-extensie` map — dus niet in een submap.\n\nOpen daarna je `manifest.json` in VS Code. Zoek het stuk met `"action"` en voeg het `"icons"` blok eronder toe, zodat het er zo uitziet:',
+        code: '{\n  "manifest_version": 3,\n  "name": "Mijn Eerste Extensie",\n  "version": "1.0",\n  "action": {\n    "default_popup": "popup.html"\n  },\n  "icons": {\n    "16": "icon.png",\n    "48": "icon.png",\n    "128": "icon.png"\n  }\n}',
+      },
+      {
+        title: 'Extensie herladen na wijziging',
+        body: 'Na elke wijziging aan `manifest.json` moet je de extensie herladen in Chrome:\n\n1. Ga naar `chrome://extensions/`\n2. Klik op het ververs-icoontje (↺) bij je extensie\n3. Klik opnieuw op het extensie-icoontje om het resultaat te zien\n\nJe icoontje verschijnt nu in de Chrome extensiebalk.',
+        type: 'tip',
       },
     ],
     checklist: [
