@@ -17,7 +17,7 @@ export async function POST() {
           currency: 'eur',
           unit_amount: 9700, // €97.00
           product_data: {
-            name: 'BuildAI Premium',
+            name: 'Clavify Premium',
             description: 'Toegang tot alle modules + certificaat',
             images: [],
           },
