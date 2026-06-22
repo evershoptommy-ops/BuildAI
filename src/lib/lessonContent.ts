@@ -396,14 +396,13 @@ export const lessonContent: Record<string, LessonContent> = {
         body: 'De werkpaarden. Doen altijd hetzelfde. Elk script doet één ding en doet dat goed. Claude roept ze aan — hij denkt de logica niet zelf uit.\n\nLocatie: `execution/` map',
       },
       {
-        title: 'De projectstructuur aanmaken',
-        body: 'Open de terminal in VS Code (Ctrl+` op Windows, Cmd+` op Mac). Navigeer naar je projectenmap en maak de agent map aan:',
-        code: 'cd clavify-projecten\nmkdir mijn-agent',
+        title: 'Stap 1: Map aanmaken in de Verkenner',
+        body: '**Windows:**\n1. Open de Verkenner (de gele map in je taakbalk)\n2. Navigeer naar je `clavify-projecten` map — die heb je aangemaakt in module 1\n3. Klik met de rechtermuisknop op een lege plek → "Nieuwe map"\n4. Noem de map `mijn-agent`\n\n**Mac:**\n1. Open Finder\n2. Navigeer naar je `clavify-projecten` map\n3. Rechtsklik op een lege plek → "Nieuwe map"\n4. Noem de map `mijn-agent`',
       },
       {
-        title: 'VS Code openen in de juiste map',
-        body: 'Typ dit in de terminal — VS Code herstart automatisch met `mijn-agent` als root:',
-        code: 'code mijn-agent',
+        title: 'Stap 2: Map openen in VS Code',
+        body: 'Open VS Code. Klik op **File → Open Folder** (Windows) of **File → Open...** (Mac).\n\nNavigeer naar je `clavify-projecten` map, klik op de `mijn-agent` map die je net hebt aangemaakt, en klik op "Map selecteren" (Windows) of "Open" (Mac).\n\nJe ziet nu `MIJN-AGENT` verschijnen in de Explorer links — de map is leeg, dat klopt.',
+        type: 'tip',
       },
       {
         title: 'De mapstructuur laten aanmaken door Claude',
