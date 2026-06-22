@@ -428,7 +428,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'CLAUDE.md laten schrijven',
-        body: 'Klik op `CLAUDE.md` om het te openen. Typ in het Claude-paneel:',
+        body: 'Open het bestand `CLAUDE.md` in VS Code: klik erop in de Explorer links (de bestandenlijst in de zijbalk). Het bestand is leeg — dat klopt. Typ daarna in het Claude-paneel rechts:',
         code: 'Schrijf de inhoud voor CLAUDE.md en sla het direct op.\nDit is mijn briefing die je automatisch leest bij elke sessie.\nSchrijf in het Nederlands.\n\nInhoud:\n1. Uitleg van de 3-laagse architectuur (directives, orchestratie, execution)\n2. Werkprincipes:\n   - Check execution/ eerst voordat je een script schrijft\n   - Zelfherstellend: bij fout → fix script → test → update directive\n   - Directives zijn levende documenten: update ze als je iets nieuws leert\n   - .env en .tmp/ nooit committen naar Git\n3. De mappenstructuur als tekstdiagram\n4. Een sectie "Over dit Project" die ik zelf nog invul',
       },
       {
