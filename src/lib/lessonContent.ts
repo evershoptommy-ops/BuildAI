@@ -349,8 +349,8 @@ export const lessonContent: Record<string, LessonContent> = {
         body: 'Klik op het ✦ icoontje. Het paneel opent rechts. Klik op "Sign in". Je browser opent — log in met hetzelfde Anthropic account als claude.ai. Na bevestiging keert VS Code terug en zie je een leeg chatvenster.',
       },
       {
-        title: 'Stap 4: Bevestigingen instellen',
-        body: 'In het Claude Code paneel zie je onderaan een tandwiel- of instellingenicoontje. Klik erop. Je ziet opties voor hoe Claude wijzigingen doorvoert.\n\nKies voor de snelste workflow: stel in dat Claude bestanden direct mag aanpassen zonder elke keer om bevestiging te vragen. Zie je deze optie niet? Dan vraagt Claude automatisch per wijziging — klik dan steeds op "Accept" om door te gaan. Dat werkt ook prima.',
+        title: 'Stap 4: Automatisch goedkeuren instellen',
+        body: 'In het Claude Code paneel zie je de melding "Press Shift+Tab to automatically approve code edits". Druk één keer op **Shift+Tab** — Claude vraagt daarna niet meer om bevestiging bij elke bestandswijziging. Dat is de snelste workflow.\n\nWil je liever elke wijziging zelf goedkeuren? Laat het dan staan. Je klikt dan steeds op "Accept" als Claude iets aanpast.',
         type: 'tip',
       },
       {
@@ -407,7 +407,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'De mapstructuur laten aanmaken door Claude',
-        body: 'Je ziet nu een lege `mijn-agent` map in de Explorer. Open het Claude-paneel (✦ icoontje) en zorg dat er een bestand open staat — maak anders even een leeg bestand aan via File → New File. Typ in het paneel:',
+        body: 'Je ziet nu `mijn-agent` links in de Explorer en het Claude Code paneel rechts. Klik in het tekstvak onderin het Claude Code paneel en typ:',
         code: 'Maak de volgende structuur aan in de huidige map:\n\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
       },
       {
