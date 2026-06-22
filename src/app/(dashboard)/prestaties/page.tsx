@@ -2,6 +2,7 @@ import { currentUser } from '@clerk/nextjs/server'
 import { createClient } from '@supabase/supabase-js'
 import { modules } from '@/lib/modules'
 import CheckoutButton from '@/components/CheckoutButton'
+import { getIsAdmin } from '@/lib/isAdmin'
 
 async function getUserData(userId: string) {
   const client = createClient(
@@ -20,7 +21,9 @@ async function getUserData(userId: string) {
 
 export default async function PrestatiesPage() {
   const user = await currentUser()
-  const { progress, streak, hasPremium } = await getUserData(user!.id)
+  const isAdmin = await getIsAdmin()
+  const { progress, streak, hasPremium: hasPremiumDb } = await getUserData(user!.id)
+  const hasPremium = isAdmin || hasPremiumDb
 
   const completedIds = new Set(progress.map((p: { lesson_id: string }) => p.lesson_id))
   const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0)
