@@ -201,12 +201,23 @@ export default function LessonPage() {
                 style={{ background: '#111118', border: '1px solid rgba(16,185,129,.4)', color: '#34d399', borderRadius: 10, padding: '11px 22px', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <CheckCircle2 size={14} /> Voltooid {nextLesson ? '— Volgende les' : '— Terug naar modules'} <ChevronRight size={14} />
               </button>
-            ) : (
-              <button onClick={completeAndContinue} disabled={saving}
-                style={{ background: saving ? '#4a2d8a' : '#7c3aed', border: 'none', color: '#fff', borderRadius: 10, padding: '11px 22px', fontSize: 14, fontWeight: 600, cursor: saving ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-                <CheckCircle2 size={14} /> {saving ? 'Opslaan...' : nextLesson ? 'Voltooid & Doorgaan' : 'Module voltooid! 🎉'} {!saving && <ChevronRight size={14} />}
-              </button>
-            )}
+            ) : (() => {
+              const content = lessonContent[lessonId]
+              const allChecked = !content || checkedItems.size === content.checklist.length
+              return (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <button onClick={allChecked ? completeAndContinue : undefined} disabled={saving || !allChecked}
+                    style={{ background: saving ? '#4a2d8a' : allChecked ? '#7c3aed' : '#2a2a3a', border: 'none', color: allChecked ? '#fff' : '#6b7280', borderRadius: 10, padding: '11px 22px', fontSize: 14, fontWeight: 600, cursor: allChecked && !saving ? 'pointer' : 'not-allowed', display: 'flex', alignItems: 'center', gap: 6, transition: 'all 0.2s' }}>
+                    <CheckCircle2 size={14} /> {saving ? 'Opslaan...' : nextLesson ? 'Voltooid & Doorgaan' : 'Module voltooid! 🎉'} {!saving && <ChevronRight size={14} />}
+                  </button>
+                  {!allChecked && content && (
+                    <div style={{ fontSize: 12, color: '#6b7280' }}>
+                      Vink alle {content.checklist.length} punten af om door te gaan ({checkedItems.size}/{content.checklist.length})
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
           </div>
         </div>
       </div>
