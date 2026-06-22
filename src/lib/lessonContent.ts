@@ -497,7 +497,6 @@ export const lessonContent: Record<string, LessonContent> = {
     checklist: [
       '`requests` en `python-dotenv` zijn geïnstalleerd',
       'Het testcommando geeft "Klaar"',
-      '`.env.example` bevat alle benodigde variabelenamen',
     ],
   },
 
