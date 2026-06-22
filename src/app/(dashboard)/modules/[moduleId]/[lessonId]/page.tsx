@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { modules } from '@/lib/modules'
+import { lessonContent } from '@/lib/lessonContent'
 import { ChevronLeft, ChevronRight, CheckCircle2, Clock } from 'lucide-react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -116,35 +117,61 @@ export default function LessonPage() {
             MODULE {mod.id} · LES {lessonIndex + 1}
           </div>
           <h1 className="text-3xl font-extrabold mb-4" style={{ letterSpacing: '-0.5px' }}>{lesson.title}</h1>
-          <p className="text-base mb-10 max-w-xl leading-relaxed" style={{ color: '#6b7280' }}>{lesson.description}</p>
 
-          <div className="flex flex-col gap-4 mb-10 max-w-2xl">
-            {[
-              { num: 1, title: 'Voorbereiding', desc: 'Zorg dat VS Code open staat en je project zichtbaar is in de sidebar.', done: true },
-              { num: 2, title: 'Stap uitvoeren', desc: 'Volg de instructies hieronder stap voor stap. Claude helpt je als je vastloopt.', active: true },
-              { num: 3, title: 'Resultaat controleren', desc: 'Na het uitvoeren controleer je of het resultaat klopt met de verwachting.', done: false },
-            ].map(step => (
-              <div key={step.num} className="flex items-start gap-4 p-5 rounded-xl"
-                style={{
-                  background: step.active ? 'rgba(124,58,237,.08)' : '#111118',
-                  border: `1px solid ${step.active ? '#7c3aed' : '#1e1e30'}`,
-                }}>
-                <div style={{
-                  width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 11, fontWeight: 700, marginTop: 1,
-                  background: step.done ? 'rgba(16,185,129,.15)' : step.active ? '#7c3aed' : '#1e1e30',
-                  color: step.done ? '#34d399' : '#fff',
-                }}>
-                  {step.done ? '✓' : step.num}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold mb-1">{step.title}</div>
-                  <div className="text-sm" style={{ color: '#6b7280' }}>{step.desc}</div>
+          {(() => {
+            const content = lessonContent[lessonId]
+            if (!content) return (
+              <p className="text-base mb-10 max-w-xl leading-relaxed" style={{ color: '#6b7280' }}>{lesson.description}</p>
+            )
+            return (
+              <div className="max-w-2xl">
+                <p className="text-base mb-8 leading-relaxed" style={{ color: '#9ca3af' }}>{content.intro}</p>
+
+                {content.sections.map((section, i) => (
+                  <div key={i} className="mb-8">
+                    {section.title && (
+                      <h3 className="text-base font-bold mb-3">{section.title}</h3>
+                    )}
+                    {section.body && (
+                      <div className="text-sm leading-relaxed mb-3" style={{ color: '#9ca3af', whiteSpace: 'pre-line' }}
+                        dangerouslySetInnerHTML={{ __html: section.body
+                          .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#e5e7eb">$1</strong>')
+                          .replace(/`(.*?)`/g, '<code style="background:#1e1e30;padding:2px 6px;border-radius:4px;font-size:12px;color:#a78bfa">$1</code>')
+                        }}
+                      />
+                    )}
+                    {section.code && (
+                      <div style={{ background: '#0d0d14', border: '1px solid #1e1e30', borderRadius: 12, padding: '16px 20px', marginTop: 8 }}>
+                        <pre style={{ margin: 0, fontSize: 13, color: '#a78bfa', fontFamily: 'monospace', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>{section.code}</pre>
+                      </div>
+                    )}
+                    {section.type === 'tip' && (
+                      <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.2)', borderRadius: 10, padding: '10px 14px', marginTop: 6 }}>
+                        <span style={{ fontSize: 11, color: '#a855f7', fontWeight: 600 }}>💡 TIP</span>
+                      </div>
+                    )}
+                    {section.type === 'warning' && (
+                      <div style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.2)', borderRadius: 10, padding: '10px 14px', marginTop: 6 }}>
+                        <span style={{ fontSize: 11, color: '#fbbf24', fontWeight: 600 }}>⚠️ BELANGRIJK</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 14, padding: '20px 24px', marginBottom: 32 }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#6b7280' }}>Checklist</div>
+                  <div className="flex flex-col gap-2">
+                    {content.checklist.map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 text-sm" style={{ color: '#9ca3af' }}>
+                        <div style={{ width: 18, height: 18, borderRadius: 4, border: '1px solid #2a2a3a', background: '#16161f', flexShrink: 0 }} />
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            )
+          })()}
 
           <div className="flex gap-3 items-center">
             {prevLesson && (
