@@ -269,33 +269,42 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '2-5': {
-    intro: 'Je hebt nu de basis. Hier zijn vijf extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de woordenteller.',
+    intro: 'Je hebt nu de basis. Hier zijn vier extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de woordenteller. Kies er één en bouw hem af voor het einde van deze les.',
     sections: [
       {
-        title: '1. Pomodoro Timer',
-        body: 'Een timer die 25 minuten werkt, 5 minuten pauze, en bijhoudt hoeveel sessies je hebt gedaan. Populair bij zelfstandigen en studenten.',
-        code: 'Bouw een Chrome extensie Pomodoro timer. 25 minuten werk, 5 minuten pauze. Visuele countdown. Geluidssignaal bij einde. Score bijhouden.',
+        title: 'Hoe je elke extensie bouwt',
+        body: 'De aanpak is elke keer hetzelfde:\n\n1. Maak een nieuwe map aan in `clavify-projecten` (bijv. `pomodoro-extensie`)\n2. Stuur de prompt hieronder naar Claude\n3. Download de bestanden en zet ze in je map\n4. Laad de extensie via `chrome://extensions/` → "Uitgepakte extensie laden"\n5. Test en pas aan',
+        type: 'tip',
+      },
+      {
+        title: '1. Pomodoro Timer ⭐ Aanbevolen voor beginners',
+        body: 'Een timer die 25 minuten werkt, 5 minuten pauze, en bijhoudt hoeveel sessies je hebt gedaan. Populair bij zelfstandigen en studenten. Makkelijkste om mee te beginnen.',
+        code: 'Bouw een complete Chrome extensie (Manifest V3) die werkt als een Pomodoro timer. 25 minuten werken, dan 5 minuten pauze. Toon een visuele countdown in de popup. Speel een geluidssignaal af bij het einde van een sessie. Houd bij hoeveel sessies er gedaan zijn. Gebruik een donker, professioneel ontwerp. Geef me alle bestanden: manifest.json, popup.html, en popup.js.',
       },
       {
         title: '2. Kleurenkopieerder',
-        body: 'Gebruiker klikt op een kleur op een website, extensie kopieert de hex-code naar klembord. Ideaal voor designers.',
+        body: 'De gebruiker opent de extensie op een website, voert een hex-kleur in of klikt op "Kopieer kleur", en de extensie slaat hem op in een lijstje. Ideaal voor designers.',
+        code: 'Bouw een Chrome extensie (Manifest V3) die werkt als een kleurenpalet-opslager. De gebruiker kan een hex-kleurcode invoeren en opslaan in een lijst. De lijst toont een kleurvlakje naast de hex-code. Er is een kopieer-knop per kleur. Opgeslagen kleuren blijven bewaard via LocalStorage. Donker professioneel ontwerp. Geef me alle bestanden: manifest.json, popup.html, en popup.js.',
       },
       {
         title: '3. Linkopslager',
-        body: 'Gebruiker klikt op een knop, huidige pagina-URL wordt opgeslagen in een lijstje. Met exporteer-naar-CSV optie. Geweldig voor researchers.',
+        body: 'De gebruiker klikt op een knop in de extensie, en de huidige pagina-URL wordt opgeslagen in een lijstje. Met een knop om alle links te exporteren als tekstbestand.',
+        code: 'Bouw een Chrome extensie (Manifest V3) die de huidige pagina-URL opslaat als de gebruiker op een knop klikt. Toon een lijst van alle opgeslagen links met titel en URL. Voeg een "Verwijder" knop toe per link. Voeg een "Exporteer als .txt" knop toe onderaan. Sla alles op via LocalStorage. Donker professioneel ontwerp. Geef me alle bestanden: manifest.json, popup.html, en popup.js.',
       },
       {
         title: '4. Aangepaste Nieuwe Tab',
-        body: 'Vervangt de standaard nieuwe tab met bedrijfslogo, links naar interne tools, en motiverende quote van de dag. Populair bij kleine bedrijven.',
+        body: 'Vervangt de standaard nieuwe tab met een persoonlijke startpagina: een naam, snelkoppelingen naar favoriete websites, en een motiverende quote. Populair bij kleine bedrijven.',
+        code: 'Bouw een Chrome extensie (Manifest V3) die de nieuwe tab vervangt met een persoonlijke startpagina. Toon een begroeting met de tijd van de dag ("Goedemorgen", "Goedemiddag", "Goedenavond"). Toon 6 aanpasbare snelkoppelingen met icoon en naam. Toon een willekeurige motiverende quote onderaan. Gebruik een mooi donker gradient ontwerp. Geef me alle bestanden: manifest.json, newtab.html, newtab.js, en pas manifest.json aan om de nieuwe tab te vervangen.',
       },
       {
         title: 'Welke extensies verkopen het best?',
-        body: 'In volgorde van populariteit bij MKB-klanten:\n\n1. Aangepaste nieuwe tab (persoonlijk, zichtbaar, goedkoop te bouwen)\n2. Data-extractietools (bespaart hen tijd)\n3. Integraties met hun bestaande software',
+        body: 'In volgorde van populariteit bij MKB-klanten:\n\n1. **Aangepaste nieuwe tab** — persoonlijk, zichtbaar elke dag, makkelijk te verkopen\n2. **Linkopslager / data-tools** — bespaart hen aantoonbaar tijd\n3. **Pomodoro / productiviteit** — populair bij kleine teams\n\nNa deze module kun je al een van deze extensies aanbieden aan een eerste klant voor €150–€300.',
         type: 'tip',
       },
     ],
     checklist: [
       'Ik heb een tweede extensie gebouwd (naar keuze)',
+      'Ik heb de extensie geladen en getest in Chrome',
       'Ik weet welke extensies commercieel interessant zijn',
       'Ik kan de basisstructuur reproduceren zonder de les te raadplegen',
     ],
