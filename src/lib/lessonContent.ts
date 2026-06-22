@@ -210,7 +210,12 @@ export const lessonContent: Record<string, LessonContent> = {
         code: 'Bouw een complete Chrome extensie (Manifest V3) die werkt als een woordenteller. De popup toont een tekstvak waar de gebruiker tekst kan invoeren of plakken. Terwijl de gebruiker typt, toont de extensie live het aantal woorden, tekens (met en zonder spaties), en zinnen. Maak het ontwerp minimalistisch en professioneel met een donker kleurenschema. Geef me alle drie de bestanden: manifest.json, popup.html, en popup.js.',
       },
       {
-        title: 'Stap 3: Extensie laden in Chrome',
+        title: 'Stap 3: Bestanden opslaan',
+        body: 'Claude geeft je de drie bestanden terug. Klik in de Claude chat op **Download all** (onderaan de bestandenlijst) om de ZIP te downloaden.\n\nPak de ZIP uit en zet de bestanden (`manifest.json`, `popup.html`, `popup.js`) in je `woordenteller-extensie` map:\n`C:\\Users\\tommy\\clavify-projecten\\woordenteller-extensie\\`\n\n⚠️ Let op: je hebt alleen de losse bestanden nodig, niet een submap. Zorg dat `manifest.json` direct in de `woordenteller-extensie` map staat.',
+        type: 'warning',
+      },
+      {
+        title: 'Stap 4: Extensie laden in Chrome',
         body: '1. Open Chrome\n2. Ga naar `chrome://extensions/`\n3. Zet "Ontwikkelaarsmodus" aan (rechts bovenin)\n4. Klik "Uitgepakte extensie laden"\n5. Selecteer je `woordenteller-extensie` map\n\nJe extensie verschijnt nu in Chrome. Klik op het puzzelstukje rechtsboven om hem vast te zetten.',
       },
       {
