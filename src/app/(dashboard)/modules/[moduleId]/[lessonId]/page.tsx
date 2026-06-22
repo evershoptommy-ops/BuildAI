@@ -20,6 +20,7 @@ export default function LessonPage() {
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   function toggleCheck(i: number) {
     setCheckedItems(prev => {
@@ -28,6 +29,20 @@ export default function LessonPage() {
       else next.add(i)
       return next
     })
+  }
+
+  function copyCode(code: string, i: number) {
+    navigator.clipboard.writeText(code)
+    setCopiedIndex(i)
+    setTimeout(() => setCopiedIndex(null), 2000)
+  }
+
+  function formatBody(text: string) {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#e5e7eb">$1</strong>')
+      .replace(/`(.*?)`/g, '<code style="background:#1e1e30;padding:2px 6px;border-radius:4px;font-size:12px;color:#a78bfa">$1</code>')
+      .replace(/(https?:\/\/[^\s\)]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color:#a855f7;text-decoration:underline">$1</a>')
+      .replace(/\*\*([\w.]+\.\w+)\*\*/g, '<a href="https://$1" target="_blank" rel="noopener" style="color:#a855f7;text-decoration:underline">$1</a>')
   }
 
   useEffect(() => {
@@ -144,15 +159,20 @@ export default function LessonPage() {
                     )}
                     {section.body && (
                       <div className="text-sm leading-relaxed mb-3" style={{ color: '#9ca3af', whiteSpace: 'pre-line' }}
-                        dangerouslySetInnerHTML={{ __html: section.body
-                          .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#e5e7eb">$1</strong>')
-                          .replace(/`(.*?)`/g, '<code style="background:#1e1e30;padding:2px 6px;border-radius:4px;font-size:12px;color:#a78bfa">$1</code>')
-                        }}
+                        dangerouslySetInnerHTML={{ __html: formatBody(section.body) }}
                       />
                     )}
                     {section.code && (
-                      <div style={{ background: '#0d0d14', border: '1px solid #1e1e30', borderRadius: 12, padding: '16px 20px', marginTop: 8 }}>
-                        <pre style={{ margin: 0, fontSize: 13, color: '#a78bfa', fontFamily: 'monospace', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>{section.code}</pre>
+                      <div style={{ background: '#0d0d14', border: '1px solid #1e1e30', borderRadius: 12, marginTop: 8, overflow: 'hidden' }}>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '8px 12px', borderBottom: '1px solid #1e1e30', background: '#111118' }}>
+                          <button
+                            onClick={() => copyCode(section.code!, i)}
+                            style={{ fontSize: 11, fontWeight: 600, color: copiedIndex === i ? '#34d399' : '#6b7280', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4 }}
+                          >
+                            {copiedIndex === i ? '✓ Gekopieerd' : '⎘ Kopieer'}
+                          </button>
+                        </div>
+                        <pre style={{ margin: 0, fontSize: 13, color: '#a78bfa', fontFamily: 'monospace', whiteSpace: 'pre-wrap', lineHeight: 1.6, padding: '16px 20px' }}>{section.code}</pre>
                       </div>
                     )}
                     {section.type === 'tip' && (
