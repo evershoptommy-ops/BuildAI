@@ -151,7 +151,23 @@ export default function LessonPage() {
                     {section.title && (
                       <h3 className="text-base font-bold mb-3">{section.title}</h3>
                     )}
-                    {section.body && (
+                    {section.body && section.type === 'tip' && (
+                      <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.2)', borderRadius: 10, padding: '14px 16px', marginBottom: 8 }}>
+                        <div style={{ fontSize: 11, color: '#a855f7', fontWeight: 600, marginBottom: 8 }}>💡 TIP</div>
+                        <div className="text-sm leading-relaxed" style={{ color: '#c4b5fd', whiteSpace: 'pre-line' }}
+                          dangerouslySetInnerHTML={{ __html: formatBody(section.body) }}
+                        />
+                      </div>
+                    )}
+                    {section.body && section.type === 'warning' && (
+                      <div style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.2)', borderRadius: 10, padding: '14px 16px', marginBottom: 8 }}>
+                        <div style={{ fontSize: 11, color: '#fbbf24', fontWeight: 600, marginBottom: 8 }}>⚠️ BELANGRIJK</div>
+                        <div className="text-sm leading-relaxed" style={{ color: '#fde68a', whiteSpace: 'pre-line' }}
+                          dangerouslySetInnerHTML={{ __html: formatBody(section.body) }}
+                        />
+                      </div>
+                    )}
+                    {section.body && !section.type && (
                       <div className="text-sm leading-relaxed mb-3" style={{ color: '#9ca3af', whiteSpace: 'pre-line' }}
                         dangerouslySetInnerHTML={{ __html: formatBody(section.body) }}
                       />
@@ -167,16 +183,6 @@ export default function LessonPage() {
                           </button>
                         </div>
                         <pre style={{ margin: 0, fontSize: 13, color: '#a78bfa', fontFamily: 'monospace', whiteSpace: 'pre-wrap', lineHeight: 1.6, padding: '16px 20px' }}>{section.code}</pre>
-                      </div>
-                    )}
-                    {section.type === 'tip' && (
-                      <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.2)', borderRadius: 10, padding: '10px 14px', marginTop: 6 }}>
-                        <span style={{ fontSize: 11, color: '#a855f7', fontWeight: 600 }}>💡 TIP</span>
-                      </div>
-                    )}
-                    {section.type === 'warning' && (
-                      <div style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.2)', borderRadius: 10, padding: '10px 14px', marginTop: 6 }}>
-                        <span style={{ fontSize: 11, color: '#fbbf24', fontWeight: 600 }}>⚠️ BELANGRIJK</span>
                       </div>
                     )}
                   </div>
