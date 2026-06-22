@@ -371,7 +371,7 @@ export const lessonContent: Record<string, LessonContent> = {
     checklist: [
       'De Claude Code extensie is geïnstalleerd en ik ben ingelogd',
       'Het chatvenster is zichtbaar in het paneel rechts',
-      '"Edit automatically" staat aan',
+      'Shift+Tab is ingedrukt voor automatisch goedkeuren',
       'Claude kan de inhoud van mijn projectmap benoemen',
     ],
   },
@@ -406,7 +406,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'De mapstructuur laten aanmaken door Claude',
-        body: 'Je ziet nu `mijn-agent` links in de Explorer en het Claude Code paneel rechts. Klik in het tekstvak onderin het Claude Code paneel en typ:',
+        body: 'Je ziet nu jouw agentmap links in de Explorer en het Claude Code paneel rechts. Klik in het tekstvak onderin het Claude Code paneel en typ:',
         code: 'Maak de volgende structuur aan in de huidige map:\n\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
       },
       {
@@ -419,16 +419,12 @@ export const lessonContent: Record<string, LessonContent> = {
         body: 'Klik op `.env.example` in de Explorer links. Dit bestand is een sjabloon — het laat zien welke variabelen jouw project nodig heeft, zonder de echte waarden. Anderen mogen dit bestand zien; `.env` nooit.\n\nVoeg deze starttekst toe en sla op (Ctrl+S op Windows, Cmd+S op Mac). Naarmate je verder gaat in de module voeg je hier variabelen aan toe:',
         code: '# Kopieer dit bestand naar .env en vul de echte waarden in\n# .env.example mag je delen — .env nooit\n\n# Variabelen komen hier te staan naarmate je verder gaat in de module',
       },
-      {
-        title: 'VS Code heropen in mijn-agent',
-        body: 'Vanaf nu werk je altijd vanuit de `mijn-agent` map. Heropen VS Code zodat Claude altijd de juiste context heeft:\n\nFile → Open Folder → navigeer naar `clavify-projecten/mijn-agent` → klik "Map selecteren" of "Open".\n\nJe ziet nu `mijn-agent` als de root in de Explorer.',
-      },
     ],
     checklist: [
-      '`mijn-agent` structuur is aangemaakt en zichtbaar in de Explorer',
+      'Mijn agentmap is aangemaakt en geopend in VS Code',
+      'De mapstructuur (CLAUDE.md, directives/, execution/, .tmp/) is aangemaakt door Claude',
       '`.gitignore` bevat .env en .tmp/',
       '`.env.example` is ingevuld en opgeslagen (Ctrl+S / Cmd+S)',
-      'VS Code is heropend in de `mijn-agent` map',
     ],
   },
 
