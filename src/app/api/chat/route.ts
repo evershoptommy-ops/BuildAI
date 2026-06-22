@@ -59,11 +59,11 @@ export async function POST(req: Request) {
   const { userId } = await auth()
   if (!userId) return new Response('Unauthorized', { status: 401 })
 
-  const { messages } = await req.json()
+  const { messages, context } = await req.json()
 
   const result = streamText({
     model: anthropic('claude-haiku-4-5-20251001'),
-    system: SYSTEM_PROMPT,
+    system: SYSTEM_PROMPT + (context ?? ''),
     messages,
     maxOutputTokens: 1024,
   })
