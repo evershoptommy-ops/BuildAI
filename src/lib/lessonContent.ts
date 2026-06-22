@@ -505,7 +505,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: API key ophalen',
-        body: 'Ga naar **https://www.weatherapi.com/** → klik op "Sign Up" → maak een gratis account aan en bevestig je e-mail. Na inloggen zie je direct je API key op het dashboard. Kopieer hem.\n\nDe API key werkt direct — geen wachttijd.',
+        body: 'Ga naar https://www.weatherapi.com/ → klik op "Sign Up" → maak een gratis account aan en bevestig je e-mail. Na inloggen zie je direct je API key op het dashboard. Kopieer hem.\n\nDe API key werkt direct — geen wachttijd.',
         type: 'tip',
       },
       {
