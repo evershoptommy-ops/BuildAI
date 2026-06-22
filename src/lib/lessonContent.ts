@@ -211,7 +211,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Bestanden opslaan',
-        body: 'Claude geeft je de drie bestanden terug. Klik in de Claude chat op **Download all** (onderaan de bestandenlijst) om de ZIP te downloaden.\n\nPak de ZIP uit en zet de bestanden (`manifest.json`, `popup.html`, `popup.js`) in je `woordenteller-extensie` map:\n`C:\\Users\\tommy\\clavify-projecten\\woordenteller-extensie\\`\n\n⚠️ Let op: je hebt alleen de losse bestanden nodig, niet een submap. Zorg dat `manifest.json` direct in de `woordenteller-extensie` map staat.',
+        body: 'Claude geeft je de drie bestanden terug. Klik in de Claude chat op **Download all** (onderaan de bestandenlijst) om de ZIP te downloaden.\n\nPak de ZIP uit en zet de bestanden (`manifest.json`, `popup.html`, `popup.js`) in je `woordenteller-extensie` map in `clavify-projecten`.\n\n⚠️ Let op: je hebt alleen de losse bestanden nodig, niet een submap. Zorg dat `manifest.json` direct in de `woordenteller-extensie` map staat.',
         type: 'warning',
       },
       {
@@ -349,8 +349,8 @@ export const lessonContent: Record<string, LessonContent> = {
         body: 'Klik op het ✦ icoontje. Het paneel opent rechts. Klik op "Sign in". Je browser opent — log in met hetzelfde Anthropic account als claude.ai. Na bevestiging keert VS Code terug en zie je een leeg chatvenster.',
       },
       {
-        title: 'Stap 4: "Edit automatically" aanzetten',
-        body: 'Rechtsonder in het Claude-paneel zie je de knop "Edit automatically". Zet dit aan.\n\nMet deze instelling schrijft Claude bestanden direct zonder om bevestiging te vragen. Dat is de snelste workflow voor deze module. Je kunt het later altijd uitzetten als je elke wijziging liever zelf goedkeurt.',
+        title: 'Stap 4: Bevestigingen instellen',
+        body: 'In het Claude Code paneel zie je onderaan een tandwiel- of instellingenicoontje. Klik erop. Je ziet opties voor hoe Claude wijzigingen doorvoert.\n\nKies voor de snelste workflow: stel in dat Claude bestanden direct mag aanpassen zonder elke keer om bevestiging te vragen. Zie je deze optie niet? Dan vraagt Claude automatisch per wijziging — klik dan steeds op "Accept" om door te gaan. Dat werkt ook prima.',
         type: 'tip',
       },
       {
@@ -501,7 +501,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: API key ophalen',
-        body: 'Ga naar **openweathermap.org** → "Sign In" → "Create an Account". Bevestig je e-mail. Na inloggen: klik rechtsboven op je gebruikersnaam → "My API keys". Kopieer de sleutel onder "Default".\n\nOpen `.env`, voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
+        body: 'Ga naar **openweathermap.org** → "Sign In" → "Create an Account". Bevestig je e-mail. Na inloggen: klik rechtsboven op je gebruikersnaam → "My API keys". Kopieer de sleutel onder "Default".\n\nOpen `.env` in VS Code door erop te klikken in de Explorer links. Voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
         code: 'WEATHER_API_KEY=plak_hier_jouw_key',
       },
       {
@@ -549,7 +549,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: Gmail App Password aanmaken',
-        body: 'Je script stuurt e-mail via Gmail. Hiervoor heb je een App Password nodig — een apart wachtwoord speciaal voor dit script, los van je normale wachtwoord.\n\n1. Ga naar **myaccount.google.com** → klik "Beveiliging"\n2. Activeer "Verificatie in twee stappen" als dat nog niet aan staat\n3. Ga naar: **myaccount.google.com/apppasswords**\n4. Geef het een naam zoals "clavify-agent" en klik "Maken"\n5. Kopieer de 16 tekens — je ziet ze maar één keer\n\nVoeg toe aan `.env` en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
+        body: 'Je script stuurt e-mail via Gmail. Hiervoor heb je een App Password nodig — een apart wachtwoord speciaal voor dit script, los van je normale wachtwoord.\n\n**Eerst: verificatie in twee stappen aanzetten**\n1. Ga naar **myaccount.google.com** → klik "Beveiliging"\n2. Scroll naar "Verificatie in twee stappen" en zet het aan — dit is verplicht voordat App Passwords werken\n3. Volg de stappen om je telefoonnummer te koppelen\n\n**Dan: App Password aanmaken**\n4. Ga naar **myaccount.google.com/apppasswords**\n5. Geef het een naam zoals "clavify-agent" en klik "Maken"\n6. Kopieer de 16 tekens — je ziet ze maar één keer\n\nOpen `.env` in VS Code (klik erop in de Explorer links). Voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
         code: 'GMAIL_USER=jouw@gmail.com\nGMAIL_APP_PASSWORD=de16tekenshier',
       },
       {
