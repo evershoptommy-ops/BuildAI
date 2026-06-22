@@ -311,122 +311,324 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '3-1': {
-    intro: 'Tot nu toe waren je tools zelfstandig. Nu gaan we verder: tools die verbinding maken met het internet en echte data ophalen via API\'s.',
+    intro: 'In modules 1 en 2 werkte je met Claude via de browser. Dat werkt prima voor losse vragen. Maar voor een heel projectsysteem wil je Claude direct in je editor — als een collega die naast je zit, meekijkt, en bestanden direct aanpast zonder dat jij iets hoeft te kopiëren.',
     sections: [
       {
-        title: 'Wat is een API?',
-        body: 'Een API (Application Programming Interface) is een "deur" die websites openzetten zodat andere software hun data kan ophalen. Het weerbericht op je telefoon komt van een API. De koers van bitcoin op een dashboard komt van een API. De meeste nuttige tools werken met API\'s.',
+        title: 'Wat is de Claude Code extensie?',
+        body: 'De Claude Code extensie is een agent die je project begrijpt, bestanden aanmaakt en aanpast, en scripts uitvoert — allemaal vanuit een paneel rechts in VS Code.\n\n**Browser (zoals je deed in module 1 en 2):** jij kopieert code → plakt in Claude → krijgt antwoord → kopieert terug → plakt op de juiste plek. Vijf stappen, kans op fouten bij elke stap.\n\n**Claude Code extensie:** jij typt een opdracht → Claude leest je bestanden → past ze direct aan → klaar. Één stap.',
       },
       {
-        title: 'Je eerste API-koppeling: OpenWeatherMap',
-        body: 'Stap 1: Ga naar **openweathermap.org** en maak een gratis account aan. Je krijgt een API-sleutel.\n\nStap 2: Vraag Claude om een weertool te bouwen:',
-        code: 'Bouw een Python script dat de OpenWeatherMap API gebruikt. De gebruiker voert een stadsnaam in. Het script haalt de huidige temperatuur, luchtvochtigheid, en weerbeschrijving op en toont dit netjes in de terminal. Gebruik de gratis API (api.openweathermap.org/data/2.5/weather). Ik heb al een API-sleutel. Leg elke stap uit.',
+        title: 'Geen download nodig',
+        body: 'Anders dan in module 2 hoef je hier geen bestanden te downloaden of handmatig te verplaatsen. Claude Code schrijft alles direct in je projectmap. Je gebruikt Ctrl+S / Cmd+S alleen als je zelf iets typt in een bestand.',
+        type: 'tip',
       },
       {
-        title: 'Belangrijk',
-        body: '• API-keys zijn privé — deel ze nooit publiek\n• JSON is de taal die API\'s spreken — het ziet eruit als een woordenboek\n• Claude kan elke API koppelen als jij hem de documentatie geeft',
+        title: 'Vereisten voordat je begint',
+        body: '**VS Code versie 1.98.0 of nieuwer**\nControleer via Help → About (Windows) of Code → About VS Code (Mac). Zie je een lager versienummer? Download de nieuwste versie via **code.visualstudio.com**.\n\n**Claude Pro account of hoger**\nDe Claude Code extensie werkt niet met een gratis account. Je hebt minimaal Claude Pro nodig (~$17/maand). Ga naar **claude.ai** → klik op je naam → Upgrade.',
+      },
+      {
+        title: 'Gratis account werkt niet',
+        body: 'Heb je alleen een gratis Anthropic account? Dan kun je de extensie niet activeren. Upgrade eerst naar Pro. Wil je de module toch volgen zonder Pro? Zie het alternatief onderaan deze les.',
         type: 'warning',
+      },
+      {
+        title: 'Stap 1: De extensie installeren',
+        body: 'Open VS Code. Druk op Ctrl+Shift+X (Windows) of Cmd+Shift+X (Mac) om de Extensions marketplace te openen.\n\nZoek op: `Claude Code`\n\nJe ziet de officiële extensie van Anthropic. Klik op "Install". Herstart VS Code als het icoontje daarna niet verschijnt.',
+      },
+      {
+        title: 'Stap 2: Het paneel openen',
+        body: 'Het Claude Code icoontje (✦) staat op drie plekken:\n\n• **Linker zijbalk:** alleen zichtbaar als er een bestand open staat in de editor\n• **Rechtsonder in de statusbalk:** werkt altijd, ook zonder open bestand\n• **Command Palette:** Ctrl+Shift+P (Windows) / Cmd+Shift+P (Mac) → typ "Claude Code: Open"',
+      },
+      {
+        title: 'Icoontje niet zichtbaar?',
+        body: 'Open een willekeurig bestand in de editor — bijvoorbeeld je `factuur.py` uit module 1. Het icoontje in de linker zijbalk verschijnt alleen als de editor een bestand heeft geladen.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 3: Inloggen',
+        body: 'Klik op het ✦ icoontje. Het paneel opent rechts. Klik op "Sign in". Je browser opent — log in met hetzelfde Anthropic account als claude.ai. Na bevestiging keert VS Code terug en zie je een leeg chatvenster.',
+      },
+      {
+        title: 'Stap 4: "Edit automatically" aanzetten',
+        body: 'Rechtsonder in het Claude-paneel zie je de knop "Edit automatically". Zet dit aan.\n\nMet deze instelling schrijft Claude bestanden direct zonder om bevestiging te vragen. Dat is de snelste workflow voor deze module. Je kunt het later altijd uitzetten als je elke wijziging liever zelf goedkeurt.',
+        type: 'tip',
+      },
+      {
+        title: 'Je eerste test',
+        body: 'Typ in het chatvenster:',
+        code: 'Hallo. Welke bestanden en mappen staan er in de map die nu open staat in VS Code?',
+      },
+      {
+        title: 'Als de extensie niet werkt',
+        body: '**Icoontje verschijnt niet:** open een bestand in de editor.\n\n**Reload window:** Ctrl+Shift+P / Cmd+Shift+P → typ "Developer: Reload Window" → Enter.\n\n**Inloggen mislukt:** open VS Code vanuit de terminal met `code .` in plaats van via het startmenu of Spotlight.\n\n**Vragen worden niet beantwoord:** controleer of je Claude Pro account actief is via **claude.ai** → Instellingen → Abonnement.',
+      },
+      {
+        title: 'Alternatief voor gratis accounts',
+        body: 'Installeer Claude Code via de terminal en start met `claude`. De rest van de module werkt hetzelfde — je typt opdrachten in de terminal in plaats van het VS Code paneel.',
+        code: 'npm install -g @anthropic-ai/claude-code',
       },
     ],
     checklist: [
-      'Ik heb een OpenWeatherMap account en API-sleutel',
-      'De weertool werkt in de terminal',
-      'Ik begrijp wat JSON is',
+      'De Claude Code extensie is geïnstalleerd en ik ben ingelogd',
+      'Het chatvenster is zichtbaar in het paneel rechts',
+      '"Edit automatically" staat aan',
+      'Claude kan de inhoud van mijn projectmap benoemen',
     ],
   },
 
   '3-2': {
-    intro: 'Een terminal-tool is goed voor jezelf. Maar als je iets aan een klant wilt laten zien, wil je een webpagina. We bouwen een HTML-versie van de weertool die er als een echte app uitziet.',
+    intro: 'Voordat je iets bouwt, zet je de structuur goed neer. Dit is het fundament van alles. Een agent zonder structuur is als een medewerker zonder taakomschrijving — hij probeert wel, maar het gaat mis op het verkeerde moment.',
     sections: [
       {
-        title: 'Vraag Claude om de webversie',
-        body: 'Stuur dit naar Claude:',
-        code: 'Bouw een complete HTML/CSS/JavaScript webpagina die werkt als een weerapp. Gebruik de OpenWeatherMap API. De pagina moet: een zoekbalk hebben voor een stadsnaam, een zoekknop, en de resultaten netjes tonen met iconen voor de weerconditie. Gebruik een modern, gradient-achtergrond ontwerp met witte kaarten voor de data. Alles in één HTML bestand. Voeg ook foutafhandeling toe als de stad niet bestaat.',
+        title: 'Waarom structuur zo belangrijk is',
+        body: 'Stel je voor: je vraagt Claude om een website te scrapen, een rapport te maken, en dat per e-mail te sturen. Als Claude dat allemaal zelf uitdenkt — los, zonder vaste regels — gaat het vroeg of laat mis. Eén fout in stap 2 = stap 3 ook fout. 90% succes per stap = 59% totaal succes over 5 stappen.\n\nDe oplossing: drie lagen die elk een eigen verantwoordelijkheid hebben.',
       },
       {
-        title: 'Opslaan en openen',
-        body: 'Sla op als `weer-app.html` en open in je browser door dubbel te klikken op het bestand. Je ziet meteen de werkende app.',
+        title: 'Laag 1: Directives — Wat moet er gebeuren',
+        body: 'Instructiebestanden in gewone taal. Geen code. Je schrijft hier alsof je een slimme medewerker instrueert: wat is het doel, welke stappen zijn er, welk script moet gebruikt worden, wat doe je als er iets misgaat.\n\nLocatie: `directives/` map',
+      },
+      {
+        title: 'Laag 2: Orchestratie — Claude zelf',
+        body: 'Claude leest de directives, beslist wat er moet gebeuren, bouwt of roept de juiste scripts aan, en verbetert de directives als hij iets nieuws leert. Hij schrijft geen nieuw script als er al één bestaat.\n\nLocatie: `CLAUDE.md` — zijn briefing bij elke sessie',
+      },
+      {
+        title: 'Laag 3: Execution — Python scripts',
+        body: 'De werkpaarden. Doen altijd hetzelfde. Elk script doet één ding en doet dat goed. Claude roept ze aan — hij denkt de logica niet zelf uit.\n\nLocatie: `execution/` map',
+      },
+      {
+        title: 'De projectstructuur aanmaken',
+        body: 'Ga naar File → Open Folder. Navigeer naar je `clavify-projecten` map en klik "Map selecteren" (Windows) of "Open" (Mac).\n\nJe ziet je bestaande projecten in de Explorer: `factuur-tool/` en `woordenteller-extensie/`. Open het Claude-paneel en zorg dat er een bestand open staat (open anders `factuur-tool/factuur.py` uit module 1).\n\nTyp in het paneel:',
+        code: 'Maak een nieuwe projectmap aan genaamd mijn-agent\nin de huidige clavify-projecten map.\n\nMaak deze structuur aan:\nmijn-agent/\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
+      },
+      {
+        title: '.env nooit delen',
+        body: 'Het `.env` bestand bevat straks je API keys en wachtwoorden. Dit bestand mag NOOIT naar GitHub of gedeeld worden. De `.gitignore` die Claude aanmaakt zorgt hiervoor automatisch.',
+        type: 'warning',
+      },
+      {
+        title: '.env.example invullen',
+        body: 'Klik op `.env.example`. Voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
+        code: '# Kopieer dit bestand naar .env en vul de echte waarden in\n# .env.example mag je delen — .env nooit\nWEATHER_API_KEY=jouw_openweathermap_key_hier\nGMAIL_USER=jouw@gmail.com\nGMAIL_APP_PASSWORD=jouw_app_wachtwoord_hier',
+      },
+      {
+        title: 'VS Code heropen in mijn-agent',
+        body: 'Vanaf nu werk je altijd vanuit de `mijn-agent` map. Heropen VS Code zodat Claude altijd de juiste context heeft:\n\nFile → Open Folder → navigeer naar `clavify-projecten/mijn-agent` → klik "Map selecteren" of "Open".\n\nJe ziet nu `mijn-agent` als de root in de Explorer.',
       },
     ],
     checklist: [
-      'De weerapp werkt als HTML pagina in de browser',
-      'Het ontwerp ziet er professioneel uit',
-      'Foutmeldingen worden netjes getoond',
+      '`mijn-agent` structuur is aangemaakt en zichtbaar in de Explorer',
+      '`.gitignore` bevat .env en .tmp/',
+      '`.env.example` is ingevuld en opgeslagen (Ctrl+S / Cmd+S)',
+      'VS Code is heropend in de `mijn-agent` map',
     ],
   },
 
   '3-3': {
-    intro: 'Tools worden pas echt nuttig als ze dingen onthouden. In deze les leren we twee manieren om data op te slaan.',
+    intro: 'CLAUDE.md is het bestand dat Claude automatisch leest bij elke sessie. Het is zijn briefing — alles wat je hierin schrijft weet hij direct, zonder dat je het elke keer opnieuw hoeft uit te leggen. Het verschil tussen een nieuwe medewerker die niets weet en een ervaren collega die precies weet hoe jij werkt.',
     sections: [
       {
-        title: 'Methode 1: Bestanden opslaan met Python',
-        body: 'Vraag Claude:',
-        code: 'Breid de factuurcalculator uit module 1 uit. Voeg een optie toe om alle facturen op te slaan in een JSON bestand (facturen.json). Voeg ook een optie toe om alle opgeslagen facturen te tonen, gesorteerd op datum. Leg uit hoe het JSON formaat werkt.',
+        title: 'CLAUDE.md laten schrijven',
+        body: 'Klik op `CLAUDE.md` om het te openen. Typ in het Claude-paneel:',
+        code: 'Schrijf de inhoud voor CLAUDE.md en sla het direct op.\nDit is mijn briefing die je automatisch leest bij elke sessie.\nSchrijf in het Nederlands.\n\nInhoud:\n1. Uitleg van de 3-laagse architectuur (directives, orchestratie, execution)\n2. Werkprincipes:\n   - Check execution/ eerst voordat je een script schrijft\n   - Zelfherstellend: bij fout → fix script → test → update directive\n   - Directives zijn levende documenten: update ze als je iets nieuws leert\n   - .env en .tmp/ nooit committen naar Git\n3. De mappenstructuur als tekstdiagram\n4. Een sectie "Over dit Project" die ik zelf nog invul',
       },
       {
-        title: 'Methode 2: LocalStorage in browser tools',
-        body: 'LocalStorage is een mini-opslagruimte in de browser. Het blijft bewaard ook na het sluiten van de browser.\n\nVraag Claude:',
-        code: 'Voeg aan mijn woordenteller Chrome extensie een geschiedenis toe. Bewaar de laatste 10 getelde teksten in LocalStorage met timestamp. Toon een tabblad \'Geschiedenis\' in de extensie. Leg uit hoe LocalStorage werkt.',
+        title: 'Plan mode herkennen',
+        body: 'Soms toont Claude eerst een plan voordat hij iets doet. Je ziet een overzicht van wat hij gaat aanpassen. Lees het door — ziet het er goed uit? Klik "Continue" of "Accept plan". Wil je iets aanpassen? Typ je opmerking in het paneel.',
+      },
+      {
+        title: '"Over dit Project" zelf invullen',
+        body: 'Scroll naar het einde van CLAUDE.md. Je ziet een lege sectie "Over dit Project". Vul dit zelf in — Claude leest dit bij elke sessie en past zijn gedrag aan op jouw project:',
+        code: '## Over dit Project\n\nDit project haalt dagelijks weerdata op voor een stad\nen stuurt het automatisch per e-mail naar de klant.\n\nDoelgroep: kleine bedrijven in Nederland\nDeliverable: e-mail in inbox van de klant elke ochtend',
+      },
+      {
+        title: 'Opslaan niet vergeten',
+        body: 'Sla CLAUDE.md op na het invullen van "Over dit Project" (Ctrl+S op Windows, Cmd+S op Mac).',
+        type: 'tip',
+      },
+      {
+        title: 'Testen',
+        body: 'Typ in het paneel:',
+        code: 'Lees CLAUDE.md en leg me uit hoe jij werkt in dit project.\nNoem de 3 lagen, de werkprincipes, en de mappenstructuur.',
       },
     ],
     checklist: [
-      'Factuurcalculator slaat data op in JSON',
-      'Woordenteller heeft een geschiedenis via LocalStorage',
-      'Ik begrijp het verschil tussen de twee methoden',
+      'CLAUDE.md is geschreven door Claude en opgeslagen',
+      '"Over dit Project" is door mij ingevuld en opgeslagen (Ctrl+S / Cmd+S)',
+      'Claude beschrijft de 3 lagen correct op basis van CLAUDE.md',
+      'Ik begrijp wat Plan mode is en wanneer ik "Accept" klik',
     ],
   },
 
   '3-4': {
-    intro: 'De meest waardevolle tools zijn tools die werken terwijl jij slaapt. Automatisering is waar het echte geld zit — bedrijven betalen goed voor scripts die hen tijd besparen.',
+    intro: 'Claude Code kan Python packages niet installeren via het paneel — dat doe je eenmalig handmatig via de terminal. Daarna hoef je er nooit meer aan te denken.',
     sections: [
       {
-        title: 'Project: Dagelijkse weersrapportage per e-mail',
-        body: 'We bouwen een Python script dat elke ochtend automatisch het weerbericht naar een e-mailadres stuurt.\n\nVraag Claude:',
-        code: 'Bouw een Python script dat automatisch een dagelijkse weersrapportage stuurt via e-mail. Gebruik de OpenWeatherMap API voor het weer van een ingestelde stad. Gebruik smtplib om een e-mail te sturen via Gmail (met App Password). De e-mail moet HTML zijn met een nette opmaak: stad, temperatuur, weerbeschrijving, en een advies.',
+        title: 'Terminal openen in VS Code',
+        body: 'Druk op Ctrl+` (Windows) of Cmd+` (Mac). De terminal opent onderin VS Code.\n\nControleer of je in de juiste map staat:\n• **Mac/Linux:** typ `pwd` — je ziet `.../clavify-projecten/mijn-agent`\n• **Windows:** typ `cd` — je ziet `...\\clavify-projecten\\mijn-agent`\n\nSta je ergens anders? Navigeer handmatig:\n• Windows: `cd clavify-projecten\\mijn-agent`\n• Mac: `cd clavify-projecten/mijn-agent`',
       },
       {
-        title: 'Het script inplannen op Windows',
-        body: 'Zoek op "Taakplanner" in het startmenu → Nieuwe eenvoudige taak aanmaken → Stel de tijd in en wijs je Python script aan.',
+        title: 'Packages installeren',
+        body: 'Typ deze commando\'s één voor één:',
+        code: 'pip install requests\npip install python-dotenv',
       },
       {
-        title: 'Het script inplannen op Mac',
-        body: 'Vraag Claude:',
-        code: 'Hoe stel ik een cron job in op Mac om mijn Python script elke ochtend om 8:00 te draaien?',
+        title: 'Werkt pip niet?',
+        body: 'Probeer `pip3` of `python -m pip`:',
+        code: 'pip3 install requests\npip3 install python-dotenv',
+        type: 'tip',
+      },
+      {
+        title: 'Controleren of het werkt',
+        body: 'Voer dit commando uit — je moet "Klaar" zien:',
+        code: 'python -c "import requests; from dotenv import load_dotenv; print(\'Klaar\')"',
+      },
+      {
+        title: 'Foutmelding bij installatie?',
+        body: 'Kopieer de foutmelding en plak hem in het Claude-paneel:',
+        code: 'Ik krijg deze fout bij het installeren van Python packages op [Windows/Mac]: [foutmelding]. Hoe los ik dit op?',
         type: 'tip',
       },
     ],
     checklist: [
-      'Het e-mailscript werkt handmatig',
-      'Het script is ingepland voor automatische uitvoering',
-      'Ik kan dit concept uitleggen aan een potentiële klant',
+      '`requests` en `python-dotenv` zijn geïnstalleerd',
+      'Het testcommando geeft "Klaar"',
+      '`.env.example` bevat alle benodigde variabelenamen',
     ],
   },
 
   '3-5': {
-    intro: 'Op basis van wat kleine bedrijven het meest nodig hebben, zijn dit de 10 tools die je kunt bouwen en verkopen.',
+    intro: 'Nu gaan we iets echts bouwen. Een agent die op jouw commando het actuele weer ophaalt voor een stad en het resultaat netjes opslaat. Volledig werkend, stap voor stap — van API key tot tekstbestand.',
     sections: [
       {
-        title: 'Tier 1 — Eenvoudig (€150–€500)',
-        body: '1. **Factuurcalculator** — al gebouwd! Aanpassen voor elke klant\n2. **Adressenextractor** — kopieert contactinfo van websites naar Excel\n3. **Wachtwoordgenerator** — veilige wachtwoorden voor intern gebruik\n4. **Kleurenpalette-tool** — huisstijlkleuren snel kopiëren',
+        title: 'Stap 1: API key ophalen',
+        body: 'Ga naar **openweathermap.org** → "Sign In" → "Create an Account". Bevestig je e-mail. Na inloggen: klik rechtsboven op je gebruikersnaam → "My API keys". Kopieer de sleutel onder "Default".\n\nOpen `.env`, voeg toe en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
+        code: 'WEATHER_API_KEY=plak_hier_jouw_key',
       },
       {
-        title: 'Tier 2 — Gemiddeld (€500–€1.500)',
-        body: '5. **Voorraad-tracker** — bijhouden van producten in een simpel systeem\n6. **Offertetool** — klant vult in, tool genereert PDF offerte\n7. **URL-checker** — controleert of links op een website nog werken\n8. **Tijdregistratie-dashboard** — overzicht van uren per project per klant',
+        title: 'Nieuwe API key — wacht even',
+        body: 'Een nieuw aangemaakte API key duurt tot 2 uur voordat hij actief is. Krijg je een 401-fout vlak na het aanmaken? Wacht een uur en probeer opnieuw. Dit is geen fout in je code.',
+        type: 'warning',
       },
       {
-        title: 'Tier 3 — Gevorderd (€1.500–€4.000)',
-        body: '9. **Lead scraper** — haalt contactgegevens op van websites in een niche\n10. **Rapportage-automatisering** — trekt data uit meerdere bronnen en maakt wekelijks rapport',
+        title: 'Stap 2: Directive schrijven',
+        body: 'Typ in het Claude-paneel:',
+        code: 'Maak directives/weer_rapport.md aan met een volledige directive in het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Weerdata ophaalt via OpenWeatherMap API voor een opgegeven stad\n- Resultaat opslaat als leesbare tekst in .tmp/weer_rapport.txt\n- Toont: datum en tijd, stadsnaam, temperatuur in Celsius, feels like,\n  weerbeschrijving, luchtvochtigheid, windsnelheid in km/h\n\nInclusief:\n- Doel\n- Input parameters (stad en output bestandspad)\n- Hoe het script aan te roepen\n- Vereisten (.env variabelen en geïnstalleerde packages)\n- Edge cases: stad niet gevonden, ongeldige API key, netwerk fout,\n  ontbrekende .env variabele\n- Instructie voor zelfherstel bij fouten',
       },
       {
-        title: 'Hoe je elke tool snel bouwt',
-        body: '1. Kies een tool uit de lijst\n2. Vraag Claude: "Bouw [tool naam] als Python script / Chrome extensie / HTML webpagina voor een klein bedrijf in [branche]. Maak het simpel en professioneel."\n3. Pas aan op basis van wat de klant specifiek wil\n4. Lever op',
+        title: 'Stap 3: Script bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/weer_rapport.md en bouw execution/weer_ophalen.py\n\nTechnisch:\n- argparse voor --stad en --output argumenten\n- load_dotenv() als allereerste actie\n- WEATHER_API_KEY laden via os.getenv()\n- Endpoint: https://api.openweathermap.org/data/2.5/weather\n- Windsnelheid: m/s × 3.6 = km/h\n- Schrijf resultaat naar het outputbestand\n- Volg alle edge cases uit de directive\n- Commentaar bij elke sectie',
+      },
+      {
+        title: 'load_dotenv() als eerste',
+        body: 'Controleer het script na aanmaken: de eerste regels van `execution/weer_ophalen.py` moeten zijn:\n\n`from dotenv import load_dotenv` en `load_dotenv()`\n\nZie je dit niet? Typ in het paneel: "Controleer dat load_dotenv() de allereerste actie is in execution/weer_ophalen.py."',
+        type: 'warning',
+      },
+      {
+        title: 'Stap 4: De agent draaien',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/weer_rapport.md en voer de taak uit voor de stad Utrecht.\nSla het resultaat op in .tmp/weer_rapport.txt',
+      },
+      {
+        title: 'Als er iets fout gaat',
+        body: 'Typ in het paneel:',
+        code: 'Er is een fout opgetreden. Voer de self-annealing procedure uit:\n1. Lees de foutmelding volledig\n2. Fix het script\n3. Test het opnieuw\n4. Update directives/weer_rapport.md met wat je hebt geleerd\nLeg daarna uit wat er mis was en wat je hebt gewijzigd.',
         type: 'tip',
       },
     ],
     checklist: [
-      'Ik ken de 10 meest verkochte tools',
-      'Ik heb een van de Tier 1 tools gebouwd',
-      'Ik weet wat ik voor elke tier kunt vragen',
+      'OpenWeatherMap API key staat in `.env` en opgeslagen (Ctrl+S / Cmd+S)',
+      '`directives/weer_rapport.md` is aangemaakt door Claude',
+      '`execution/weer_ophalen.py` heeft `load_dotenv()` als eerste regel',
+      '`.tmp/weer_rapport.txt` bevat een correct weerrapport',
+    ],
+  },
+
+  '3-6': {
+    intro: 'Je hebt één werkende agent. Nu voeg je een tweede toe en koppel je ze. Jij geeft één opdracht — het systeem voert twee taken in volgorde uit. Dit is het moment waarop het echt een machine wordt.',
+    sections: [
+      {
+        title: 'Stap 1: Gmail App Password aanmaken',
+        body: 'Je script stuurt e-mail via Gmail. Hiervoor heb je een App Password nodig — een apart wachtwoord speciaal voor dit script, los van je normale wachtwoord.\n\n1. Ga naar **myaccount.google.com** → klik "Beveiliging"\n2. Activeer "Verificatie in twee stappen" als dat nog niet aan staat\n3. Ga naar: **myaccount.google.com/apppasswords**\n4. Geef het een naam zoals "clavify-agent" en klik "Maken"\n5. Kopieer de 16 tekens — je ziet ze maar één keer\n\nVoeg toe aan `.env` en sla op (Ctrl+S op Windows, Cmd+S op Mac):',
+        code: 'GMAIL_USER=jouw@gmail.com\nGMAIL_APP_PASSWORD=de16tekenshier',
+      },
+      {
+        title: 'Geen spaties in het wachtwoord',
+        body: 'Google toont het App Password soms met spaties voor leesbaarheid. Voer het in `.env` in zonder spaties, anders werkt de authenticatie niet.',
+        type: 'warning',
+      },
+      {
+        title: 'Stap 2: E-mail directive en script laten bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/send_email.md aan met een volledige directive in het Nederlands.\nBouw daarna ook direct execution/send_email.py\n\nHet systeem verstuurt een e-mail via Gmail met inhoud uit een lokaal tekstbestand.\n\nDirective moet bevatten:\n- Input parameters: --to, --subject, --body (pad naar .txt bestand)\n- Vereisten: GMAIL_USER en GMAIL_APP_PASSWORD in .env\n- Edge cases: bestand niet gevonden, SMTP fout, ontbrekende .env variabelen,\n  ongeldig e-mailadres\n- Instructie voor zelfherstel\n\nScript technisch:\n- argparse voor --to, --subject, --body\n- load_dotenv() als allereerste actie\n- smtplib.SMTP_SSL op poort 465 (niet STARTTLS op 587)\n- Print bevestiging met tijdstip na succes',
+      },
+      {
+        title: 'Stap 3: Testmail sturen',
+        body: 'Typ in het paneel (vervang het e-mailadres door jouw eigen adres):',
+        code: 'Voer de send_email directive uit.\nStuur een e-mail naar [jouw eigen e-mailadres]\nmet subject "Test Clavify Agent"\nen gebruik .tmp/weer_rapport.txt als inhoud.',
+      },
+      {
+        title: '535 Authentication failed?',
+        body: 'Controleer: geen spaties in het App Password in `.env`, is 2-stapsverificatie echt actief, juist Gmail adres in GMAIL_USER. Typ daarna in het paneel: "535 authenticatiefout. Controleer of het script SMTP_SSL gebruikt op poort 465 en niet STARTTLS op 587."',
+        type: 'warning',
+      },
+      {
+        title: 'Stap 4: De twee agents koppelen',
+        body: 'Typ in het paneel (vervang het e-mailadres):',
+        code: 'Voer dit in volgorde uit via de directives:\n1. Haal het weerrapport op voor Rotterdam via weer_rapport directive\n   en sla op in .tmp/weer_rapport.txt\n2. Stuur het rapport naar [jouw e-mailadres]\n   met subject "Weerrapport Rotterdam" via send_email directive\n\nGebruik de directives als instructiebron.\nMeld na elke stap kort wat je hebt gedaan.',
+      },
+    ],
+    checklist: [
+      'Gmail App Password aangemaakt en in `.env` zonder spaties, opgeslagen (Ctrl+S / Cmd+S)',
+      '`directives/send_email.md` en `execution/send_email.py` aangemaakt door Claude',
+      'Testmail ontvangen in eigen inbox',
+      'De twee agents werken samen via één opdracht in het paneel',
+    ],
+  },
+
+  '3-7': {
+    intro: 'Je systeem werkt. Nu leer je twee dingen: hoe het zichzelf verbetert als er iets misgaat — en hoe je het verpakt als een product dat je kunt leveren aan een klant.',
+    sections: [
+      {
+        title: 'Het systeem dat zichzelf verbetert',
+        body: 'Dit is het principe dat je systeem waardevoller maakt naarmate het vaker draait:\n\nFout optreedt → Claude leest de volledige foutmelding → Claude repareert het script → Claude test het opnieuw → Claude voegt de oplossing toe aan de directive → Systeem is sterker dan ervoor.\n\nElk probleem dat het systeem oplost wordt kennis in de directive. Na tien runs weet het systeem dingen die jij nooit handmatig had kunnen documenteren.',
+      },
+      {
+        title: 'Wat je typt bij een fout',
+        body: 'Gebruik deze vaste procedure:',
+        code: 'Er is een fout opgetreden. Voer de self-annealing procedure uit:\n1. Lees de foutmelding volledig\n2. Fix het script\n3. Test het opnieuw\n4. Update de directive met wat je hebt geleerd\nLeg daarna uit wat er mis was en wat je hebt gewijzigd.',
+      },
+      {
+        title: 'Drie situaties waarbij jij ingrijpt',
+        body: '**1. Betaalde API calls voor debuggen.** Vraag eerst: hoeveel calls zijn er nodig? Geef toestemming voordat Claude doorgaat.\n\n**2. De aanpak is fundamenteel verkeerd.** Dan is het een gesprek, geen automatische fix. Stop Claude en bespreek de richting.\n\n**3. Het probleem zit in `.env`.** Verkeerde of ontbrekende API key is geen scriptfout. Dat los jij zelf op door het bestand te controleren.',
+        type: 'tip',
+      },
+      {
+        title: 'Oefening: breek je systeem bewust',
+        body: 'Open `.env` en verander je API key tijdelijk naar een nep-waarde (Ctrl+S op Windows, Cmd+S op Mac). Typ dan in het paneel:',
+        code: 'Voer de weer_rapport directive uit voor Amsterdam.',
+      },
+      {
+        title: 'Herstel daarna',
+        body: 'Zet je echte API key terug in `.env` en sla op (Ctrl+S op Windows, Cmd+S op Mac). Typ dan:',
+        code: 'De fout was een ongeldige API key — die is nu gecorrigeerd.\nUpdate de directive met een notitie over dit type fout.',
+      },
+      {
+        title: 'Leverbaar maken voor een klant',
+        body: 'Typ in het paneel:',
+        code: 'Maak README.md aan voor een niet-technische klant. Schrijf in simpele taal.\n\nInhoud:\n- Wat doet dit systeem (2 zinnen)\n- Wat heb je nodig\n- Hoe .env instellen stap voor stap (verwijs naar .env.example)\n- Hoe gebruiken via het Claude-paneel in VS Code\n- Hoe automatisch inplannen:\n  Windows: via Taakplanner stap voor stap\n  Mac: via crontab zonder vim:\n  (crontab -l 2>/dev/null; echo "0 8 * * * cd /pad/naar/mijn-agent && claude -p \'voer het dagelijkse weerrapport uit\'") | crontab -\n  Leg uit dat ze /pad/naar/mijn-agent vervangen door het echte pad (te vinden via pwd)\n\nSla op in README.md',
+      },
+      {
+        title: 'Jouw directives zijn jouw kennisbank',
+        body: 'Na elke klant wordt je systeem slimmer. De directives bevatten alle lessen die het systeem heeft geleerd. Klant 2 profiteert van alles wat je bij klant 1 hebt geleerd — zonder extra werk. Dit is wat jou onderscheidt van iemand die elke keer opnieuw begint.\n\nDit is een leverbaar product. ZIP de map, installeer het bij de klant, vraag €300–€500 voor de bouw en €50/maand voor onderhoud.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      'Ik heb het systeem bewust laten falen en de self-annealing procedure gezien',
+      'De directive bevat een notitie over de 401-fout na de oefening',
+      '`README.md` is aangemaakt voor de klant',
+      '`CLAUDE.md` is bijgewerkt met klantgegevens en opgeslagen (Ctrl+S / Cmd+S)',
     ],
   },
 
