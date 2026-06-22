@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
 import { Home, BookOpen, TrendingUp, Trophy, Settings, Gem } from 'lucide-react'
+import ChatBot from '@/components/ChatBot'
 
 const navItems = [
   { href: '/dashboard', icon: Home, label: 'Dashboard' },
@@ -69,6 +70,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex-1 overflow-auto">
         {children}
       </div>
+
+      <ChatBot />
     </div>
   )
 }
