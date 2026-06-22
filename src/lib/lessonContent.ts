@@ -257,7 +257,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Extensie herladen na wijziging',
-        body: 'Na elke wijziging aan `manifest.json` moet je de extensie herladen in Chrome:\n\n1. Ga naar `chrome://extensions/`\n2. Klik op het ververs-icoontje (↺) bij je extensie\n3. Klik opnieuw op het extensie-icoontje om het resultaat te zien\n\nJe icoontje verschijnt nu in de Chrome extensiebalk.',
+        body: 'Na elke wijziging aan `manifest.json` moet je het bestand eerst opslaan en dan de extensie herladen in Chrome:\n\n1. Sla `manifest.json` op in VS Code (Ctrl+S)\n2. Ga naar `chrome://extensions/`\n3. Klik op het ververs-icoontje (↺) bij je extensie\n4. Klik opnieuw op het extensie-icoontje om het resultaat te zien\n\nJe icoontje verschijnt nu in de Chrome extensiebalk.',
         type: 'tip',
       },
     ],
