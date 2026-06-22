@@ -397,8 +397,18 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'De projectstructuur aanmaken',
-        body: 'Ga naar File → Open Folder. Navigeer naar je `clavify-projecten` map en klik "Map selecteren" (Windows) of "Open" (Mac).\n\nJe ziet je bestaande projecten in de Explorer: `factuur-tool/` en `woordenteller-extensie/`. Open het Claude-paneel en zorg dat er een bestand open staat (open anders `factuur-tool/factuur.py` uit module 1).\n\nTyp in het paneel:',
-        code: 'Maak een nieuwe projectmap aan genaamd mijn-agent\nin de huidige clavify-projecten map.\n\nMaak deze structuur aan:\nmijn-agent/\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
+        body: 'Open de terminal in VS Code (Ctrl+` op Windows, Cmd+` op Mac). Navigeer naar je projectenmap en maak de agent map aan:',
+        code: 'cd clavify-projecten\nmkdir mijn-agent',
+      },
+      {
+        title: 'VS Code openen in de juiste map',
+        body: 'Typ dit in de terminal — VS Code herstart automatisch met `mijn-agent` als root:',
+        code: 'code mijn-agent',
+      },
+      {
+        title: 'De mapstructuur laten aanmaken door Claude',
+        body: 'Je ziet nu een lege `mijn-agent` map in de Explorer. Open het Claude-paneel (✦ icoontje) en zorg dat er een bestand open staat — maak anders even een leeg bestand aan via File → New File. Typ in het paneel:',
+        code: 'Maak de volgende structuur aan in de huidige map:\n\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
       },
       {
         title: '.env nooit delen',
