@@ -55,6 +55,7 @@ export const modules: Module[] = [
       { id: '3-5', title: 'Je eerste werkende agent — weerrapport ophalen', duration: '25 min', description: 'Van API key tot tekstbestand: een complete agent bouwen stap voor stap.' },
       { id: '3-6', title: 'Twee agents koppelen — rapport ophalen én automatisch mailen', duration: '25 min', description: 'Één opdracht, twee taken in volgorde: de echte kracht van het systeem.' },
       { id: '3-7', title: 'Self-annealing en leverbaar maken', duration: '20 min', description: 'Je systeem laten zichzelf verbeteren en verpakken als klantproduct.' },
+      { id: '3-8', title: 'Je rapport professioneel maken', duration: '18 min', description: 'Van platte tekst naar een gestylde HTML e-mail die je trots aan een klant kunt sturen.' },
     ],
   },
   {

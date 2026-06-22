@@ -636,6 +636,46 @@ export const lessonContent: Record<string, LessonContent> = {
     ],
   },
 
+  '3-8': {
+    intro: 'Je agent werkt. Maar een platte tekstmail voelt niet als een product — het voelt als een script. In deze les geef je het rapport een eigen gezicht: een gestylde HTML e-mail die er uitziet alsof hij door een professional is gemaakt.',
+    sections: [
+      {
+        title: 'Waarom HTML e-mail?',
+        body: 'Een HTML e-mail is gewoon een webpagina die in de inbox van de ontvanger wordt weergegeven. Je kunt kleuren, lettertypen, logo\'s en lay-out toevoegen — zonder dat de ontvanger iets hoeft te doen. Het werkt in Gmail, Outlook en Apple Mail.\n\nVoor jou als verkoper is het verschil groot: een gestylde mail rechtvaardigt een hogere prijs en ziet er meteen professioneel uit.',
+      },
+      {
+        title: 'Stap 1: HTML e-mail template laten maken',
+        body: 'Typ in het Claude-paneel:',
+        code: 'Maak directives/html_email.md aan en bouw execution/send_html_email.py\n\nHet script stuurt een gestylde HTML e-mail met weerdata.\n\nDirective:\n- Input parameters: --to, --subject, --data (pad naar .tmp/weer_rapport.txt)\n- Leest het tekstbestand en verwerkt de data in een HTML template\n- Vereisten: GMAIL_USER en GMAIL_APP_PASSWORD in .env\n- Edge cases: bestand niet gevonden, SMTP fout, ontbrekende variabelen\n\nScript technisch:\n- load_dotenv() als allereerste actie\n- argparse voor --to, --subject, --data\n- Lees het .txt bestand en haal de weerwaarden eruit\n- Bouw een HTML e-mail met MIMEMultipart("alternative")\n- smtplib.SMTP_SSL op poort 465\n- HTML template met:\n  * Donker header blok met stadsnaam en temperatuur groot\n  * Witte kaart met luchtvochtigheid, windsnelheid, weerbeschrijving\n  * Subtiele footer met "Powered by jouw naam"\n  * Mobiel-vriendelijk (max-width: 600px, inline CSS)\n- Print bevestiging met tijdstip na succes',
+      },
+      {
+        title: 'Stap 2: Test de HTML e-mail',
+        body: 'Typ in het paneel (vervang het e-mailadres):',
+        code: 'Voer dit in volgorde uit:\n1. Haal weerrapport op voor Amsterdam via weer_rapport directive\n2. Stuur de gestylde HTML e-mail naar [jouw e-mailadres] via html_email directive\n   met subject "Weerrapport Amsterdam"',
+      },
+      {
+        title: 'Open de mail op je telefoon',
+        body: 'Bekijk het resultaat ook op je telefoon — HTML e-mails zien er op mobiel soms anders uit dan op desktop. Ziet het er goed uit? Dan is dit iets wat je trots aan een klant kunt laten zien.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 3: Jouw eigen sausje',
+        body: 'Wil je de mail personaliseren voor een specifieke klant? Typ in het paneel:',
+        code: 'Pas de HTML template in execution/send_html_email.py aan:\n- Gebruik het kleurenschema [kleur naar keuze, bijv. donkerblauw en wit]\n- Voeg bovenaan een tekstregel toe: "Goedemorgen [naam klant], hier is uw dagelijkse update"\n- Vervang de footer door "[jouw naam] | AI Tools"\nSla op en test opnieuw.',
+      },
+      {
+        title: 'Dit is wat je verkoopt',
+        body: 'Een klant die elke ochtend een mooie, gepersonaliseerde e-mail ontvangt met informatie die relevant is voor zijn bedrijf — dat is een product. In module 4 leer je hoe je dit gesprek voert en wat je ervoor vraagt.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      'De HTML e-mail is verstuurd en ziet er professioneel uit',
+      'De mail werkt goed op zowel desktop als telefoon',
+      'Ik heb de mail gepersonaliseerd met een eigen kleur of tekst',
+    ],
+  },
+
   '4-1': {
     intro: 'Je kunt nu tools bouwen. Maar als je potentiële klanten zegt "ik bouw Python scripts en Chrome extensies", kijken ze je glazig aan. Je moet het vertalen naar wat zij begrijpen: resultaat.',
     sections: [
