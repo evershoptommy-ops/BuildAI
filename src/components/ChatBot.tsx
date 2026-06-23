@@ -31,7 +31,7 @@ function getLessonContext(pathname: string): string {
 
 // Splits bericht in tekst + opties
 function parseMessage(content: string): { text: string; options: string[] } {
-  const match = content.match(/\[OPTIES:\s*(.+?)\]\s*$/s)
+  const match = content.match(/\[OPTIES:\s*([\s\S]+?)\]\s*$/)
   if (!match) return { text: content.trim(), options: [] }
   const text = content.slice(0, match.index).trim()
   const options = match[1].split('|').map(o => o.trim()).filter(Boolean)
