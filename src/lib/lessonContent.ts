@@ -222,17 +222,11 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Stap 2: Vraag Claude om de complete extensie',
         body: 'Ga naar claude.ai en stuur:',
-        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Geef me alle bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
+        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Voeg GEEN icons of "icons" veld toe aan manifest.json. Geef me alle bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
       },
       {
         title: 'Stap 3: Bestanden opslaan',
         body: 'Claude geeft je de bestanden terug. Zet alle bestanden in je `screenshot-extensie` map in `clavify-projecten`.\n\nZorg dat `manifest.json` direct in de map staat, niet in een submap.',
-      },
-      {
-        title: 'Fout: "Could not load icon"?',
-        body: 'Als je deze foutmelding ziet bij het laden, heeft Claude een `icons/` map aangemaakt in het manifest maar het icoontje zelf niet meegeleverd.\n\nOpen `manifest.json` in VS Code en verwijder het hele `"icons"` blok. Het moet er zo uitzien:',
-        code: '{\n  "manifest_version": 3,\n  "name": "Screenshot Tool",\n  "version": "1.0",\n  "description": "Maak screenshots en kopieer ze direct naar je clipboard",\n  "permissions": ["activeTab", "scripting", "clipboardWrite"],\n  "action": {\n    "default_popup": "popup.html"\n  }\n}',
-        type: 'warning',
       },
       {
         title: 'Stap 4: Extensie laden in Chrome',
