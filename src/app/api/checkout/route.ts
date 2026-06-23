@@ -25,6 +25,7 @@ export async function POST() {
         quantity: 1,
       },
     ],
+    allow_promotion_codes: true,
     metadata: { userId },
     success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?payment=success`,
     cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/modules`,
