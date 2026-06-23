@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
 import { Home, BookOpen, TrendingUp, Trophy, Settings, Gem, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ChatBot from '@/components/ChatBot'
 import PlanBadge from '@/components/PlanBadge'
 
@@ -15,7 +15,7 @@ const navItems = [
   { href: '/prestaties', icon: Trophy, label: 'Prestaties' },
 ]
 
-function SidebarInner({ pathname, onClose }: { pathname: string; onClose?: () => void }) {
+function SidebarInner({ pathname, onClose, hasPremium }: { pathname: string; onClose?: () => void; hasPremium: boolean }) {
   return (
     <>
       <div className="flex items-center justify-between text-lg font-bold px-6 py-7" style={{ borderBottom: '1px solid #1e1e30' }}>
@@ -52,11 +52,13 @@ function SidebarInner({ pathname, onClose }: { pathname: string; onClose?: () =>
             <Settings size={16} /> Instellingen
           </div>
         </Link>
-        <Link href="/upgraden" onClick={onClose}>
-          <div className="flex items-center gap-3 px-6 py-[10px] text-sm cursor-pointer" style={{ color: '#a78bfa' }}>
-            <Gem size={16} /> Upgraden
-          </div>
-        </Link>
+        {!hasPremium && (
+          <Link href="/upgraden" onClick={onClose}>
+            <div className="flex items-center gap-3 px-6 py-[10px] text-sm cursor-pointer" style={{ color: '#a78bfa' }}>
+              <Gem size={16} /> Upgraden
+            </div>
+          </Link>
+        )}
       </nav>
 
       <div className="px-6 py-5" style={{ borderTop: '1px solid #1e1e30' }}>
@@ -75,13 +77,21 @@ function SidebarInner({ pathname, onClose }: { pathname: string; onClose?: () =>
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [hasPremium, setHasPremium] = useState(false)
+
+  useEffect(() => {
+    fetch('/api/premium')
+      .then(r => r.json())
+      .then(d => setHasPremium(d.premium || d.admin))
+      .catch(() => {})
+  }, [])
 
   return (
     <div className="flex h-screen" style={{ background: '#0a0a0f', color: '#e5e7eb' }}>
 
       {/* Desktop sidebar — verborgen op mobile */}
       <aside className="hidden md:flex flex-col" style={{ width: 240, background: '#111118', borderRight: '1px solid #1e1e30', flexShrink: 0 }}>
-        <SidebarInner pathname={pathname} />
+        <SidebarInner pathname={pathname} hasPremium={hasPremium} />
       </aside>
 
       {/* Mobile overlay drawer */}
@@ -92,7 +102,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)' }}
           />
           <aside className="flex flex-col" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 260, background: '#111118', borderRight: '1px solid #1e1e30' }}>
-            <SidebarInner pathname={pathname} onClose={() => setDrawerOpen(false)} />
+            <SidebarInner pathname={pathname} onClose={() => setDrawerOpen(false)} hasPremium={hasPremium} />
           </aside>
         </div>
       )}
