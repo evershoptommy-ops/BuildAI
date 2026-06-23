@@ -1143,11 +1143,11 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: Shopify Access Token aanmaken',
-        body: 'Log in op het Shopify dashboard van de klant:\n\n1. Ga naar Instellingen (tandwiel icoon linksonder)\n2. Klik op "Apps en verkoopkanalen"\n3. Klik op "Apps ontwikkelen" rechtsbovenin\n4. Klik "Een app ontwikkelen" → geef hem een naam zoals "Clavify Agent"\n5. Klik op "API-scopes configureren"\n6. Zet een vinkje bij: `write_content` en `read_content`\n7. Klik "Opslaan" → "Installeer app"\n8. Klik "Admin API-toegangstoken weergeven"\n9. Kopieer de token (begint met `shpat_`) — maar één keer zichtbaar',
+        body: 'Log in op het Shopify dashboard van de klant:\n\n1. Ga naar **Instellingen** (tandwiel icoon linksonder)\n2. Klik op **"Apps en verkoopkanalen"**\n3. Klik op **"Apps ontwikkelen"** rechtsbovenin\n4. Klik **"Een app maken"** → geef hem een naam zoals "Clavify Agent"\n5. Klik op **"Configuratie"** (bovenaan de app pagina)\n6. Scroll naar **"Beheerdersrechten voor API-toegang"** → klik op "Bewerken"\n7. Zoek **"Store content"** en zet `write_content` en `read_content` aan\n8. Klik **"Opslaan"** → ga terug naar het overzicht → klik **"App installeren"**\n9. Na installatie: klik **"Token weergeven"** → kopieer direct (begint met `shpat_`) — maar één keer zichtbaar',
       },
       {
-        title: '"Apps ontwikkelen" niet zichtbaar?',
-        body: 'Klik op "Aangepaste apps beheren" of zoek naar "Allow custom app development" op de pagina. Klik die knop en bevestig. Hierna verschijnt "Apps ontwikkelen".',
+        title: 'Eerste keer: aangepaste apps inschakelen',
+        body: 'Als je "Apps ontwikkelen" niet ziet: klik op **"Aangepaste app-ontwikkeling toestaan"** en bevestig. Daarna verschijnt de knop.',
         type: 'tip',
       },
       {
