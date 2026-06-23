@@ -265,7 +265,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Nieuw bestand opslaan',
-        body: 'Claude geeft je een nieuw `popup.html` terug. Open je `popup.html` in VS Code, selecteer alles (Ctrl+A / Cmd+A), plak de nieuwe code, en sla op (Ctrl+S / Cmd+S).',
+        body: 'Claude geeft je een nieuw `popup.html` terug. Download het bestand en sleep het naar je `screenshot-extensie` map in Windows Verkenner of Finder. Klik "Vervangen" als Windows of Mac daarom vraagt.',
       },
       {
         title: 'Stap 4: Extensie herladen',
