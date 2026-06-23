@@ -284,8 +284,8 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Claude vragen om de ombouw',
-        body: 'Ga naar claude.ai. Open je `screenshot-extensie` map in VS Code, open elk bestand en kopieer de inhoud naar het chatvenster. Stuur dit mee:',
-        code: 'Ik heb een Chrome extensie (Manifest V3) die screenshots maakt. Hieronder staan mijn huidige bestanden. Bouw de extensie om zodat hij werkt als een zwevend paneel dat rechtsonder in het scherm staat in plaats van een popup. Het paneel blijft zichtbaar als de gebruiker ernaast klikt. Er is een kruisje rechtsboven in het paneel om het te sluiten. De screenshot- en downloadknop blijven werken. Voeg GEEN icons toe aan manifest.json. Lever alles als één ZIP bestand.\n\n[plak hier de inhoud van je manifest.json]\n[plak hier de inhoud van je popup.html]\n[plak hier de inhoud van je popup.js]',
+        body: 'Ga naar claude.ai. Klik op het paperclip-icoontje en upload de ZIP van je `screenshot-extensie` map. Stuur daarna deze prompt:',
+        code: 'Dit zijn de bestanden van mijn Chrome extensie. Bouw hem om naar een zwevend paneel rechtsonder in het scherm. Gebruik deze aanpak:\n\n1. GEEN default_popup in manifest — gebruik action.onClicked in background.js\n2. GEEN content_scripts in manifest — injecteer content.js en panel.css alleen on-demand via scripting.executeScript bij klik op het icoon\n3. background.js checkt of de tab URL begint met http:// of https:// — zo niet, stil stoppen\n4. Toggle: stuur eerst TOGGLE_PANEL bericht, als content script al actief is reageert hij, anders injecteren\n5. captureVisibleTab in background.js via CAPTURE_SCREENSHOT bericht — gebruik chrome.tabs.get(tabId) voor windowId\n6. Clipboard write via navigator.clipboard.write() met Blob — toon exacte foutmelding in paneel bij mislukken\n7. Kruisje rechtsboven sluit het paneel — klikken naast het paneel sluit het NIET\n8. GEEN icons in manifest.json\n9. Lever alles als één ZIP: manifest.json, background.js, content.js, panel.css',
       },
       {
         title: 'Stap 2: Nieuwe bestanden opslaan',
