@@ -247,37 +247,31 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '2-4': {
-    intro: 'Een werkende extensie is stap één. Een extensie die er professioneel uitziet, is stap twee. Klanten betalen meer voor tools die er goed uitzien.',
+    intro: 'Je extensie werkt — nu gaan we hem mooier maken. En we doen dat met de tool die je net zelf hebt gebouwd.',
     sections: [
       {
-        title: 'CSS basics voor extensies',
-        body: 'Extensie-popups zijn kleine HTML pagina\'s. Alles wat je in gewone websites doet met CSS, werkt hier ook. Maar er zijn een paar regels:\n\n• Breedte: maximaal 800px (Chrome knipt af), standaard 300-400px\n• Hoogte: wordt automatisch bepaald door de inhoud\n• Gebruik geen `position: fixed` — dat werkt raar in popups',
-      },
-      {
-        title: 'Claude vragen om een redesign',
-        body: 'Stuur dit naar Claude:',
-        code: 'Mijn Chrome extensie screenshot-tool ziet er basic uit. Redesign de popup.html en CSS zodat het er professioneel uitziet. Gebruik een donker kleurenschema met paarse accenten. Voeg een laad-animatie toe terwijl de screenshot wordt gemaakt. Maak het modern en clean, vergelijkbaar met een SaaS product. Behoud alle bestaande functionaliteit.',
-      },
-      {
-        title: 'Het nieuwe bestand opslaan',
-        body: 'Claude geeft je een nieuw `popup.html` terug. Doe het volgende:\n\n1. Kopieer de nieuwe code naar je `popup.html` in VS Code en sla op (Ctrl+S / Cmd+S)\n2. Ga naar `chrome://extensions/`\n3. Klik op het ververs-icoontje (↺) bij je extensie\n4. Klik opnieuw op je extensie om het nieuwe ontwerp te zien',
+        title: 'Stap 1: Screenshot van je extensie maken',
+        body: 'Klik op je screenshot extensie terwijl de popup open is. Je hebt nu een screenshot van je eigen extensie in je clipboard.\n\nOpen claude.ai en plak het screenshot met **Ctrl+V** (Windows) of **Cmd+V** (Mac) in het chatvenster.',
         type: 'tip',
       },
       {
-        title: 'Een icoontje toevoegen',
-        body: 'Download een 128x128px PNG van emojipng.com of flaticon.com. Sla het bestand op als `icon.png` direct in je `screenshot-extensie` map.\n\nOpen daarna je `manifest.json` in VS Code en voeg het `"icons"` blok toe:',
-        code: '{\n  "manifest_version": 3,\n  "name": "Screenshot Tool",\n  "version": "1.0",\n  "action": {\n    "default_popup": "popup.html"\n  },\n  "icons": {\n    "16": "icon.png",\n    "48": "icon.png",\n    "128": "icon.png"\n  }\n}',
+        title: 'Stap 2: Claude vragen om een redesign',
+        body: 'Stuur het screenshot mee met deze tekst:',
+        code: 'Dit is mijn Chrome extensie screenshot-tool. Redesign de popup.html zodat het er professioneel uitziet. Gebruik een donker kleurenschema met paarse accenten. Voeg een laad-animatie toe terwijl de screenshot wordt gemaakt. Maak het modern en clean. Behoud alle bestaande functionaliteit. Geef me alleen het nieuwe popup.html bestand terug.',
       },
       {
-        title: 'Extensie herladen na wijziging',
-        body: 'Na elke wijziging aan `manifest.json` moet je de extensie herladen in Chrome:\n\n1. Sla `manifest.json` op (Ctrl+S / Cmd+S)\n2. Ga naar `chrome://extensions/`\n3. Klik op het ververs-icoontje (↺) bij je extensie\n4. Klik opnieuw op het extensie-icoontje\n\nJe icoontje verschijnt nu in de Chrome extensiebalk.',
-        type: 'tip',
+        title: 'Stap 3: Nieuw bestand opslaan',
+        body: 'Claude geeft je een nieuw `popup.html` terug. Open je `popup.html` in VS Code, selecteer alles (Ctrl+A / Cmd+A), plak de nieuwe code, en sla op (Ctrl+S / Cmd+S).',
+      },
+      {
+        title: 'Stap 4: Extensie herladen',
+        body: 'Ga naar `chrome://extensions/` en klik op het ververs-icoontje (↺) bij je extensie. Klik daarna opnieuw op het extensie-icoontje om het nieuwe ontwerp te zien.',
       },
     ],
     checklist: [
-      'Mijn extensie heeft een professioneel ontwerp',
-      'Er is een laad-animatie toegevoegd',
-      'Er is een icoontje toegevoegd',
+      'Ik heb mijn extensie gefotografeerd met mijn eigen screenshot tool',
+      'Claude heeft een redesign gemaakt op basis van het screenshot',
+      'De nieuwe popup.html is opgeslagen en de extensie ziet er professioneel uit',
     ],
   },
 

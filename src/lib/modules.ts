@@ -38,7 +38,7 @@ export const modules: Module[] = [
       { id: '2-1', title: 'Wat is een Chrome extensie en waarom is het waardevol?', duration: '10 min', description: 'Hoe Chrome extensies werken en waarom bedrijven ervoor betalen.' },
       { id: '2-2', title: 'De structuur van een extensie begrijpen', duration: '12 min', description: 'De drie bestanden die elke extensie nodig heeft: manifest, html en js.' },
       { id: '2-3', title: 'Je eerste extensie bouwen: de Screenshot Tool', duration: '25 min', description: 'Een screenshot extensie bouwen die direct naar je clipboard kopieert — en hoe je die gebruikt met Claude.' },
-      { id: '2-4', title: 'Je extensie mooier maken', duration: '18 min', description: 'CSS en animaties gebruiken om je extensie er professioneel uit te laten zien.' },
+      { id: '2-4', title: 'Je extensie mooier maken', duration: '12 min', description: 'Screenshot van je eigen extensie maken en Claude vragen om een professioneel redesign.' },
       { id: '2-5', title: 'Andere extensies die je nu kunt bouwen', duration: '15 min', description: 'Vijf extensies die je direct kunt bouwen en welke het best verkopen.' },
     ],
   },
