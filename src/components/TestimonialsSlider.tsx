@@ -4,34 +4,34 @@ import { useState, useEffect } from 'react'
 
 const testimonials = [
   {
-    name: 'Daan V.',
+    name: 'Daan Vermeer',
     role: 'Freelance marketeer',
-    avatar: '/avatars/random-person (1).jpeg',
-    text: 'Na module 2 had ik al een Chrome extensie die ik aan een klant heb laten zien. Die wilde hem direct hebben. Eerste opdracht binnen — €250.',
+    avatar: '/avatars/man1.jpeg',
+    text: 'Ik had altijd ideeën voor tools maar geen developer budget. Na module 2 had ik een werkende Chrome extensie die ik voor €300 aan een lokale ondernemer heb verkocht. Dat was mijn investering in de cursus al dubbel terug.',
   },
   {
-    name: 'Sara M.',
-    role: 'ZZP\'er — tekstschrijver',
-    avatar: '/avatars/random-person (2).jpeg',
-    text: 'Ik dacht dat dit iets was voor developers. Maar de manier waarop het wordt uitgelegd maakt het voor iedereen toegankelijk. Na module 3 automatiseer ik mijn hele rapportage.',
+    name: 'Karim Aouad',
+    role: 'Online ondernemer',
+    avatar: '/avatars/man2.jpeg',
+    text: 'Module 4 heeft mijn SEO-aanpak compleet veranderd. Mijn agent analyseert een website in 20 seconden en geeft een rapport dat ik vroeger een halve dag voor nodig had. Klanten zien het resultaat — niet hoe ik het maak.',
   },
   {
-    name: 'Joren B.',
-    role: 'Ondernemer — webshop eigenaar',
-    avatar: '/avatars/random-person (3).jpeg',
-    text: 'De SEO agent uit module 4 schrijft nu automatisch mijn productbeschrijvingen. Wat vroeger 2 uur kostte, doet de agent in 30 seconden. Letterlijk.',
+    name: 'Tom Brouwers',
+    role: 'Webdesigner',
+    avatar: '/avatars/man3.jpeg',
+    text: 'Ik bouw websites maar kon nooit iets extra\'s bieden. Nu zeg ik standaard: "Ik voeg ook een AI-tool toe." Drie klanten hebben dat al afgenomen. Het is een makkelijke upsell geworden.',
   },
   {
-    name: 'Lisa K.',
-    role: 'VA — Virtueel assistent',
-    avatar: '/avatars/random-person (4).jpeg',
-    text: 'Ik bied nu AI-automatisering aan als extra dienst. Klanten vragen er zelf naar. Clavify heeft me in 5 modules iets geleerd wat ik in geen enkele andere cursus heb gevonden.',
+    name: 'Sarah Maes',
+    role: 'VA & online assistent',
+    avatar: '/avatars/vrouw1.jpeg',
+    text: 'Als VA doe ik veel repetitief werk. Dankzij module 3 heb ik een agent die mijn klanten automatisch wekelijkse rapportages stuurt. Ik bespaar minstens 4 uur per week — per klant.',
   },
   {
-    name: 'Thomas R.',
-    role: 'Marketingbureau eigenaar',
-    avatar: '/avatars/random-person (5).jpeg',
-    text: 'Mijn team gebruikt de content agent uit module 5 dagelijks. We publiceren nu 3x meer blogposts zonder extra werkuren. De ROI was er al na de eerste week.',
+    name: 'Lisa van den Berg',
+    role: 'Eigenaar bloemenzaak',
+    avatar: '/avatars/vrouw2.jpeg',
+    text: 'Ik dacht dat AI iets was voor grote bedrijven. Maar de content agent publiceert nu automatisch mijn weekaanbiedingen op mijn website. Ik doe er zelf niets meer aan.',
   },
 ]
 
