@@ -47,14 +47,24 @@ export const lessonContent: Record<string, LessonContent> = {
         body: 'Open VS Code. Je ziet een welkomstscherm. Sluit dat voor nu.\n\nDe dingen die je gaat gebruiken:\n\n• **Explorer** (linker zijbalk, map-icoontje): hier zie je je bestanden\n• **Terminal** (menu → Terminal → New Terminal): hier typ je opdrachten\n• **Editor** (het grote middelste gedeelte): hier schrijf je code',
       },
       {
-        title: 'Stap 4: Een werkmap aanmaken',
-        body: 'Open de terminal (Terminal → New Terminal in de menubalk) en typ:',
+        title: 'Stap 4: De terminal begrijpen',
+        body: 'Open de terminal (Terminal → New Terminal in de menubalk).\n\n**Windows:** je ziet standaard PowerShell. Dat is normaal — dat is de ingebouwde terminal van Windows. Je herkent het aan de blauwe balk of de tekst `PS C:\\...>`.\n\n**Mac:** je ziet zsh of bash. Werkt bijna hetzelfde.\n\nDe commando\'s die je in deze cursus gebruikt werken op beide systemen:\n\n| Wat je doet | Commando |\n|---|---|\n| Naar een map navigeren | `cd mapnaam` |\n| Een map aanmaken | `mkdir mapnaam` |\n| Python starten | `python bestand.py` |\n| Package installeren | `pip install naam` |\n| Waar ben ik? | `pwd` (Mac) of `cd` (Windows) |',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 5: Een werkmap aanmaken',
+        body: 'Typ in de terminal die je net hebt geopend:',
         code: 'mkdir clavify-projecten\ncd clavify-projecten',
+      },
+      {
+        title: 'pip werkt niet op Windows?',
+        body: 'Op Windows heet het commando soms `pip` en soms `pip3`. Als `pip install` een foutmelding geeft, probeer dan:\n\n`pip3 install naam`\n\nof\n\n`python -m pip install naam`\n\nAlleen één van de drie werkt — afhankelijk van hoe Python op jouw pc is geïnstalleerd.',
+        type: 'warning',
       },
     ],
     checklist: [
       'VS Code is geïnstalleerd',
-      'Ik kan de terminal openen',
+      'Ik kan de terminal openen (PowerShell op Windows, zsh/bash op Mac)',
       'Ik heb de map clavify-projecten aangemaakt',
     ],
   },
@@ -1025,7 +1035,12 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Stap 1: Packages installeren',
         body: 'Open de terminal (Terminal → New Terminal in de menubalk). Installeer packages:',
-        code: 'pip install anthropic\npip install python-dotenv\npip install requests',
+        code: 'pip install anthropic\npip install python-dotenv\npip install requests\npip install markdown',
+      },
+      {
+        title: 'Waarom markdown?',
+        body: 'Claude schrijft de blogartikelen in Markdown-formaat (met `#` voor koppen, `**` voor vet, etc.). WordPress en Shopify verwachten HTML. Het `markdown` package converteert dit automatisch — zonder dit package crasht het publiceer-script in les 5-5 en 5-6.',
+        type: 'tip',
       },
       {
         title: 'Stap 2: Claude API key invullen',
