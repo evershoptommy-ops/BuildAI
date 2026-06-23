@@ -676,134 +676,549 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '4-1': {
-    intro: 'Je kunt nu tools bouwen. Maar als je potentiële klanten zegt "ik bouw Python scripts en Chrome extensies", kijken ze je glazig aan. Je moet het vertalen naar wat zij begrijpen: resultaat.',
+    intro: 'Voordat je iets bouwt, moet je begrijpen wat je bouwt en waarom. In deze les leer je wat SEO is in gewone taal, welk probleem jouw agent oplost voor een klant, en precies hoe de agent werkt.',
     sections: [
       {
-        title: 'Hoe je het niet zegt vs. hoe je het wel zegt',
-        body: '❌ **Niet:** "Ik bouw tools met Python en VS Code, geautomatiseerde scripts, API-koppelingen, en Chrome extensies met JavaScript."\n\n✅ **Wel:** "Ik bouw kleine software-tools die repetitieve taken automatiseren. Denk aan: je medewerker hoeft niet meer elke dag handmatig data te kopiëren — een tool doet dat in één klik."',
+        title: 'Wat is SEO — in gewone taal',
+        body: 'SEO staat voor Search Engine Optimization. In het Nederlands: ervoor zorgen dat een website hoger verschijnt in Google als iemand iets zoekt.\n\nStel je voor: je hebt een loodgietersbedrijf in Utrecht. Als iemand googelt op "loodgieter Utrecht", wil je dat jouw website als eerste verschijnt — niet die van de concurrent. Dat is SEO.\n\nDrie dingen bepalen of een website hoog scoort in Google:\n\n**1. Zoekwoorden** — gebruikt de website de woorden die mensen echt intypen?\n\n**2. Content** — heeft de website genoeg tekst die nuttig is en die zoekwoorden bevat?\n\n**3. Techniek** — is de paginatitel goed, staat er een beschrijving in, laadt de pagina snel?\n\nBedrijven betalen SEO-bureaus honderden euro\'s per maand om dit bij te houden. Jij gaat een agent bouwen die dit automatisch doet in minuten.',
+      },
+      {
+        title: 'Wat de SEO agent doet',
+        body: '**Taak 1: Zoekwoorden ophalen**\nJij typt een onderwerp in. De agent vraagt DataForSEO — een database van miljarden zoekopdrachten — welke woorden mensen gebruiken rond dat onderwerp. Je krijgt een lijst terug van gerelateerde zoekwoorden, inclusief hoe vaak elk woord per maand wordt gezocht.\n\n**Taak 2: Pagina analyseren**\nDe agent bezoekt een URL (bijv. de website van een klant) en leest de pagina uit. Hij kijkt naar: de paginatitel, de beschrijving, de kopjes, en hoeveel tekst er op de pagina staat.\n\n**Taak 3: SEO rapport schrijven**\nDe agent combineert de zoekwoorden en de pagina-analyse en vraagt Claude om er een leesbaar rapport van te maken: wat gaat goed, wat kan beter, en welke zoekwoorden moet de klant toevoegen.',
+      },
+      {
+        title: 'Geen SEO kennis nodig',
+        body: 'Je hoeft geen SEO-expert te zijn om dit te verkopen. De agent doet het werk. Jij levert het rapport. De klant krijgt inzicht dat hij anders zelf had moeten uitzoeken of duur had moeten inkopen bij een bureau.',
         type: 'tip',
-      },
-      {
-        title: 'Je doelgroep',
-        body: 'De beste klanten voor jou zijn kleine bedrijven (5–50 medewerkers) die:\n\n• Veel handmatig werk doen in Excel of e-mail\n• Geen eigen IT-afdeling hebben\n• Budget hebben (geen zzp\'ers zonder personeel)\n• In een niche zitten: makelaars, kappers, installateurs, accountants, restaurants',
-      },
-      {
-        title: 'Je aanbod',
-        body: 'Houd het simpel. Bied drie dingen aan:\n\n1. **Standaard tool** (€200–€500): een bestaande tool aanpassen voor hun situatie\n2. **Custom tool** (€500–€1.500): een tool op maat bouwen voor hun specifieke probleem\n3. **Onderhoud** (€50–€100/maand): de tool up-to-date houden en kleine aanpassingen',
       },
     ],
     checklist: [
-      'Ik kan mijn dienst uitleggen in twee zinnen',
-      'Ik weet welke doelgroep ik ga benaderen',
-      'Ik heb mijn drie aanbiedingen bepaald',
+      'Ik begrijp wat SEO is in gewone taal',
+      'Ik weet welke drie taken de agent uitvoert',
+      'Ik weet hoe ik dit product kan verkopen',
     ],
   },
 
   '4-2': {
-    intro: 'Je eerste klant is het moeilijkst. Daarna wordt het makkelijker — elke tevreden klant levert referrals op. Maar die eerste moet je actief zoeken.',
+    intro: 'Je gebruikt dezelfde werkwijze als in module 3 — dezelfde mappen, dezelfde aanpak. Als je module 3 hebt gedaan, ken je deze stappen al. We doorlopen ze snel en passen CLAUDE.md aan voor de SEO agent.',
     sections: [
       {
-        title: 'Methode 1: Jouw netwerk',
-        body: 'De snelste manier. Stuur dit bericht naar 10 mensen in je netwerk:',
-        code: 'Hé [naam], ik ben bezig met iets nieuws. Ik bouw kleine software-tools voor bedrijven die helpen met automatisering en tijdsbesparing. Ken jij iemand die zoiets zou willen — of loop je zelf ergens tegenaan? Geen verplichtingen, ik verken gewoon wat er leeft.',
+        title: 'Stap 1: VS Code openen in clavify-projecten',
+        body: 'Open VS Code. Ga naar File → Open Folder. Navigeer naar je `clavify-projecten` map — dezelfde map waar ook jouw agent uit module 3 staat. Klik "Map selecteren" (Windows) of "Open" (Mac).\n\nJe ziet je bestaande projecten in de Explorer links.',
       },
       {
-        title: 'Methode 2: LinkedIn directbenadering',
-        body: 'Zoek op LinkedIn naar eigenaren van kleine bedrijven in een specifieke niche. Stuur een verbindingsverzoek met notitie:\n\nTarget: 5 berichten per dag. Verwacht 10–20% respons.',
-        code: 'Ik zie dat je [bedrijf type] hebt. Ik bouw tools die [specifiek resultaat voor die branche] automatiseren. Zou je open staan voor een kort gesprek?',
+        title: 'Stap 2: Projectstructuur aanmaken',
+        body: 'Open het Claude-paneel via het ✦ icoontje in de linker zijbalk of rechtsonder in de statusbalk. Geen bestand open? Open dan een bestand uit een eerder project zodat het icoontje actief wordt.\n\nTyp in het paneel:',
+        code: 'Maak een nieuwe projectmap aan genaamd seo-agent\nin de huidige clavify-projecten map.\n\nMaak deze structuur aan:\nseo-agent/\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n├── rapporten/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
       },
       {
-        title: 'Methode 3: Gratis pilot',
-        body: 'Ga naar een lokaal bedrijf en stel voor:\n\n"Ik bouw gratis een kleine tool voor jullie als ik het mag gebruiken als portfolio-project. Als jullie er blij mee zijn, betalen jullie niets. Als jullie willen dat ik het onderhoud of uitbrei, spreken we een bedrag af."\n\nDit kost jou 2–4 uur. Het levert je een referentie, portfolio, en vaak een betaalde opdracht op.',
+        title: 'Extra map: rapporten/',
+        body: 'Dit project heeft een extra map die je agent uit module 3 niet had: `rapporten/`. Hier komen de SEO-rapporten die je aan klanten stuurt. Anders dan `.tmp/` zijn dit eindproducten die je bewaart.',
         type: 'tip',
+      },
+      {
+        title: 'Stap 3: VS Code heropen in seo-agent',
+        body: 'File → Open Folder → navigeer naar `clavify-projecten/seo-agent` → klik "Map selecteren" of "Open".\n\nJe ziet nu `seo-agent` als de root in de Explorer. Open daarna het Claude-paneel opnieuw — na het heropenen van VS Code moet je het paneel opnieuw activeren via het ✦ icoontje.',
+      },
+      {
+        title: 'Stap 4: .env.example invullen',
+        body: 'Klik op `.env.example` in de Explorer links. Voeg toe en sla op (Ctrl+S / Cmd+S):',
+        code: '# Kopieer dit naar .env en vul de echte waarden in\n# .env.example mag je delen — .env nooit\n\n# DataForSEO (aanmaken via app.dataforseo.com/api-access)\nDATAFORSEO_LOGIN=jouw_dataforseo_email\nDATAFORSEO_PASSWORD=jouw_dataforseo_api_wachtwoord\n\n# Claude API (aanmaken via console.anthropic.com)\nANTHROPIC_API_KEY=jouw_claude_api_key\n\n# Gmail (optioneel — alleen nodig als je rapporten automatisch wilt mailen)\nGMAIL_USER=jouw@gmail.com\nGMAIL_APP_PASSWORD=jouw_app_wachtwoord_hier',
+      },
+      {
+        title: 'Stap 5: CLAUDE.md schrijven',
+        body: 'Klik op `CLAUDE.md` in de Explorer links. Typ in het Claude-paneel:',
+        code: 'Schrijf de inhoud voor CLAUDE.md voor dit SEO project en sla het direct op.\nSchrijf in het Nederlands.\n\nInhoud:\n1. Uitleg 3-laagse architectuur (directives, orchestratie, execution)\n2. Werkprincipes: check execution/ eerst, zelfherstellend, directives updaten,\n   .env nooit committen\n3. Mappenstructuur als tekstdiagram (inclusief rapporten/ map)\n4. Over dit Project:\n   Dit systeem analyseert websites op SEO-kwaliteit. Het haalt gerelateerde\n   zoekwoorden op via DataForSEO, analyseert een webpagina, en schrijft\n   een leesbaar SEO-rapport via de Claude API.\n   Deliverable: een .txt rapport in rapporten/ klaar om te sturen naar de klant.\n5. API overzicht:\n   - DataForSEO Labs API: gerelateerde zoekwoorden ophalen\n   - Anthropic API: rapport schrijven (ANTHROPIC_API_KEY)\n   - requests + BeautifulSoup: pagina bezoeken en uitlezen (geen API key nodig)',
+      },
+      {
+        title: 'Testen',
+        body: 'Typ in het paneel om te controleren of Claude alles begrijpt:',
+        code: 'Lees CLAUDE.md en leg me uit hoe dit SEO project werkt.\nNoem de 3 lagen, de API\'s, en de mappenstructuur.',
       },
     ],
     checklist: [
-      'Ik heb het netwerk-bericht verstuurd naar minimaal 5 mensen',
-      'Ik heb mijn LinkedIn profiel bijgewerkt met mijn dienst',
-      'Ik weet hoe ik een gratis pilot aanbied',
+      '`seo-agent` structuur is aangemaakt inclusief `rapporten/` map',
+      'VS Code is heropend in `seo-agent` en het Claude-paneel is opnieuw geopend',
+      '`.env.example` is ingevuld en opgeslagen (Ctrl+S / Cmd+S)',
+      'CLAUDE.md beschrijft het project correct inclusief de drie API\'s',
     ],
   },
 
   '4-3': {
-    intro: 'Een klant wil met je praten. Goed. Dit is geen verkooppitch — dit is een gesprek. Jij luistert, stelt vragen, en kijkt of je kunt helpen.',
+    intro: 'De SEO agent gebruikt twee externe diensten: DataForSEO voor zoekwoorddata en de Claude API voor het schrijven van het rapport. In deze les maak je accounts aan, haal je de keys op, en controleer je of alles werkt.',
     sections: [
       {
-        title: 'De structuur van een goed kennismakingsgesprek (30–45 min)',
-        body: '**Deel 1 — Kennismaken (5 min):**\nVertel kort wie je bent. Eén minuut. Dan: "Maar vertel eens over jullie bedrijf."\n\n**Deel 2 — Probleem begrijpen (15 min):**\nStel deze vijf vragen:\n\n1. "Welke taken doen jullie elke dag/week die veel tijd kosten maar eigenlijk repetitief zijn?"\n2. "Hoe doen jullie dat nu? Excel, e-mail, handmatig?"\n3. "Als dat geautomatiseerd zou zijn, hoeveel tijd bespaar je dan per week?"\n4. "Heb je eerder geprobeerd dit op te lossen? Wat is er mis gegaan?"\n5. "Wat is voor jullie het ideale resultaat?"',
+        title: 'Stap 1: DataForSEO account aanmaken',
+        body: 'Ga naar https://dataforseo.com/ → klik op "Sign Up" rechtsboven. Vul je naam, e-mailadres en wachtwoord in en bevestig je e-mail.\n\nNa inloggen: klik linksboven op je gebruikersnaam of ga naar app.dataforseo.com/api-access. Je ziet twee dingen:\n\n- **Login:** je e-mailadres\n- **Password:** een apart API-wachtwoord\n\nKopieer beide.',
       },
       {
-        title: 'Prijs bepalen',
-        body: 'Je prijs is gebaseerd op de waarde die je levert, niet op je uren. Als een tool iemand 3 uur per week bespaart, is dat per jaar 150 uur. Tegen €25/uur is dat €3.750. Een tool van €600 is dan een no-brainer.\n\n**Vuistregel:** vraag 20–30% van de jaarlijkse besparing.',
+        title: 'Twee verschillende wachtwoorden',
+        body: 'DataForSEO geeft je een apart wachtwoord speciaal voor de API. Dit is NIET hetzelfde als het wachtwoord waarmee je inlogt op de website. Gebruik het API wachtwoord in `.env`.',
+        type: 'warning',
+      },
+      {
+        title: 'Gratis $1 tegoed',
+        body: 'Na aanmelden krijg je automatisch $1 gratis tegoed. Dat is genoeg om de volledige module te doorlopen — elke API call kost minder dan $0.002.',
         type: 'tip',
+      },
+      {
+        title: 'Stap 2: Claude API key ophalen',
+        body: 'Ga naar https://console.anthropic.com/ → Log in met je Anthropic account (hetzelfde als claude.ai).\n\nKlik links op "API Keys" → "Create Key". Geef hem een naam zoals "clavify-seo-agent". Kopieer de sleutel direct — hij is maar één keer zichtbaar.',
+      },
+      {
+        title: 'Stap 3: Keys invullen in .env',
+        body: 'Klik op `.env` in de Explorer links. Voeg toe en sla op (Ctrl+S / Cmd+S):',
+        code: 'DATAFORSEO_LOGIN=jouw_dataforseo_email\nDATAFORSEO_PASSWORD=jouw_api_wachtwoord_hier\nANTHROPIC_API_KEY=sk-ant-...jouw_key_hier',
+      },
+      {
+        title: 'Stap 4: Packages installeren',
+        body: 'Open de terminal in VS Code (Ctrl+` op Windows, Cmd+` op Mac). Installeer de packages één voor één:',
+        code: 'pip install requests\npip install python-dotenv\npip install anthropic\npip install beautifulsoup4',
+      },
+      {
+        title: 'beautifulsoup4 vs bs4',
+        body: 'Je installeert het package met de naam `beautifulsoup4`, maar in je Python code schrijf je `from bs4 import BeautifulSoup`. Dat is de juiste manier — de package naam en de import naam zijn hier verschillend.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 5: Alles testen',
+        body: 'Test eerst of alle packages werken:',
+        code: 'python -c "import requests; from dotenv import load_dotenv; import anthropic; from bs4 import BeautifulSoup; print(\'Alle packages werken\')"',
+      },
+      {
+        title: 'DataForSEO credentials testen',
+        body: 'Test of je DataForSEO login klopt:',
+        code: 'python -c "\nimport requests, os\nfrom dotenv import load_dotenv\nload_dotenv()\nr = requests.get(\n    \'https://api.dataforseo.com/v3/appendix/user_data\',\n    auth=(os.getenv(\'DATAFORSEO_LOGIN\'), os.getenv(\'DATAFORSEO_PASSWORD\'))\n)\nprint(\'Status:\', r.status_code)\nif r.status_code == 200:\n    print(\'DataForSEO credentials werken\')\nelse:\n    print(\'Fout — controleer je login en wachtwoord in .env\')\n"',
       },
     ],
     checklist: [
-      'Ik ken de vijf vragen uit mijn hoofd',
-      'Ik weet hoe ik een prijs berekent op basis van waarde',
-      'Ik heb een gesprek gepland of gevoerd',
+      'DataForSEO account aangemaakt en API login + wachtwoord gekopieerd',
+      'Claude API key aangemaakt en opgeslagen',
+      'Beide keys in `.env` en opgeslagen (Ctrl+S / Cmd+S)',
+      'Alle packages geïnstalleerd — testcommando geeft "Alle packages werken"',
+      'DataForSEO test geeft "Status: 200"',
     ],
   },
 
   '4-4': {
-    intro: 'Je hebt een klant, je hebt de tool gebouwd. Nu: professioneel opleveren.',
+    intro: 'De eerste taak van de SEO agent: zoekwoorden ophalen. Jij geeft een onderwerp op, de agent vraagt DataForSEO om gerelateerde zoekwoorden, en slaat ze op als lijst met zoekvolumes. Dit is de grondstof voor het rapport.',
     sections: [
       {
-        title: 'Stap 1: De tool documenteren',
-        body: 'Vraag Claude om een gebruikersinstructie te schrijven:',
-        code: 'Schrijf een korte gebruikersinstructie (1 A4) voor een niet-technische gebruiker die [tool naam] gaat gebruiken. Leg stap voor stap uit hoe het werkt. Gebruik simpele taal, geen technisch jargon.',
+        title: 'Wat zijn zoekwoorden en zoekvolumes?',
+        body: 'Als iemand "loodgieter Utrecht" intypt in Google, is dat een zoekwoord. Maar er zijn ook mensen die zoeken op "loodgieter spoed Utrecht", "loodgieter goedkoop Utrecht" of "lekkage loodgieter Utrecht". Al die varianten zijn ook zoekwoorden.\n\nDataForSEO geeft je die lijst automatisch — inclusief het zoekvolume: hoe vaak elk woord per maand wordt gezocht. Een zoekwoord met hoog volume is waardevol voor een klant.',
       },
       {
-        title: 'Stap 2: Installatiegesprek plannen',
-        body: 'Plan 30 minuten met de klant om de tool samen te installeren en uit te leggen. Dit is niet optioneel — dit is waar klanten het vertrouwen krijgen dat ze de tool ook echt gaan gebruiken.',
+        title: 'Stap 1: Directive schrijven',
+        body: 'Typ in het Claude-paneel:',
+        code: 'Maak directives/zoekwoorden_ophalen.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Een zoekterm ontvangt als input\n- Via de DataForSEO Labs API gerelateerde zoekwoorden ophaalt\n- Endpoint (POST): https://api.dataforseo.com/v3/dataforseo_labs/google/related_keywords/live\n- Request body: [{"keyword": "ZOEKTERM", "location_code": 2528, "language_code": "nl", "limit": 20}]\n  (location_code 2528 = Nederland)\n- Authenticatie via: auth=(DATAFORSEO_LOGIN, DATAFORSEO_PASSWORD)\n- Per zoekwoord opslaat: het zoekwoord en het maandelijkse zoekvolume\n  (pad: tasks[0].result[0].items[n].keyword_data.keyword_info.search_volume)\n- Sorteert op zoekvolume van hoog naar laag\n- Resultaat opslaat in .tmp/zoekwoorden.txt\n\nInclusief edge cases: geen resultaten, API fout, ongeldige credentials (HTTP 401),\nleeg zoekvolume (None → toon als 0)',
       },
       {
-        title: 'Stap 3: Proefperiode afspreken',
-        body: '"Ik stel voor dat jullie de tool twee weken gebruiken. Als er iets niet werkt of als jullie iets missen, geef het door en ik pas het aan. Na twee weken doen we een korte check-in."\n\nDit kost jou weinig tijd en maakt klanten veel tevredener.',
+        title: 'Stap 2: Script bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/zoekwoorden_ophalen.md en bouw execution/zoekwoorden_ophalen.py\n\nTechnisch:\n- argparse voor --zoekterm en --output\n- load_dotenv() als allereerste actie\n- POST request naar het endpoint uit de directive\n- Haal uit tasks[0].result[0].items elk item op:\n  keyword uit item["keyword_data"]["keyword"]\n  search_volume uit item["keyword_data"]["keyword_info"]["search_volume"]\n  als search_volume None is: gebruik 0\n- Sorteer op search_volume van hoog naar laag\n- Schrijf naar outputbestand:\n  "Zoekwoorden voor: [zoekterm]"\n  "Opgehaald op: [datum]"\n  dan per zoekwoord: "zoekwoord     [volume] zoekacties/maand"\n- Volg alle edge cases\n- Commentaar bij elke sectie',
       },
       {
-        title: 'Stap 4: Factuur sturen',
-        body: 'Gebruik Moneybird (NL) of een simpele template. Vermeld:\n\n• Je naam / bedrijfsnaam\n• KVK nummer\n• BTW nummer (als van toepassing)\n• Beschrijving van de geleverde tool\n• Bedrag\n• Betalingstermijn (14 dagen is standaard)',
+        title: 'Stap 3: De agent draaien',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/zoekwoorden_ophalen.md en voer de taak uit.\nZoekterm: "loodgieter Utrecht"\nSla op in .tmp/zoekwoorden.txt',
       },
       {
-        title: 'Stap 5: Referentie vragen',
-        body: '"Ik ben blij dat de tool goed werkt voor jullie. Zou je bereid zijn om een korte referentie te schrijven die ik op mijn website mag zetten? En ken je andere ondernemers die hier ook baat bij zouden hebben?"',
+        title: 'Als de zoekwoorden niet verschijnen',
+        body: 'DataForSEO heeft een geneste response structuur. Als het script wel draait maar het outputbestand leeg of fout is, typ dan in het paneel:\n\n"Controleer dat het script de keyword en search_volume correct uithaalt uit de DataForSEO response — het pad is tasks[0].result[0].items[n].keyword_data.keyword en .keyword_info.search_volume"',
         type: 'tip',
+      },
+      {
+        title: 'Zoekvolumes zijn schattingen',
+        body: 'DataForSEO geeft gemiddelde maandelijkse zoekvolumes op basis van historische data. Dit zijn schattingen, geen exacte cijfers. Leg dit ook zo uit aan klanten — maar de richting klopt altijd.',
+        type: 'warning',
       },
     ],
     checklist: [
-      'Ik heb een gebruikersinstructie gemaakt',
-      'De installatieafspraak is gepland',
-      'Ik weet hoe ik een professionele factuur stuur',
+      '`directives/zoekwoorden_ophalen.md` is aangemaakt',
+      '`execution/zoekwoorden_ophalen.py` heeft `load_dotenv()` als eerste regel',
+      '`.tmp/zoekwoorden.txt` bevat een lijst zoekwoorden met volumes',
+      'De lijst is gesorteerd van hoog naar laag zoekvolume',
     ],
   },
 
   '4-5': {
-    intro: 'Je hebt je eerste klant. Nu bouw je een systeem dat nieuwe klanten aantrekt zonder dat je elke keer vanaf nul begint.',
+    intro: 'De agent leert nu een nieuwe vaardigheid: een website bezoeken en uitlezen. Hij gaat naar een URL, leest de pagina, en rapporteert wat hij vindt over de SEO-kwaliteit.',
     sections: [
       {
-        title: 'Pijler 1: Portfolio',
-        body: 'Na elke opdracht: maak een korte casestudy.\n\n• Wat was het probleem?\n• Wat heb je gebouwd?\n• Wat is het resultaat? (uren bespaard, fouten verminderd, etc.)\n\nZelfs zonder getallen werkt dit: "Restaurant X had een handmatig reserveringssysteem. Ik bouwde een tool die reserveringen bijhoudt. De eigenaar besteedt er nu 30 minuten per week minder aan."',
+        title: 'Wat analyseert de agent?',
+        body: '**Paginatitel (title tag):** de tekst die je ziet als tabblad in je browser en als blauwe link in Google. Het belangrijkste SEO-element van een pagina.\n\n**Meta beschrijving:** de grijze tekst onder de blauwe link in Google. Bepaalt of mensen klikken.\n\n**H1 kop:** de hoofdtitel op de pagina zelf. Moet het belangrijkste zoekwoord bevatten.\n\n**H2 koppen:** tussenkopjes op de pagina. Geven structuur en helpen Google begrijpen waar de pagina over gaat.\n\n**Woordcount:** hoeveel tekst staat er op de pagina? Google waardeert pagina\'s met minstens 300 woorden.',
       },
       {
-        title: 'Pijler 2: Online aanwezigheid',
-        body: 'Bouw een simpele portfolio-pagina. Vraag Claude:',
-        code: 'Bouw een professionele HTML portfolio pagina voor een freelance AI tools developer. Sectie: over mij (kort), diensten (3 aanbiedingen met prijs), portfolio (3 casestudies als kaarten), contact formulier. Modern ontwerp, donkerblauw kleurenschema.',
+        title: 'Stap 1: Directive schrijven',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/pagina_analyseren.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Een URL ontvangt als input\n- De pagina bezoekt via requests met een User-Agent header\n- Met BeautifulSoup uithaalt:\n  * Paginatitel (title tag)\n  * Meta beschrijving (content van <meta name="description">)\n  * Eerste H1 tag\n  * Alle H2 tags (maximaal 5)\n  * Totaal aantal woorden in de body tekst\n  * De eerste 300 woorden als tekst-preview\n- Resultaat opslaat in .tmp/pagina_analyse.txt\n- Voor ontbrekende elementen schrijft: "Niet gevonden"\n\nEdge cases: URL niet bereikbaar, 403 geblokkeerd, geen title tag,\nredirect, time-out na 10 seconden',
       },
       {
-        title: 'Pijler 3: Herhalende inkomsten',
-        body: 'Maak van elke tool een abonnement:\n\n• **Basis**: tool werkt as-is (eenmalig betaald)\n• **Onderhoud**: €50/maand — updates, bugs fixen, kleine aanpassingen\n• **Premium**: €150/maand — onderhoud + maandelijks een nieuwe functie\n\nMet 7 klanten op het onderhoudspakket heb je €350/maand passief inkomen naast je projecten.',
+        title: 'Stap 2: Script bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/pagina_analyseren.md en bouw execution/pagina_analyseren.py\n\nTechnisch:\n- argparse voor --url en --output\n- load_dotenv() als allereerste actie\n- requests.get() met:\n  headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}\n  timeout = 10\n- BeautifulSoup(response.text, "html.parser")\n- title via soup.find("title")\n- meta description via soup.find("meta", attrs={"name": "description"}) → .get("content")\n- H1 via soup.find("h1")\n- H2 via soup.find_all("h2", limit=5)\n- Body tekst via soup.get_text(), verwijder extra witruimte, tel woorden\n- Alles netjes geformatteerd naar outputbestand\n- Volg alle edge cases',
+      },
+      {
+        title: 'Wat is een User-Agent?',
+        body: 'Een User-Agent is een stukje tekst dat je browser meestuurt aan websites om te vertellen wat voor browser je gebruikt. Sommige websites blokkeren verzoeken zonder User-Agent. Door er één mee te sturen doet je script zich voor als een gewone bezoeker.',
         type: 'tip',
       },
       {
-        title: 'Je eerste €1.000/maand plan',
-        body: '• Maand 1: 1 gratis pilotproject → referentie\n• Maand 2: 2 betaalde projecten (€300 + €500) + 1 onderhoud (€75) = €875\n• Maand 3: 1 project (€500) + 3 onderhoud (€225) = €725\n• Maand 4+: groeiende onderhoud-inkomsten + nieuwe projecten',
+        title: 'Stap 3: Testen met example.com',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/pagina_analyseren.md en voer de taak uit.\nURL: https://www.example.com\nSla op in .tmp/pagina_analyse.txt',
+      },
+      {
+        title: 'Stap 4: Testen met een echte URL',
+        body: 'Typ in het paneel met een echte URL — de website van een lokaal bedrijf of jouw eigen website:',
+        code: 'Lees directives/pagina_analyseren.md en voer de taak uit.\nURL: [een echte website URL]\nSla op in .tmp/pagina_analyse.txt',
       },
     ],
     checklist: [
-      'Ik heb mijn eerste casestudy geschreven',
-      'Mijn portfolio pagina is online',
-      'Ik heb een onderhoudspakket aangeboden aan mijn eerste klant',
+      '`directives/pagina_analyseren.md` is aangemaakt',
+      '`execution/pagina_analyseren.py` is gebouwd',
+      'Test met example.com geeft een correct analysebestand',
+      'Test met een echte URL werkt ook en toont meer tekst',
+    ],
+  },
+
+  '4-6': {
+    intro: 'Je hebt twee bestanden: zoekwoorden en een pagina-analyse. Nu komt de krachtigste stap: je roept Claude aan vanuit Python om die data te lezen en er een professioneel SEO rapport van te maken. Volledig automatisch.',
+    sections: [
+      {
+        title: 'Hoe werkt Claude aanroepen vanuit Python?',
+        body: 'In module 3 typte je opdrachten in het Claude-paneel in VS Code. Nu doet je Python script dat zelf. Het script stuurt een bericht naar Claude via de Anthropic API en Claude stuurt een rapport terug. Dat rapport sla je op als bestand.\n\nHet voordeel: dit is volledig automatisch. Het script draait, leest de data, vraagt Claude om een rapport, en slaat het op — zonder dat jij iets doet.',
+      },
+      {
+        title: 'Stap 1: Directive schrijven',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/rapport_schrijven.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- .tmp/zoekwoorden.txt en .tmp/pagina_analyse.txt inleest\n- Controleert of beide bestanden bestaan\n- Via Anthropic API (claude-sonnet-4-6, max_tokens: 2000) een SEO rapport schrijft\n- System prompt: "Je bent een SEO specialist die rapporten schrijft voor\n  Nederlandse MKB-eigenaren. Schrijf altijd in duidelijk Nederlands zonder\n  technisch jargon. Wees concreet en geef altijd uitvoerbare aanbevelingen."\n- Rapport bevat:\n  * Samenvatting (wat gaat goed, wat kan beter — 3-5 zinnen)\n  * Zoekwoorden analyse (welke gevonden zoekwoorden passen, welke ontbreken)\n  * Pagina bevindingen (beoordeling van titel, meta, H1, woordcount)\n  * Top 3 aanbevelingen (concrete acties)\n- Slaat op in rapporten/ als: seo_rapport_YYYY-MM-DD.txt\n\nEdge cases: inputbestanden niet gevonden (print welke les eerst uitgevoerd moet\nworden), API fout, lege inputbestanden',
+      },
+      {
+        title: 'Stap 2: Script bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/rapport_schrijven.md en bouw execution/rapport_schrijven.py\n\nTechnisch:\n- load_dotenv() als allereerste actie\n- Controleer of .tmp/zoekwoorden.txt en .tmp/pagina_analyse.txt bestaan\n  als een van beide ontbreekt: print welk bestand mist en welke les\n  de student eerst moet uitvoeren, daarna sys.exit(1)\n- Lees beide bestanden in als string\n- client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))\n- Model: claude-sonnet-4-6, max_tokens: 2000\n- Combineer beide inputbestanden in de user message\n- Haal response op via response.content[0].text\n- Maak rapporten/ aan als die niet bestaat\n- Sla op als rapporten/seo_rapport_YYYY-MM-DD.txt\n- Print bevestiging met bestandspad\n- Volg alle edge cases',
+      },
+      {
+        title: 'Stap 3: De agent draaien',
+        body: 'Zorg dat `.tmp/zoekwoorden.txt` en `.tmp/pagina_analyse.txt` allebei bestaan (aangemaakt in les 4-4 en 4-5). Typ dan in het paneel:',
+        code: 'Lees directives/rapport_schrijven.md en voer de taak uit.',
+      },
+      {
+        title: 'Elk rapport is uniek',
+        body: 'Claude genereert het rapport op basis van de data die binnenkomt. Elke keer dat je de agent draait met andere zoekwoorden of een andere URL, krijg je een ander rapport. Dit is precies waarom het schaalbaar is als dienst.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      '`directives/rapport_schrijven.md` is aangemaakt',
+      '`execution/rapport_schrijven.py` controleert of inputbestanden bestaan',
+      'Een rapport staat in `rapporten/` met de juiste datum in de naam',
+      'Het rapport bevat samenvatting, zoekwoordenanalyse, bevindingen en aanbevelingen',
+    ],
+  },
+
+  '4-7': {
+    intro: 'Je hebt drie werkende agents. Nu koppel je ze zodat jij één opdracht geeft en het systeem alles automatisch uitvoert. Daarna maak je het leverbaar voor een klant.',
+    sections: [
+      {
+        title: 'Stap 1: Alles in één opdracht uitvoeren',
+        body: 'Typ in het paneel:',
+        code: 'Voer de volledige SEO analyse uit in deze volgorde:\n\n1. Haal zoekwoorden op voor "loodgieter Utrecht"\n   via directives/zoekwoorden_ophalen.md\n   Sla op in .tmp/zoekwoorden.txt\n\n2. Analyseer de pagina https://www.example.com\n   via directives/pagina_analyseren.md\n   Sla op in .tmp/pagina_analyse.txt\n\n3. Schrijf het SEO rapport\n   via directives/rapport_schrijven.md\n\nMeld na elke stap kort wat je hebt gedaan.',
+      },
+      {
+        title: 'Stap 2: Overkoepelende directive aanmaken',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/volledige_seo_analyse.md aan in het Nederlands.\n\nDit is de overkoepelende directive voor de complete SEO analyse.\n\nInhoud:\n- Doel: volledige SEO analyse uitvoeren voor een website\n- Input: zoekterm en URL van de te analyseren pagina\n- Stappen in volgorde:\n  1. Voer directives/zoekwoorden_ophalen.md uit\n  2. Voer directives/pagina_analyseren.md uit\n  3. Voer directives/rapport_schrijven.md uit\n- Output: SEO rapport in rapporten/ klaar om te sturen\n- Bij fout in een stap: voer self-annealing uit',
+      },
+      {
+        title: 'Voortaan gebruik je dit',
+        body: 'Na het aanmaken van de overkoepelende directive hoef je nog maar één ding te typen voor een complete analyse:',
+        code: 'Lees directives/volledige_seo_analyse.md en voer de analyse uit voor:\nZoekterm: [zoekwoord]\nURL: [website URL]',
+      },
+      {
+        title: 'Stap 3: README aanmaken voor de klant',
+        body: 'Typ in het paneel:',
+        code: 'Maak README.md aan voor een niet-technische klant. Schrijf in simpele taal.\n\nInhoud:\n- Wat doet dit systeem (2 zinnen)\n- Wat heb je nodig (Python, packages, twee API keys)\n- Hoe .env instellen stap voor stap (verwijs naar .env.example)\n- Hoe een analyse uitvoeren:\n  open VS Code → open seo-agent map → open Claude-paneel →\n  typ de opdracht met zoekterm en URL → wacht op bevestiging →\n  open het rapport in de rapporten/ map\n\nSla op in README.md',
+      },
+      {
+        title: 'Stap 4: CLAUDE.md aanpassen voor de klant',
+        body: 'Open `CLAUDE.md` en voeg onderaan toe (Ctrl+S / Cmd+S):',
+        code: '## Over dit Project\n\nDit systeem voert automatisch SEO analyses uit voor [Naam Klant].\n\nWebsite: https://www.klant-website.nl\nZoekterm: [hoofdzoekwoord van de klant]\nDeliverable: SEO rapport in rapporten/ na elke analyse',
+      },
+      {
+        title: 'Jouw rapporten worden steeds beter',
+        body: 'Elke keer dat je self-annealing gebruikt om een fout te herstellen, worden je directives slimmer. Na vijf klanten weet je systeem precies welke websites problemen geven, hoe het daarmee omgaat, en wat de beste manier is om data te verwerken. Die kennis zit in de directives — dat is jouw concurrentievoordeel.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      'De drie agents werken samen via één opdracht in het paneel',
+      '`directives/volledige_seo_analyse.md` is aangemaakt',
+      '`README.md` is aangemaakt voor de klant',
+      '`CLAUDE.md` is bijgewerkt met klantgegevens (Ctrl+S / Cmd+S)',
+    ],
+  },
+
+  '5-1': {
+    intro: 'In module 4 bouwde je een agent die analyseert en rapporteert. Nu gaat de agent een stap verder: hij schrijft ook de tekst en publiceert die direct op de website van de klant. Geen kopiëren, geen handmatig inloggen — de content staat live.',
+    sections: [
+      {
+        title: 'Het probleem dat je oplost',
+        body: 'Bedrijven weten vaak wel dat ze betere teksten nodig hebben op hun website. Maar ze hebben geen tijd om ze te schrijven. Een SEO-bureau vraagt €200-€500 per blogartikel. En dan moet de tekst ook nog worden geüpload.\n\nJouw agent doet dit in minuten:\n1. Zoekwoorden ophalen (module 4)\n2. Analyseren wat er al op de website staat (module 4)\n3. Een nieuwe, SEO-geoptimaliseerde tekst schrijven\n4. Die tekst direct publiceren op de website',
+      },
+      {
+        title: 'Wat je gaat bouwen',
+        body: '**De content schrijver:** een agent die op basis van zoekwoorden en een onderwerp een volledig blogartikel schrijft. Met de juiste titel, tussenkopjes, en zoekwoorden verwerkt in de tekst.\n\n**De WordPress publisher:** een agent die de geschreven content direct aanmaakt als blogpost op een WordPress website via de WordPress REST API.\n\n**De Shopify publisher:** een agent die de geschreven content aanmaakt als blogartikel op een Shopify webshop via de Shopify Admin API.\n\nJe kiest welk platform je voor de klant gebruikt. De content schrijver is hetzelfde voor beide — alleen de publisher verschilt.',
+      },
+    ],
+    checklist: [
+      'Ik begrijp wat de content agent doet',
+      'Ik weet welke twee platforms ondersteund worden',
+      'Ik weet hoe ik dit product kan verkopen',
+    ],
+  },
+
+  '5-2': {
+    intro: 'Je gebruikt dezelfde aanpak als in module 3 en 4. Snel doorlopen — je kent de stappen al.',
+    sections: [
+      {
+        title: 'Stap 1: Projectstructuur aanmaken',
+        body: 'Open VS Code. Ga naar File → Open Folder → navigeer naar je `clavify-projecten` map.\n\nOpen het Claude-paneel. Zorg dat een bestand open staat (open anders een bestand uit een eerder project). Typ in het paneel:',
+        code: 'Maak een nieuwe projectmap aan genaamd content-agent\nin de huidige clavify-projecten map.\n\nStructuur:\ncontent-agent/\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n├── content/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
+      },
+      {
+        title: 'Extra map: content/',
+        body: 'Hier slaat de agent alle geschreven teksten op voordat ze gepubliceerd worden. Zo heb je altijd een lokale kopie — ook als de publicatie mislukt.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 2: VS Code heropen in content-agent',
+        body: 'File → Open Folder → `clavify-projecten/content-agent` → "Map selecteren" of "Open".\n\nOpen het Claude-paneel opnieuw na het heropenen.',
+      },
+      {
+        title: 'Stap 3: .env.example invullen',
+        body: 'Klik op `.env.example` in de Explorer links. Voeg toe en sla op (Ctrl+S / Cmd+S):',
+        code: '# Kopieer dit naar .env en vul de echte waarden in\n# .env.example mag je delen — .env nooit\n# Vul alleen in wat relevant is voor jouw klant (WordPress OF Shopify)\n\n# Claude API (aanmaken via console.anthropic.com)\nANTHROPIC_API_KEY=jouw_claude_api_key\n\n# WordPress (alleen invullen als de klant WordPress heeft)\nWP_URL=https://www.klant-website.nl\nWP_USERNAME=wordpress_gebruikersnaam\nWP_APP_PASSWORD=xxxx_xxxx_xxxx_xxxx\n\n# Shopify (alleen invullen als de klant Shopify heeft)\nSHOPIFY_STORE=jouw-store.myshopify.com\nSHOPIFY_ACCESS_TOKEN=shpat_xxxx\nSHOPIFY_BLOG_ID=123456789',
+      },
+      {
+        title: 'Stap 4: CLAUDE.md schrijven',
+        body: 'Klik op `CLAUDE.md` in de Explorer links. Typ in het paneel:',
+        code: 'Schrijf de inhoud voor CLAUDE.md voor dit content project en sla het direct op.\nSchrijf in het Nederlands.\n\nInhoud:\n1. Uitleg 3-laagse architectuur (directives, orchestratie, execution)\n2. Werkprincipes: check execution/ eerst, zelfherstellend, directives updaten,\n   .env nooit committen\n3. Mappenstructuur als tekstdiagram inclusief content/ map\n4. Over dit Project:\n   Dit systeem schrijft SEO-geoptimaliseerde blogartikelen en publiceert ze\n   direct op WordPress of Shopify via hun API.\n   Deliverable: gepubliceerde blogpost op de website van de klant.\n5. API overzicht:\n   - Anthropic API: content schrijven (ANTHROPIC_API_KEY)\n   - WordPress REST API: publiceren op WordPress\n   - Shopify Admin API: publiceren op Shopify\n6. Platform keuze:\n   Gebruik WordPress scripts als de klant WordPress heeft.\n   Gebruik Shopify scripts als de klant Shopify heeft.',
+      },
+    ],
+    checklist: [
+      '`content-agent` structuur aangemaakt inclusief `content/` map',
+      'VS Code heropend in `content-agent` en Claude-paneel opnieuw geopend',
+      '`.env.example` ingevuld met alle variabelen voor beide platforms',
+      'CLAUDE.md beschrijft beide platforms correct',
+    ],
+  },
+
+  '5-3': {
+    intro: 'Dit is de kern van de module. De agent krijgt een onderwerp en een lijst zoekwoorden, en schrijft daar een volledig SEO-geoptimaliseerd blogartikel van. De tekst is direct klaar om te publiceren.',
+    sections: [
+      {
+        title: 'Wat maakt een tekst SEO-geoptimaliseerd?',
+        body: '**Titel (H1):** bevat het hoofdzoekwoord en wekt interesse. Maximaal 60 tekens zodat hij niet wordt afgekapt in Google.\n\n**Meta beschrijving:** een korte samenvatting van 150-160 tekens. Bevat het zoekwoord en geeft mensen een reden om te klikken.\n\n**Introductie:** de eerste alinea bevat het hoofdzoekwoord en legt uit wat de lezer gaat leren.\n\n**Tussenkopjes (H2, H3):** geven structuur en bevatten gerelateerde zoekwoorden.\n\n**Woordcount:** minimaal 600 woorden voor een blogartikel. Meer is beter — Google waardeert diepgang.',
+      },
+      {
+        title: 'Stap 1: Packages installeren',
+        body: 'Open de terminal (Ctrl+` Windows / Cmd+` Mac). Installeer packages:',
+        code: 'pip install anthropic\npip install python-dotenv\npip install requests',
+      },
+      {
+        title: 'Stap 2: Claude API key invullen',
+        body: 'Als je al een Claude API key hebt van module 4, kopieer die dan naar `.env` hier.\n\nKlik op `.env` in de Explorer links. Voeg toe en sla op (Ctrl+S / Cmd+S):',
+        code: 'ANTHROPIC_API_KEY=sk-ant-...jouw_key_hier',
+      },
+      {
+        title: 'Stap 3: Directive schrijven',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/content_schrijven.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Een onderwerp en een lijst zoekwoorden ontvangt\n- Via Anthropic API (claude-sonnet-4-6, max_tokens: 4000) een blogartikel schrijft\n- Artikel bevat:\n  * SEO-titel (max 60 tekens, bevat hoofdzoekwoord)\n  * Meta beschrijving (max 160 tekens)\n  * Introductie van minimaal 100 woorden\n  * Minimaal 4 H2-tussenkopjes met gerelateerde zoekwoorden\n  * Conclusie met call-to-action\n  * Minimaal 600 woorden totaal\n- Output slaat op in content/ als: artikel_YYYY-MM-DD_[onderwerp].txt\n  (spaties vervangen door koppeltekens)\n- Output heeft duidelijke secties: TITEL:, META BESCHRIJVING:, ARTIKEL:\n- System prompt: je bent een Nederlandse SEO-copywriter voor MKB-bedrijven,\n  toegankelijke vriendelijke toon, verwerk zoekwoorden natuurlijk\n\nInclusief edge cases en self-annealing',
+      },
+      {
+        title: 'Stap 4: Script bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/content_schrijven.md en bouw execution/content_schrijven.py\n\nTechnisch:\n- argparse voor --onderwerp en --zoekwoorden\n- load_dotenv() als allereerste actie\n- Anthropic client met os.getenv("ANTHROPIC_API_KEY")\n- Model: claude-sonnet-4-6, max_tokens: 4000\n- User message: "Schrijf een blogartikel over: [onderwerp].\n  Verwerk deze zoekwoorden natuurlijk in de tekst: [zoekwoorden].\n  Begin direct met de output in dit formaat:\n  TITEL: [de titel]\n  META BESCHRIJVING: [de meta beschrijving]\n  ARTIKEL:\n  [het volledige artikel]"\n- Maak content/ aan als die niet bestaat\n- Sla op als content/artikel_YYYY-MM-DD_[onderwerp-met-koppeltekens].txt\n- Print bevestiging met bestandspad',
+      },
+      {
+        title: 'Stap 5: De agent draaien',
+        body: 'Zorg dat je API key in `.env` staat. Typ in het paneel:',
+        code: 'Lees directives/content_schrijven.md en voer de taak uit.\nOnderwerp: loodgieter Utrecht\nZoekwoorden: loodgieter Utrecht, loodgieter spoed Utrecht, lekkage loodgieter Utrecht',
+      },
+      {
+        title: 'Pas de tone of voice aan per klant',
+        body: 'Wil een klant een formelere toon? Pas de system prompt in de directive aan: voeg toe "Schrijf in een formele, zakelijke toon". Wil een andere branche? Pas het onderwerp en de zoekwoorden aan. De agent is direct inzetbaar voor elke sector.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      '`anthropic`, `python-dotenv` en `requests` zijn geïnstalleerd',
+      'Claude API key staat in `.env`',
+      '`directives/content_schrijven.md` is aangemaakt',
+      '`execution/content_schrijven.py` is gebouwd',
+      'Een artikel staat in `content/` met TITEL, META BESCHRIJVING en ARTIKEL secties',
+    ],
+  },
+
+  '5-4': {
+    intro: 'WordPress heeft een ingebouwde REST API waarmee je van buitenaf blogposts kunt aanmaken, aanpassen en publiceren. Je hebt geen extra plugin nodig — het werkt standaard op elke moderne WordPress installatie.',
+    sections: [
+      {
+        title: 'Vereisten',
+        body: 'De klant moet een WordPress website hebben met:\n- WordPress versie 5.6 of nieuwer (dat is bijna altijd het geval)\n- Toegang tot het WordPress dashboard\n- Een WordPress gebruiker met minimaal **Auteur** rechten\n\nHeb je een Shopify klant? Sla dan deze les over en ga direct naar les 5-6.',
+        type: 'warning',
+      },
+      {
+        title: 'Stap 1: Application Password aanmaken in WordPress',
+        body: 'Log in op het WordPress dashboard van de klant:\n\n1. Klik rechtsboven op de gebruikersnaam → "Profiel"\n2. Scroll helemaal naar beneden naar "Applicatiewachtwoorden"\n3. Vul bij "Naam nieuw applicatiewachtwoord" in: `clavify-agent`\n4. Klik op "Nieuw applicatiewachtwoord toevoegen"\n5. WordPress toont een wachtwoord van 24 tekens met spaties\n6. Kopieer het direct — je ziet het maar één keer',
+      },
+      {
+        title: 'Applicatiewachtwoorden niet zichtbaar?',
+        body: 'Sommige beveiligingsplugins schakelen Application Passwords uit. Zoek in de instellingen van de actieve beveiligingsplugin naar "Application Passwords" of "REST API" en schakel het tijdelijk in voor de installatie.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 2: WordPress gegevens invullen in .env',
+        body: 'Klik op `.env` in de Explorer links. Voeg toe en sla op (Ctrl+S / Cmd+S):',
+        code: 'WP_URL=https://www.klant-website.nl\nWP_USERNAME=gebruikersnaam_van_de_klant\nWP_APP_PASSWORD=AbCd EfGh IjKl MnOp QrSt UvWx',
+      },
+      {
+        title: 'Spaties in het wachtwoord',
+        body: 'Het WordPress Application Password bevat spaties. Dat is correct zo — laat ze staan in `.env`. Het Python script verwerkt ze goed.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 3: Verbinding testen',
+        body: 'Typ dit in de terminal (Windows gebruikers: gebruik PowerShell):',
+        code: 'python -c "\nimport requests, os, base64\nfrom dotenv import load_dotenv\nload_dotenv()\nurl = os.getenv(\'WP_URL\')\nuser = os.getenv(\'WP_USERNAME\')\npwd = os.getenv(\'WP_APP_PASSWORD\')\ncredentials = base64.b64encode(f\'{user}:{pwd}\'.encode()).decode()\nheaders = {\'Authorization\': f\'Basic {credentials}\'}\nr = requests.get(f\'{url}/wp-json/wp/v2/users/me\', headers=headers)\nprint(\'Status:\', r.status_code)\nif r.status_code == 200:\n    print(\'Verbonden als:\', r.json().get(\'name\', \'onbekend\'))\nelse:\n    print(\'Fout — controleer WP_URL, WP_USERNAME en WP_APP_PASSWORD in .env\')\n"',
+      },
+    ],
+    checklist: [
+      'WordPress Application Password aangemaakt en gekopieerd',
+      'WP_URL, WP_USERNAME en WP_APP_PASSWORD in `.env` en opgeslagen (Ctrl+S / Cmd+S)',
+      'Verbindingstest geeft "Status: 200"',
+    ],
+  },
+
+  '5-5': {
+    intro: 'De verbinding werkt. Nu bouw je het script dat de geschreven content automatisch aanmaakt als blogpost op WordPress.',
+    sections: [
+      {
+        title: 'Hoe werkt publiceren via de API?',
+        body: 'Je stuurt een POST request naar `jouw-website.nl/wp-json/wp/v2/posts` met daarin de titel, de inhoud (HTML) en de status: `publish` (direct live) of `draft` (concept).\n\nWordPress maakt de post aan en geeft je de URL terug. Dat is alles.',
+      },
+      {
+        title: 'Stap 1: Directive schrijven',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/publiceren_wordpress.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Het meest recente bestand in content/ leest (of een specifiek bestand)\n- TITEL, META BESCHRIJVING en ARTIKEL secties uithaalt\n- Artikeltekst omzet naar HTML:\n  * ## Koppen → <h2>\n  * ### Koppen → <h3>\n  * Lege regels scheiden alinea\'s → <p>\n- Blogpost aanmaakt op WordPress via REST API:\n  * Endpoint: WP_URL/wp-json/wp/v2/posts\n  * Auth: Basic Auth met base64(WP_USERNAME:WP_APP_PASSWORD)\n  * Status: "draft" (standaard) zodat klant eerst naleest\n  * Optionele --direct-live vlag voor "publish"\n- Na succes de URL van de draft post print\n\nEdge cases: contentbestand niet gevonden, WordPress geeft fout,\nauthenticatie mislukt',
+      },
+      {
+        title: 'Stap 2: Script bouwen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/publiceren_wordpress.md en bouw execution/publiceren_wordpress.py\n\nTechnisch:\n- argparse voor --bestand (optioneel) en --direct-live (store_true)\n- load_dotenv() als allereerste actie\n- Als geen --bestand: meest recente bestand in content/ via os.listdir() en max() met getmtime()\n- Lees bestand en split op "TITEL:\\n", "META BESCHRIJVING:\\n", "ARTIKEL:\\n"\n- Converteer markdown naar HTML\n- Authorization: base64(gebruikersnaam:wachtwoord)\n- POST naar WP_URL/wp-json/wp/v2/posts\n- Status: "publish" als --direct-live, anders "draft"\n- Print: "Post aangemaakt: [URL]"',
+      },
+      {
+        title: 'Stap 3: De agent draaien',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/publiceren_wordpress.md en voer de taak uit.\nGebruik het meest recente artikel in de content/ map.\nMaak het aan als concept (draft) zodat de klant het eerst kan nalezen.',
+      },
+      {
+        title: 'Altijd eerst als concept',
+        body: 'We publiceren standaard als concept en niet direct live. Dit geeft de klant de kans om de tekst na te lezen en eventueel aan te passen. Als de klant vertrouwen heeft gekregen in de kwaliteit, kun je `--direct-live` gebruiken.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      '`directives/publiceren_wordpress.md` is aangemaakt',
+      '`execution/publiceren_wordpress.py` is gebouwd',
+      'De agent maakt een draft post aan op WordPress',
+      'De URL van de post verschijnt in het paneel na uitvoering',
+    ],
+  },
+
+  '5-6': {
+    intro: 'Heeft de klant Shopify in plaats van WordPress? Dan gebruik je deze les. De content schrijver uit les 5-3 is hetzelfde — alleen de publisher verschilt.',
+    sections: [
+      {
+        title: 'Stap 1: Shopify Access Token aanmaken',
+        body: 'Log in op het Shopify dashboard van de klant:\n\n1. Ga naar Instellingen (tandwiel icoon linksonder)\n2. Klik op "Apps en verkoopkanalen"\n3. Klik op "Apps ontwikkelen" rechtsbovenin\n4. Klik "Een app ontwikkelen" → geef hem een naam zoals "Clavify Agent"\n5. Klik op "API-scopes configureren"\n6. Zet een vinkje bij: `write_content` en `read_content`\n7. Klik "Opslaan" → "Installeer app"\n8. Klik "Admin API-toegangstoken weergeven"\n9. Kopieer de token (begint met `shpat_`) — maar één keer zichtbaar',
+      },
+      {
+        title: '"Apps ontwikkelen" niet zichtbaar?',
+        body: 'Klik op "Aangepaste apps beheren" of zoek naar "Allow custom app development" op de pagina. Klik die knop en bevestig. Hierna verschijnt "Apps ontwikkelen".',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 2: Blog ID ophalen',
+        body: 'Shopify organiseert blogposts in "blogs". Haal de lijst op via de terminal:',
+        code: 'python -c "\nimport requests, os\nfrom dotenv import load_dotenv\nload_dotenv()\nstore = os.getenv(\'SHOPIFY_STORE\')\ntoken = os.getenv(\'SHOPIFY_ACCESS_TOKEN\')\nr = requests.get(\n    f\'https://{store}/admin/api/2026-01/blogs.json\',\n    headers={\'X-Shopify-Access-Token\': token}\n)\nprint(\'Status:\', r.status_code)\nif r.status_code == 200:\n    for blog in r.json()[\'blogs\']:\n        print(f\'Blog ID: {blog[\"id\"]} — Naam: {blog[\"title\"]}\')\n"',
+      },
+      {
+        title: 'Stap 3: Gegevens invullen in .env',
+        body: 'Voeg toe aan `.env` en sla op (Ctrl+S / Cmd+S):',
+        code: 'SHOPIFY_STORE=jouw-store.myshopify.com\nSHOPIFY_ACCESS_TOKEN=shpat_xxxx\nSHOPIFY_BLOG_ID=123456789',
+      },
+      {
+        title: 'Stap 4: Directive schrijven',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/publiceren_shopify.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Meest recente bestand in content/ leest (of specifiek bestand)\n- TITEL, META BESCHRIJVING en ARTIKEL uithaalt\n- Tekst omzet naar HTML (zelfde als WordPress publisher)\n- Blogartikel aanmaakt via Shopify Admin API:\n  * Endpoint: https://SHOPIFY_STORE/admin/api/2026-01/blogs/SHOPIFY_BLOG_ID/articles.json\n  * Header: X-Shopify-Access-Token: SHOPIFY_ACCESS_TOKEN\n  * Concept (geen published_at): {"article": {"title": TITEL, "body_html": HTML, "summary_html": META}}\n  * Direct live (--direct-live): voeg "published_at": datetime.now().isoformat() toe\n- Na succes de artikel-URL print\n\nEdge cases: bestand niet gevonden, API fout, ongeldige token, ontbrekende BLOG_ID',
+      },
+      {
+        title: 'Stap 5: Script bouwen en draaien',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/publiceren_shopify.md en bouw execution/publiceren_shopify.py\n\nTechnisch:\n- argparse voor --bestand (optioneel) en --direct-live (store_true)\n- load_dotenv() als allereerste actie\n- Meest recente bestand in content/ ophalen als geen --bestand\n- Markdown naar HTML conversie\n- POST naar Shopify Articles endpoint\n- Geen published_at voor concept, datetime.now().isoformat() voor --direct-live\n- Print na succes de artikel URL',
+      },
+    ],
+    checklist: [
+      'Shopify Custom App aangemaakt met `write_content` scope',
+      'Access Token gekopieerd en in `.env` gezet',
+      'Blog ID opgehaald en in `.env` gezet',
+      '`directives/publiceren_shopify.md` en `execution/publiceren_shopify.py` aangemaakt',
+      'De agent maakt een concept artikel aan op Shopify',
+    ],
+  },
+
+  '5-7': {
+    intro: 'Je hebt drie agents: een content schrijver, een WordPress publisher, en een Shopify publisher. Nu koppel je ze zodat jij één opdracht geeft en de agent schrijft en publiceert. Daarna maak je het leverbaar.',
+    sections: [
+      {
+        title: 'Dit vervangt geen copywriter',
+        body: 'Claude schrijft goede basisteksten maar de klant moet ze altijd even nalezen en waar nodig aanpassen. Vertel dit ook aan klanten — het is eerlijk en het zorgt dat ze betrokken blijven. Jij levert de ruwe diamant, de klant geeft de finishing touch.',
+        type: 'tip',
+      },
+      {
+        title: 'Stap 1: Overkoepelende directives aanmaken',
+        body: 'Typ in het paneel:',
+        code: 'Maak directives/volledige_pipeline_wordpress.md aan in het Nederlands.\n\nOverkoepelende directive voor de complete WordPress content pipeline.\n\nInhoud:\n- Doel: blogartikel schrijven en publiceren op WordPress\n- Input: onderwerp en lijst zoekwoorden (kommagescheiden)\n- Stappen:\n  1. Voer directives/content_schrijven.md uit\n  2. Voer directives/publiceren_wordpress.md uit\n- Output: concept blogpost op WordPress klaar voor controle\n- Bij fout in een stap: voer self-annealing uit',
+      },
+      {
+        title: 'Stap 2: Pipeline testen',
+        body: 'Typ in het paneel:',
+        code: 'Lees directives/volledige_pipeline_wordpress.md en voer de pipeline uit voor:\nOnderwerp: thuisbezorging bloemen Amsterdam\nZoekwoorden: bloemen bezorgen Amsterdam, boeket bezorgen Amsterdam, bloemen thuisbezorging Amsterdam zelfde dag',
+      },
+      {
+        title: 'Stap 3: Koppelen met module 4 SEO data (optioneel)',
+        body: 'Heb je module 4 gedaan? Dan kun je de zoekwoorden direct vanuit de SEO agent gebruiken. Kopieer:\n- `execution/zoekwoorden_ophalen.py` vanuit `seo-agent/execution/`\n- `directives/zoekwoorden_ophalen.md` vanuit `seo-agent/directives/`\n\nVoeg je DataForSEO keys toe aan `.env` en sla op (Ctrl+S / Cmd+S). Maak daarna een gecombineerde directive:',
+        code: 'Maak directives/seo_en_content_pipeline.md aan in het Nederlands.\n\nVolledig geautomatiseerde SEO + content pipeline.\n\nStappen:\n1. Haal zoekwoorden op via directives/zoekwoorden_ophalen.md\n2. Schrijf blogartikel via directives/content_schrijven.md\n3. Publiceer via directives/publiceren_wordpress.md\n   OF directives/publiceren_shopify.md\n   (kies op basis van het platform van de klant)',
+      },
+      {
+        title: 'Stap 4: README en CLAUDE.md aanpassen voor de klant',
+        body: 'Typ in het paneel:',
+        code: 'Maak README.md aan voor een niet-technische klant. Schrijf in simpele taal.\n\nInhoud:\n- Wat doet dit systeem (2 zinnen)\n- Vereisten (Python, packages, API keys)\n- Hoe .env instellen (verwijs naar .env.example)\n- Hoe een artikel schrijven en publiceren:\n  open VS Code → open content-agent → open Claude-paneel →\n  typ de pipeline opdracht → wacht op bevestiging →\n  ga naar WordPress/Shopify om het concept na te lezen\n\nSla op in README.md',
+      },
+      {
+        title: 'Modules 4 en 5 als complete dienst',
+        body: 'Module 4 analyseert en rapporteert. Module 5 schrijft en publiceert. Samen zijn dit de bouwstenen van een volwaardige SEO-dienst: maand 1 — analyseer de website en maak een rapport, maand 2 t/m 12 — schrijf en publiceer elke maand 2-4 nieuwe artikelen.',
+        type: 'tip',
+      },
+    ],
+    checklist: [
+      '`directives/volledige_pipeline_wordpress.md` aangemaakt',
+      'De volledige pipeline werkt via één opdracht',
+      '`README.md` aangemaakt voor de klant',
+      '`CLAUDE.md` bijgewerkt met klantgegevens (Ctrl+S / Cmd+S)',
     ],
   },
 }
