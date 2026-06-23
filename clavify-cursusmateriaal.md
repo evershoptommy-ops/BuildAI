@@ -367,40 +367,37 @@ Dit is de basis van élke Chrome extensie. Alles wat je verder bouwt, is een uit
 
 ---
 
-### Les 2.3 — Je eerste extensie bouwen: de Woordenteller
+### Les 2.3 — Je eerste extensie bouwen: de Screenshot Tool
 **Duur:** ~25 minuten | **Type:** Praktijkproject
 
 **Wat je leert:**
 - Een complete Chrome extensie bouwen vanuit nul
 - De extensie laden in Chrome
-- De extensie testen en aanpassen
+- Screenshots direct naar je clipboard kopiëren en gebruiken met Claude
 
 **Lesinhoud:**
 
-We bouwen een woordenteller. De gebruiker kan tekst invoeren (of van een pagina kopiëren), en de extensie telt woorden, tekens, en zinnen. Simpel maar nuttig.
+We bouwen een screenshot tool. Met één klik maak je een screenshot van de pagina die je bekijkt — die staat direct in je clipboard, klaar om te plakken. Geen account, geen betaalde app, gewoon jouw eigen extensie.
+
+Dit is ook direct handig als leermiddel: je kunt screenshots van je scherm in Claude plakken en vragen wat er goed of fout is.
 
 **Stap 1: Projectmap aanmaken**
 
 ```
 cd clavify-projecten
-mkdir woordenteller-extensie
-cd woordenteller-extensie
+mkdir screenshot-extensie
+cd screenshot-extensie
 ```
 
 **Stap 2: Vraag Claude om de complete extensie**
 
 Ga naar claude.ai en stuur:
 
-> "Bouw een complete Chrome extensie (Manifest V3) die werkt als een woordenteller. De popup toont een tekstvak waar de gebruiker tekst kan invoeren of plakken. Terwijl de gebruiker typt, toont de extensie live het aantal woorden, tekens (met en zonder spaties), en zinnen. Maak het ontwerp minimalistisch en professioneel met een donker kleurenschema. Geef me alle drie de bestanden: manifest.json, popup.html, en popup.js. Voeg commentaar toe bij de code."
+> "Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst 'Gekopieerd naar clipboard!'. Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Geef me alle bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is."
 
-**Stap 3: Bestanden aanmaken**
+**Stap 3: Bestanden opslaan**
 
-Maak in VS Code drie bestanden in de woordenteller-extensie map:
-- `manifest.json`
-- `popup.html`
-- `popup.js`
-
-Kopieer de code van Claude in de juiste bestanden.
+Maak in VS Code de bestanden aan in de `screenshot-extensie` map. Zorg dat `manifest.json` direct in de map staat, niet in een submap.
 
 **Stap 4: Extensie laden in Chrome**
 
@@ -408,22 +405,19 @@ Kopieer de code van Claude in de juiste bestanden.
 2. Ga naar `chrome://extensions/`
 3. Zet "Ontwikkelaarsmodus" aan (rechts bovenin)
 4. Klik "Uitgepakte extensie laden"
-5. Selecteer je `woordenteller-extensie` map
+5. Selecteer je `screenshot-extensie` map
 
 Je extensie verschijnt nu in Chrome. Klik op het puzzelstukje rechtsboven om hem vast te zetten.
 
-**Stap 5: Testen en aanpassen**
+**Stap 5: Testen met Claude**
 
-Klik op je extensie. Plak wat tekst in het tekstvak. Zien de tellingen er goed uit?
-
-Als je iets wilt aanpassen — een andere kleur, een extra statistiek — vraag het aan Claude:
-> "In mijn Chrome extensie wil ik ook het gemiddeld aantal woorden per zin tonen. Hoe pas ik popup.js aan?"
+Ga naar een willekeurige website. Klik op je extensie-icoontje. Open claude.ai en druk Ctrl+V (Windows) / Cmd+V (Mac) in het chatvenster. Het screenshot staat er direct in. Typ erbij: "Wat zie je op dit screenshot?"
 
 **Checklist:**
-- [ ] De drie bestanden zijn aangemaakt
 - [ ] De extensie is geladen in Chrome
-- [ ] De woordenteller werkt correct
-- [ ] Ik heb minstens één aanpassing gemaakt
+- [ ] De screenshot knop werkt en kopieert naar clipboard
+- [ ] Ik heb het screenshot in Claude geplakt en een vraag gesteld
+- [ ] De download-als-PNG knop werkt
 
 ---
 
@@ -449,7 +443,7 @@ Extensie-popups zijn kleine HTML pagina's. Alles wat je in gewone websites doet 
 
 **Claude vragen om een redesign:**
 
-> "Mijn Chrome extensie woordenteller ziet er basic uit. Redesign de popup.html en CSS zodat het er professioneel uitziet. Gebruik een wit/grijs kleurenschema met blauwe accenten. Voeg subtiele hover-effecten toe aan de statistieken. Maak het modern en clean, vergelijkbaar met een SaaS product. Behoud alle bestaande functionaliteit."
+> "Mijn Chrome extensie screenshot-tool ziet er basic uit. Redesign de popup.html en CSS zodat het er professioneel uitziet. Gebruik een donker kleurenschema met paarse accenten. Voeg een laad-animatie toe terwijl de screenshot wordt gemaakt. Maak het modern en clean, vergelijkbaar met een SaaS product. Behoud alle bestaande functionaliteit."
 
 **Een icoontje toevoegen:**
 
@@ -475,13 +469,13 @@ Voeg toe aan manifest.json:
 **Duur:** ~15 minuten | **Type:** Inspiratieles + mini-projecten
 
 **Wat je leert:**
-- Vijf extensies die je direct kunt bouwen na deze module
-- Hoe je de woordenteller-structuur hergebruikt voor nieuwe tools
+- Vier extensies die je direct kunt bouwen na deze module
+- Hoe je de screenshot-structuur hergebruikt voor nieuwe tools
 - Welke extensies het best verkopen aan klanten
 
 **Lesinhoud:**
 
-Je hebt nu de basis. Hier zijn vijf extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de woordenteller:
+Je hebt nu de basis. Hier zijn vier extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de screenshot tool:
 
 **1. Pomodoro Timer**
 Een timer die 25 minuten werkt, 5 minuten pauze, en bijhoudt hoeveel sessies je hebt gedaan. Populair bij zelfstandigen en studenten.
@@ -502,7 +496,7 @@ Gebruiker plakt tekst, kiest HOOFDLETTERS / kleine letters / Eerste Letter Groot
 Vervangt de standaard nieuwe tab met bedrijfslogo, links naar interne tools, en motiverende quote van de dag. Populair bij kleine bedrijven.
 
 **Voor elk van deze geldt:**
-- Gebruik de woordenteller-map als startpunt
+- Gebruik de screenshot-extensie map als startpunt
 - Vraag Claude om de aanpassingen
 - Laad opnieuw in Chrome
 
@@ -615,11 +609,11 @@ LocalStorage is een mini-opslagruimte in de browser. Het blijft bewaard ook na h
 
 Vraag Claude:
 
-> "Voeg aan mijn woordenteller Chrome extensie een geschiedenis toe. Bewaar de laatste 10 getelde teksten in LocalStorage met timestamp. Toon een tabblad 'Geschiedenis' in de extensie. Leg uit hoe LocalStorage werkt."
+> "Voeg aan mijn screenshot Chrome extensie een geschiedenis toe. Bewaar de laatste 10 gemaakte screenshots als miniatuur in LocalStorage met timestamp. Toon een tabblad 'Geschiedenis' in de extensie. Leg uit hoe LocalStorage werkt."
 
 **Checklist:**
 - [ ] Factuurcalculator slaat data op in JSON
-- [ ] Woordenteller heeft een geschiedenis via LocalStorage
+- [ ] Screenshot extensie heeft een geschiedenis via LocalStorage
 - [ ] Ik begrijp het verschil tussen de twee methoden
 
 ---

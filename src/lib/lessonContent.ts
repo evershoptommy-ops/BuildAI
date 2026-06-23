@@ -283,7 +283,7 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '2-5': {
-    intro: 'Je hebt nu de basis. Hier zijn vier extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de woordenteller. Kies er één en bouw hem af voor het einde van deze les.',
+    intro: 'Je hebt nu de basis. Hier zijn vier extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de screenshot tool. Kies er één en bouw hem af voor het einde van deze les.',
     sections: [
       {
         title: 'Hoe je elke extensie bouwt',
