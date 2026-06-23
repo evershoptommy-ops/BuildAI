@@ -83,6 +83,24 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* STATS BAR */}
+      <div style={{ borderTop: '1px solid #1e1e30', borderBottom: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 md:px-12 py-4">
+        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-x-8 gap-y-3">
+          {[
+            { icon: '👥', label: '840+ studenten' },
+            { icon: '📖', label: '33 lessen' },
+            { icon: '⏱️', label: '9+ uur materiaal' },
+            { icon: '🎁', label: 'Gratis te starten' },
+            { icon: '∞', label: 'Levenslang toegang' },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-2" style={{ color: '#a855f7', fontSize: 13, fontWeight: 500 }}>
+              <span>{item.icon}</span>
+              <span style={{ color: '#9ca3af' }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* HOE HET WERKT */}
       <section id="hoe-het-werkt" style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 md:px-12 py-14 md:py-20">
         <div className="max-w-4xl mx-auto">
