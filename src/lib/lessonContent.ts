@@ -340,6 +340,27 @@ export const lessonContent: Record<string, LessonContent> = {
         body: 'In volgorde van populariteit bij MKB-klanten:\n\n1. **Aangepaste nieuwe tab** — persoonlijk, zichtbaar elke dag, makkelijk te verkopen\n2. **Linkopslager / data-tools** — bespaart hen aantoonbaar tijd\n3. **Pomodoro / productiviteit** — populair bij kleine teams\n\nNa deze module kun je al een van deze extensies aanbieden aan een eerste klant voor €150–€300.',
         type: 'tip',
       },
+      {
+        title: 'Dit was pas het begin.',
+        body: 'Je hebt nu een Chrome extensie gebouwd die screenshots maakt, er professioneel uitziet, en open blijft staan als een zwevend paneel. Met je eigen handen, zonder programmeerervaring.\n\nMaar wat je tot nu toe hebt gedaan is kinderspel vergeleken met wat er komt.',
+      },
+      {
+        title: 'Module 3 — AI machines bouwen',
+        body: 'Je leert Claude Code rechtstreeks in VS Code gebruiken. Geen kopiëren en plakken meer — Claude leest je bestanden, past ze direct aan, en bouwt systemen die automatisch draaien. Je bouwt een agent die elke dag automatisch het weer ophaalt en dat via e-mail verstuurt. Zonder dat jij er iets voor hoeft te doen.',
+      },
+      {
+        title: 'Module 4 — SEO agent',
+        body: 'Een klant geeft je een website. Jouw agent analyseert hem, vindt de beste zoekwoorden, en schrijft een volledig SEO-rapport — in 30 seconden. Dit is iets waar bureaus €500 voor vragen. Jij levert het met één opdracht.',
+      },
+      {
+        title: 'Module 5 — Content agent',
+        body: 'Je agent schrijft complete blogartikelen en publiceert ze automatisch op WordPress of Shopify. Van zoekwoord tot live blogpost in één commando. Dit verkoop je aan webshops, restaurants, makelaars — iedereen die online gevonden wil worden.',
+      },
+      {
+        title: 'En dit is nog maar het begin.',
+        body: 'We werken continu aan nieuwe modules. Denk aan: een agent die facturen verwerkt, een die klantenservice automatiseert, een die sociale media beheert. Elke module is een nieuwe vaardigheid, een nieuwe dienst die je kunt verkopen.\n\nWie nu begint loopt voor op iedereen die nog wacht.',
+        type: 'tip',
+      },
     ],
     checklist: [
       'Ik heb een tweede extensie gebouwd (naar keuze)',
