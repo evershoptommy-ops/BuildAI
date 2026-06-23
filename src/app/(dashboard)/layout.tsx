@@ -32,7 +32,7 @@ function QuoteRotator() {
         setIndex(i => (i + 1) % quotes.length)
         setVisible(true)
       }, 600)
-    }, 8000)
+    }, 30000)
     return () => clearInterval(interval)
   }, [])
 
