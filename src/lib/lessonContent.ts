@@ -226,7 +226,12 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Bestanden opslaan',
-        body: 'Claude geeft je de bestanden terug. Klik in de Claude chat op **Download all** (onderaan de bestandenlijst) om de ZIP te downloaden.\n\nPak de ZIP uit en zet de bestanden in je `screenshot-extensie` map in `clavify-projecten`.\n\n⚠️ Let op: zorg dat `manifest.json` direct in de `screenshot-extensie` map staat, niet in een submap.',
+        body: 'Claude geeft je de bestanden terug. Zet alle bestanden in je `screenshot-extensie` map in `clavify-projecten`.\n\nZorg dat `manifest.json` direct in de map staat, niet in een submap.',
+      },
+      {
+        title: 'Fout: "Could not load icon"?',
+        body: 'Als je deze foutmelding ziet bij het laden, heeft Claude een `icons/` map aangemaakt in het manifest maar het icoontje zelf niet meegeleverd.\n\nOpen `manifest.json` in VS Code en verwijder het hele `"icons"` blok. Het moet er zo uitzien:',
+        code: '{\n  "manifest_version": 3,\n  "name": "Screenshot Tool",\n  "version": "1.0",\n  "description": "Maak screenshots en kopieer ze direct naar je clipboard",\n  "permissions": ["activeTab", "scripting", "clipboardWrite"],\n  "action": {\n    "default_popup": "popup.html"\n  }\n}',
         type: 'warning',
       },
       {
