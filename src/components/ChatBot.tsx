@@ -1,6 +1,9 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { modules } from '@/lib/modules'
+import { lessonContent } from '@/lib/lessonContent'
 
 interface Message {
   id: string
@@ -8,41 +11,37 @@ interface Message {
   content: string
 }
 
-interface UserContext {
-  module: string
-  os: string
-  experience: string
-}
+function getLessonContext(pathname: string): string {
+  // Haal module en les uit URL: /modules/[moduleId]/[lessonId]
+  const match = pathname.match(/\/modules\/(\d+)\/(.+)/)
+  if (!match) {
+    if (pathname.startsWith('/modules')) return '\n\n[Student bekijkt het modulesoverzicht]'
+    if (pathname.startsWith('/dashboard')) return '\n\n[Student is op het dashboard]'
+    return ''
+  }
 
-const ONBOARDING_STEPS = [
-  {
-    key: 'module',
-    question: 'Welke module ben je nu mee bezig?',
-    options: ['Module 1', 'Module 2', 'Module 3', 'Module 4'],
-  },
-  {
-    key: 'os',
-    question: 'Gebruik je Windows of Mac?',
-    options: ['Windows', 'Mac'],
-  },
-  {
-    key: 'experience',
-    question: 'Heb je eerder geprogrammeerd?',
-    options: ['Nee, dit is nieuw voor mij', 'Een beetje', 'Ja, ik heb ervaring'],
-  },
-]
+  const [, moduleId, lessonId] = match
+  const mod = modules.find(m => String(m.id) === moduleId)
+  const lesson = mod?.lessons.find(l => l.id === lessonId)
+  const content = lessonContent[lessonId as keyof typeof lessonContent]
+
+  const parts = [`\n\n[Student is bezig met: Les ${lessonId} — "${lesson?.title ?? lessonId}" (Module ${moduleId}: ${mod?.title ?? ''})`]
+
+  if (content?.intro) parts.push(`Intro van deze les: ${content.intro}`)
+  if (content?.sections?.[0]) parts.push(`Eerste sectie: ${content.sections[0].title ?? ''} — ${content.sections[0].body?.slice(0, 200)}`)
+  parts.push('Beantwoord vragen specifiek over deze les tenzij de student iets anders vraagt]')
+
+  return parts.join('\n')
+}
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [onboardingStep, setOnboardingStep] = useState(0)
-  const [userContext, setUserContext] = useState<Partial<UserContext>>({})
   const [isMobile, setIsMobile] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
-
-  const onboardingDone = onboardingStep >= ONBOARDING_STEPS.length
+  const pathname = usePathname()
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -53,17 +52,10 @@ export default function ChatBot() {
 
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, open, onboardingStep])
-
-  function handleOnboardingAnswer(answer: string) {
-    const step = ONBOARDING_STEPS[onboardingStep]
-    setUserContext(prev => ({ ...prev, [step.key]: answer }))
-    setOnboardingStep(prev => prev + 1)
-  }
+  }, [messages, open])
 
   function buildSystemContext() {
-    const ctx = userContext as UserContext
-    return `\n\n[Studentprofiel: ${ctx.module ?? ''}, ${ctx.os ?? ''}, ervaring: ${ctx.experience ?? ''}]`
+    return getLessonContext(pathname)
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -106,8 +98,6 @@ export default function ChatBot() {
       setIsLoading(false)
     }
   }
-
-  const currentStep = ONBOARDING_STEPS[onboardingStep]
 
   // Venster afmetingen afhankelijk van schermgrootte
   const chatStyle = isMobile
@@ -161,7 +151,7 @@ export default function ChatBot() {
               <div className="flex-1">
                 <div style={{ fontWeight: 600, fontSize: 14 }}>Clavify Assistent</div>
                 <div style={{ fontSize: 11, color: '#6b7280' }}>
-                  {onboardingDone ? 'Stel al je cursusvragen' : `Stap ${onboardingStep + 1} van ${ONBOARDING_STEPS.length}`}
+                  Stel al je cursusvragen
                 </div>
               </div>
               {isMobile && (
@@ -171,93 +161,47 @@ export default function ChatBot() {
 
             {/* Body */}
             <div style={{ flex: 1, overflowY: 'auto', padding: '18px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {!onboardingDone ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
-                    {ONBOARDING_STEPS.map((_, i) => (
-                      <div key={i} style={{
-                        width: 6, height: 6, borderRadius: '50%',
-                        background: i <= onboardingStep ? '#a855f7' : '#2a2a3a',
-                        transition: 'background 0.2s',
-                      }} />
-                    ))}
-                  </div>
-
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#e5e7eb', textAlign: 'center', marginTop: 8 }}>
-                    {currentStep.question}
-                  </div>
-
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
-                    {currentStep.options.map(option => (
-                      <button
-                        key={option}
-                        onClick={() => handleOnboardingAnswer(option)}
-                        style={{
-                          background: '#1a1a28', border: '1px solid #2a2a3a', borderRadius: 10,
-                          padding: '10px 14px', color: '#e5e7eb', fontSize: 13, cursor: 'pointer',
-                          textAlign: 'left', transition: 'border-color 0.15s, background 0.15s',
-                        }}
-                        onMouseEnter={e => {
-                          (e.target as HTMLElement).style.borderColor = '#7c3aed'
-                          ;(e.target as HTMLElement).style.background = 'rgba(124,58,237,0.1)'
-                        }}
-                        onMouseLeave={e => {
-                          (e.target as HTMLElement).style.borderColor = '#2a2a3a'
-                          ;(e.target as HTMLElement).style.background = '#1a1a28'
-                        }}
-                      >
-                        {option}
-                      </button>
-                    ))}
+              {messages.length === 0 && (
+                <div style={{ color: '#6b7280', fontSize: 13, textAlign: 'center', marginTop: 40 }}>
+                  Heb je een vraag over de cursus?<br />Ik help je graag verder.
+                </div>
+              )}
+              {messages.map(m => (
+                <div key={m.id} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                  <div style={{
+                    maxWidth: '82%', padding: '8px 12px',
+                    borderRadius: m.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
+                    background: m.role === 'user' ? '#7c3aed' : '#1a1a28',
+                    fontSize: 13, lineHeight: 1.5, whiteSpace: 'pre-wrap', color: '#e5e7eb',
+                  }}>
+                    {m.content}
                   </div>
                 </div>
-              ) : (
-                <>
-                  {messages.length === 0 && (
-                    <div style={{ color: '#6b7280', fontSize: 13, textAlign: 'center', marginTop: 40 }}>
-                      Heb je een vraag over de cursus?<br />Ik help je graag verder.
-                    </div>
-                  )}
-                  {messages.map(m => (
-                    <div key={m.id} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                      <div style={{
-                        maxWidth: '82%', padding: '8px 12px',
-                        borderRadius: m.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
-                        background: m.role === 'user' ? '#7c3aed' : '#1a1a28',
-                        fontSize: 13, lineHeight: 1.5, whiteSpace: 'pre-wrap', color: '#e5e7eb',
-                      }}>
-                        {m.content}
-                      </div>
-                    </div>
-                  ))}
-                  {isLoading && messages[messages.length - 1]?.content === '' && (
-                    <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                      <div style={{ padding: '8px 14px', borderRadius: '14px 14px 14px 4px', background: '#1a1a28', fontSize: 13, color: '#6b7280' }}>···</div>
-                    </div>
-                  )}
-                  <div ref={bottomRef} />
-                </>
+              ))}
+              {isLoading && messages[messages.length - 1]?.content === '' && (
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <div style={{ padding: '8px 14px', borderRadius: '14px 14px 14px 4px', background: '#1a1a28', fontSize: 13, color: '#6b7280' }}>···</div>
+                </div>
               )}
+              <div ref={bottomRef} />
             </div>
 
             {/* Input */}
-            {onboardingDone && (
-              <form onSubmit={handleSubmit} style={{ padding: '10px 12px', borderTop: '1px solid #1e1e30', display: 'flex', gap: 8 }}>
-                <input
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  placeholder="Stel een vraag..."
-                  style={{ flex: 1, background: '#1a1a28', border: '1px solid #2a2a3a', borderRadius: 10, padding: '8px 12px', fontSize: 13, color: '#e5e7eb', outline: 'none' }}
-                />
-                <button
-                  type="submit"
-                  disabled={isLoading || !input.trim()}
-                  style={{ background: '#7c3aed', border: 'none', borderRadius: 10, padding: '8px 14px', color: '#fff', fontSize: 13, cursor: isLoading || !input.trim() ? 'not-allowed' : 'pointer', opacity: isLoading || !input.trim() ? 0.5 : 1 }}
-                >
-                  ↑
-                </button>
-              </form>
-            )}
+            <form onSubmit={handleSubmit} style={{ padding: '10px 12px', borderTop: '1px solid #1e1e30', display: 'flex', gap: 8 }}>
+              <input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                placeholder="Stel een vraag..."
+                style={{ flex: 1, background: '#1a1a28', border: '1px solid #2a2a3a', borderRadius: 10, padding: '8px 12px', fontSize: 13, color: '#e5e7eb', outline: 'none' }}
+              />
+              <button
+                type="submit"
+                disabled={isLoading || !input.trim()}
+                style={{ background: '#7c3aed', border: 'none', borderRadius: 10, padding: '8px 14px', color: '#fff', fontSize: 13, cursor: isLoading || !input.trim() ? 'not-allowed' : 'pointer', opacity: isLoading || !input.trim() ? 0.5 : 1 }}
+              >
+                ↑
+              </button>
+            </form>
           </div>
         </>
       )}
