@@ -220,6 +220,11 @@ export const lessonContent: Record<string, LessonContent> = {
         code: 'cd clavify-projecten\nmkdir screenshot-extensie\ncd screenshot-extensie',
       },
       {
+        title: 'Waar staat die map?',
+        body: 'Na deze stappen staat je map op:\n\n• **Windows:** `C:\\Users\\[jouw naam]\\clavify-projecten\\screenshot-extensie`\n• **Mac:** `/Users/[jouw naam]/clavify-projecten/screenshot-extensie`\n\nJe kunt de map ook vinden via Windows Verkenner of Finder. Open je thuismap, zoek de map `clavify-projecten` en daarin staat `screenshot-extensie`.',
+        type: 'tip',
+      },
+      {
         title: 'Stap 2: Vraag Claude om de complete extensie',
         body: 'Ga naar claude.ai en stuur:',
         code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Voeg GEEN icons of "icons" veld toe aan manifest.json. Lever alles als één ZIP bestand met daarin alleen de benodigde bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
