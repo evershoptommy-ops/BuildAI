@@ -227,7 +227,7 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Stap 2: Vraag Claude om de complete extensie',
         body: 'Ga naar claude.ai en stuur:',
-        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Voeg GEEN icons of "icons" veld toe aan manifest.json. Lever alles als één ZIP bestand met daarin alleen de benodigde bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
+        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik chrome.tabs.captureVisibleTab() via een background service worker — gebruik GEEN html2canvas of andere externe libraries. De popup heeft twee knoppen: "Maak screenshot" en "Download als PNG". Als de screenshot klaar is toont de popup een groen vinkje met "Gekopieerd naar clipboard!". Maak het ontwerp minimalistisch en professioneel met een donker kleurenschema. Voeg GEEN icons of "icons" veld toe aan manifest.json. Lever alles als één ZIP bestand: manifest.json, popup.html, popup.js, background.js.',
       },
       {
         title: 'Stap 3: Bestanden opslaan',
