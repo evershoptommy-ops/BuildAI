@@ -284,7 +284,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Claude vragen om de ombouw',
-        body: 'Ga naar claude.ai. Klik op het paperclip-icoontje en upload de ZIP van je `screenshot-extensie` map. Stuur daarna deze prompt:',
+        body: 'Ga naar claude.ai. Klik op het **+** icoontje linksonder in het chatvenster en upload je losse bestanden: `manifest.json`, `popup.html`, `popup.js` en `background.js`. Je kunt geen map uploaden — alleen losse bestanden. Stuur daarna deze prompt:',
         code: 'Dit zijn de bestanden van mijn Chrome extensie. Bouw hem om naar een zwevend paneel rechtsonder in het scherm. Gebruik deze aanpak:\n\n1. GEEN default_popup in manifest — gebruik action.onClicked in background.js\n2. GEEN content_scripts in manifest — injecteer content.js en panel.css alleen on-demand via scripting.executeScript bij klik op het icoon\n3. background.js checkt of de tab URL begint met http:// of https:// — zo niet, stil stoppen\n4. Toggle: stuur eerst TOGGLE_PANEL bericht, als content script al actief is reageert hij, anders injecteren\n5. captureVisibleTab in background.js via CAPTURE_SCREENSHOT bericht — gebruik chrome.tabs.get(tabId) voor windowId\n6. Clipboard write via navigator.clipboard.write() met Blob — toon exacte foutmelding in paneel bij mislukken\n7. Kruisje rechtsboven sluit het paneel — klikken naast het paneel sluit het NIET\n8. GEEN icons in manifest.json\n9. Lever alles als één ZIP: manifest.json, background.js, content.js, panel.css',
       },
       {
