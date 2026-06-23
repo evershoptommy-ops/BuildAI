@@ -130,7 +130,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: Maak een projectmap aan',
-        body: 'Open de terminal in VS Code en typ:',
+        body: 'Open de terminal via het menu bovenin: **Terminal → New Terminal**. De terminal opent onderin je scherm. Typ dan:',
         code: 'cd clavify-projecten\nmkdir factuur-tool\ncd factuur-tool',
       },
       {
@@ -216,7 +216,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Projectmap aanmaken',
-        body: 'Open de terminal in VS Code:',
+        body: 'Open de terminal in VS Code via het menu bovenin: **Terminal → New Terminal**. De terminal opent onderin je scherm.\n\nTyp dan:',
         code: 'cd clavify-projecten\nmkdir screenshot-extensie\ncd screenshot-extensie',
       },
       {
