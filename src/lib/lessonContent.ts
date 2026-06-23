@@ -222,11 +222,11 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Stap 2: Vraag Claude om de complete extensie',
         body: 'Ga naar claude.ai en stuur:',
-        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Voeg GEEN icons of "icons" veld toe aan manifest.json. Geef me alle bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
+        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Voeg GEEN icons of "icons" veld toe aan manifest.json. Lever alles als één ZIP bestand met daarin alleen de benodigde bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
       },
       {
         title: 'Stap 3: Bestanden opslaan',
-        body: 'Claude geeft je de bestanden terug. Zet alle bestanden in je `screenshot-extensie` map in `clavify-projecten`.\n\nZorg dat `manifest.json` direct in de map staat, niet in een submap.',
+        body: 'Claude geeft je een ZIP bestand terug. Klik daarop om hem te downloaden — negeer de losse bestanden eronder.\n\nPak de ZIP uit (rechtermuisklik → Alles uitpakken op Windows, dubbelklik op Mac) en zet de bestanden in je `screenshot-extensie` map in `clavify-projecten`.\n\nZorg dat `manifest.json` direct in de map staat, niet in een submap.',
       },
       {
         title: 'Stap 4: Extensie laden in Chrome',
