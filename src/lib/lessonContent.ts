@@ -48,7 +48,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 4: Een werkmap aanmaken',
-        body: 'Open de terminal (Ctrl+` op Windows, Cmd+` op Mac) en typ:',
+        body: 'Open de terminal (Ctrl+Tilde op Windows, Cmd+Tilde op Mac) en typ:',
         code: 'mkdir clavify-projecten\ncd clavify-projecten',
       },
     ],
@@ -469,7 +469,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Terminal openen in VS Code',
-        body: 'Druk op Ctrl+` (Windows) of Cmd+` (Mac). De terminal opent onderin VS Code.\n\nControleer of je in de juiste map staat:\n• **Mac/Linux:** typ `pwd` — je ziet `.../clavify-projecten/mijn-agent`\n• **Windows:** typ `cd` — je ziet `...\\clavify-projecten\\mijn-agent`\n\nSta je ergens anders? Navigeer handmatig:\n• Windows: `cd clavify-projecten\\mijn-agent`\n• Mac: `cd clavify-projecten/mijn-agent`',
+        body: 'Druk op Ctrl+Tilde (Windows) of Cmd+Tilde (Mac). De terminal opent onderin VS Code.\n\nControleer of je in de juiste map staat:\n• **Mac/Linux:** typ `pwd` — je ziet `.../clavify-projecten/mijn-agent`\n• **Windows:** typ `cd` — je ziet `...\\clavify-projecten\\mijn-agent`\n\nSta je ergens anders? Navigeer handmatig:\n• Windows: `cd clavify-projecten\\mijn-agent`\n• Mac: `cd clavify-projecten/mijn-agent`',
       },
       {
         title: 'Packages installeren',
@@ -772,7 +772,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 4: Packages installeren',
-        body: 'Open de terminal in VS Code (Ctrl+` op Windows, Cmd+` op Mac). Installeer de packages één voor één:',
+        body: 'Open de terminal in VS Code (Ctrl+Tilde op Windows, Cmd+Tilde op Mac). Installeer de packages één voor één:',
         code: 'pip install requests\npip install python-dotenv\npip install anthropic\npip install beautifulsoup4',
       },
       {
@@ -1024,7 +1024,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Packages installeren',
-        body: 'Open de terminal (Ctrl+` Windows / Cmd+` Mac). Installeer packages:',
+        body: 'Open de terminal (Ctrl+Tilde op Windows / Cmd+Tilde op Mac). Installeer packages:',
         code: 'pip install anthropic\npip install python-dotenv\npip install requests',
       },
       {
