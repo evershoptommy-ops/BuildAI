@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
-import { Home, BookOpen, TrendingUp, Trophy, Settings, Gem, Menu, X } from 'lucide-react'
+import { Home, BookOpen, TrendingUp, Trophy, Settings, Gem, Menu, X, Award } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import ChatBot from '@/components/ChatBot'
 import PlanBadge from '@/components/PlanBadge'
@@ -13,6 +13,7 @@ const navItems = [
   { href: '/modules', icon: BookOpen, label: 'Modules' },
   { href: '/voortgang', icon: TrendingUp, label: 'Voortgang' },
   { href: '/prestaties', icon: Trophy, label: 'Prestaties' },
+  { href: '/certificaat', icon: Award, label: 'Certificaten' },
 ]
 
 function SidebarInner({ pathname, onClose, hasPremium }: { pathname: string; onClose?: () => void; hasPremium: boolean }) {
