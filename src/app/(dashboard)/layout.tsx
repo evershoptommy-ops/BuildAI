@@ -8,6 +8,51 @@ import { useState, useEffect } from 'react'
 import ChatBot from '@/components/ChatBot'
 import PlanBadge from '@/components/PlanBadge'
 
+const quotes = [
+  'Vroeger had je een developer nodig. Nu heb je een idee nodig.',
+  'Code schrijven leer je in jaren. Vragen stellen deed je al als kind.',
+  'Je eerste tool hoeft niet perfect te zijn. Hij moet alleen werken.',
+  'Anderen wachten tot het makkelijker wordt. Jij begint vandaag.',
+  'Het enige wat tussen jou en je eerste tool staat, is de eerste prompt.',
+  'Een tool die 80% werkt en live staat, is meer waard dan een perfect idee in je hoofd.',
+  'Je eerste klant vraagt niet hoe je het gebouwd hebt. Die vraagt wanneer het klaar is.',
+  'AI doet het zware werk. Jij bepaalt wat er gedaan wordt.',
+  'De mensen die dit nu leren, geven over vijf jaar les aan de rest.',
+  'Je bouwt niet voor jezelf. Je bouwt voor de klant die dit allang wilde hebben.',
+]
+
+function QuoteRotator() {
+  const [index, setIndex] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false)
+      setTimeout(() => {
+        setIndex(i => (i + 1) % quotes.length)
+        setVisible(true)
+      }, 600)
+    }, 8000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="px-6 py-4" style={{ borderTop: '1px solid #1e1e30' }}>
+      <p style={{
+        color: '#4b5563',
+        fontSize: 11,
+        lineHeight: 1.6,
+        fontStyle: 'italic',
+        opacity: visible ? 1 : 0,
+        transition: 'opacity 0.6s ease',
+        margin: 0,
+      }}>
+        "{quotes[index]}"
+      </p>
+    </div>
+  )
+}
+
 const navItems = [
   { href: '/dashboard', icon: Home, label: 'Dashboard' },
   { href: '/modules', icon: BookOpen, label: 'Modules' },
@@ -61,6 +106,8 @@ function SidebarInner({ pathname, onClose, hasPremium }: { pathname: string; onC
           </Link>
         )}
       </nav>
+
+      <QuoteRotator />
 
       <div className="px-6 py-5" style={{ borderTop: '1px solid #1e1e30' }}>
         <div className="flex items-center gap-3">
