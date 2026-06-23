@@ -3,6 +3,7 @@ import { ArrowRight, Flame } from 'lucide-react'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 import { modules } from '@/lib/modules'
+import { getIsAdmin } from '@/lib/isAdmin'
 
 async function getUserData(userId: string) {
   const client = createClient(
@@ -11,13 +12,16 @@ async function getUserData(userId: string) {
   )
   const { data: progress } = await client.from('user_progress').select('lesson_id, module_id').eq('user_id', userId)
   const { data: streak } = await client.from('user_streaks').select('current_streak').eq('user_id', userId).single()
-  return { progress: progress ?? [], streak: streak?.current_streak ?? 0 }
+  const { data: purchase } = await client.from('user_purchases').select('id').eq('user_id', userId).eq('product', 'premium').maybeSingle()
+  return { progress: progress ?? [], streak: streak?.current_streak ?? 0, hasPremiumDb: !!purchase }
 }
 
 export default async function DashboardPage() {
   const user = await currentUser()
   const firstName = user?.firstName ?? 'daar'
-  const { progress, streak } = await getUserData(user!.id)
+  const isAdmin = await getIsAdmin()
+  const { progress, streak, hasPremiumDb } = await getUserData(user!.id)
+  const hasPremium = isAdmin || hasPremiumDb
 
   const completedIds = new Set(progress.map((p: { lesson_id: string }) => p.lesson_id))
   const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0)
@@ -83,7 +87,7 @@ export default async function DashboardPage() {
             const pct = Math.round((done / m.lessons.length) * 100)
             const isDone = pct === 100
             const isActive = pct > 0 && pct < 100
-            const isLocked = m.premium
+            const isLocked = m.premium && !hasPremium
 
             return (
               <div key={m.id} style={{

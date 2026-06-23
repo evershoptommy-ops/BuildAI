@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
 import { Home, BookOpen, TrendingUp, Trophy, Settings, Gem } from 'lucide-react'
 import ChatBot from '@/components/ChatBot'
+import PlanBadge from '@/components/PlanBadge'
 
 const navItems = [
   { href: '/dashboard', icon: Home, label: 'Dashboard' },
@@ -62,7 +63,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <UserButton />
             <div>
               <div className="text-sm font-semibold">Mijn account</div>
-              <div className="text-xs" style={{ color: '#6b7280' }}>Gratis plan</div>
+              <PlanBadge />
             </div>
           </div>
         </div>

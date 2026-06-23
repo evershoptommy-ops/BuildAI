@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { modules } from '@/lib/modules'
 import Link from 'next/link'
 import CheckoutButton from '@/components/CheckoutButton'
+import { getIsAdmin } from '@/lib/isAdmin'
 
 async function getUserData(userId: string) {
   const client = createClient(
@@ -11,12 +12,15 @@ async function getUserData(userId: string) {
   )
   const { data: progress } = await client.from('user_progress').select('lesson_id, module_id, completed_at').eq('user_id', userId)
   const { data: streak } = await client.from('user_streaks').select('*').eq('user_id', userId).single()
-  return { progress: progress ?? [], streak }
+  const { data: purchase } = await client.from('user_purchases').select('id').eq('user_id', userId).eq('product', 'premium').maybeSingle()
+  return { progress: progress ?? [], streak, hasPremiumDb: !!purchase }
 }
 
 export default async function VoortgangPage() {
   const user = await currentUser()
-  const { progress, streak } = await getUserData(user!.id)
+  const isAdmin = await getIsAdmin()
+  const { progress, streak, hasPremiumDb } = await getUserData(user!.id)
+  const hasPremium = isAdmin || hasPremiumDb
 
   const completedIds = new Set(progress.map((p: { lesson_id: string }) => p.lesson_id))
   const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0)
@@ -44,7 +48,7 @@ export default async function VoortgangPage() {
           </div>
           <div className="flex-1">
             <div className="text-xl font-bold mb-1">{user?.firstName} {user?.lastName}</div>
-            <div className="text-sm" style={{ color: '#6b7280' }}>Gratis plan · Lid sinds {new Date(user?.createdAt ?? '').toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })}</div>
+            <div className="text-sm" style={{ color: '#6b7280' }}>{isAdmin ? '⚡ Admin' : hasPremium ? '💎 Premium' : 'Gratis plan'} · Lid sinds {new Date(user?.createdAt ?? '').toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })}</div>
           </div>
           <div className="flex gap-10 text-center">
             <div>
@@ -73,7 +77,7 @@ export default async function VoortgangPage() {
               return (
                 <div key={m.id} className="flex items-center gap-3 mb-4">
                   <div style={{ fontSize: 18, width: 24, textAlign: 'center' }}>
-                    {pct === 100 ? '✅' : m.premium ? '🔒' : pct > 0 ? '⚡' : '○'}
+                    {pct === 100 ? '✅' : (m.premium && !hasPremium) ? '🔒' : pct > 0 ? '⚡' : '○'}
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-medium mb-1">{m.title}</div>
@@ -82,17 +86,19 @@ export default async function VoortgangPage() {
                     </div>
                   </div>
                   <div className="text-xs w-8 text-right" style={{ color: pct === 100 ? '#34d399' : '#6b7280' }}>
-                    {m.premium ? '—' : `${pct}%`}
+                    {(m.premium && !hasPremium) ? '—' : `${pct}%`}
                   </div>
                 </div>
               )
             })}
 
-            <div className="mt-6 p-4 rounded-xl" style={{ background: 'rgba(124,58,237,.08)', border: '1px solid rgba(124,58,237,.2)' }}>
-              <div className="text-sm font-semibold mb-1">Upgrade naar Premium</div>
-              <div className="text-xs mb-3" style={{ color: '#6b7280' }}>Ontgrendel alle modules en ontvang een certificaat</div>
-              <CheckoutButton />
-            </div>
+            {!hasPremium && (
+              <div className="mt-6 p-4 rounded-xl" style={{ background: 'rgba(124,58,237,.08)', border: '1px solid rgba(124,58,237,.2)' }}>
+                <div className="text-sm font-semibold mb-1">Upgrade naar Premium</div>
+                <div className="text-xs mb-3" style={{ color: '#6b7280' }}>Ontgrendel alle modules en ontvang een certificaat</div>
+                <CheckoutButton />
+              </div>
+            )}
           </div>
 
           {/* RECHTER KOLOM */}
