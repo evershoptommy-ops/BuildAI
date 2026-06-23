@@ -1,5 +1,6 @@
+import { ArrowRight, Zap, Bot, TrendingUp, Check } from 'lucide-react'
 import Link from 'next/link'
-import { ArrowRight, Zap, Plug, Bot, TrendingUp, Check } from 'lucide-react'
+import LandingNav from '@/components/LandingNav'
 
 const modules = [
   { num: 1, title: 'De Basis', tag: 'Gratis', desc: 'VS Code, Claude en Python installeren. Je eerste werkende tool bouwen — een factuurberekening die je meteen kunt gebruiken.', free: true },
@@ -35,55 +36,34 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen" style={{ background: '#0a0a0f', color: '#e5e7eb' }}>
 
-      {/* NAV */}
-      <nav style={{ borderBottom: '1px solid #1e1e30', position: 'sticky', top: 0, zIndex: 50, background: 'rgba(10,10,15,0.9)', backdropFilter: 'blur(10px)' }} className="flex items-center justify-between px-12 py-5">
-        <div className="text-xl font-bold tracking-tight">
-          Clavi<span style={{ color: '#a855f7' }}>fy</span>
-        </div>
-        <div className="flex gap-8">
-          <a href="#cursus" style={{ color: '#6b7280' }} className="text-sm hover:text-white transition-colors">Cursus</a>
-          <a href="#hoe-het-werkt" style={{ color: '#6b7280' }} className="text-sm hover:text-white transition-colors">Hoe het werkt</a>
-          <a href="#prijzen" style={{ color: '#6b7280' }} className="text-sm hover:text-white transition-colors">Prijzen</a>
-        </div>
-        <div className="flex gap-3 items-center">
-          <Link href="/sign-in">
-            <button style={{ background: 'transparent', border: '1px solid #1e1e30', color: '#e5e7eb', borderRadius: 10, padding: '9px 20px', fontSize: 14, fontWeight: 500, cursor: 'pointer' }}>
-              Inloggen
-            </button>
-          </Link>
-          <Link href="/sign-up">
-            <button style={{ background: '#7c3aed', border: 'none', color: '#fff', borderRadius: 10, padding: '10px 22px', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-              Gratis starten <ArrowRight size={15} />
-            </button>
-          </Link>
-        </div>
-      </nav>
+      {/* NAV — client component met hamburger menu */}
+      <LandingNav />
 
       {/* HERO */}
-      <section className="flex flex-col items-center text-center px-12 py-28 relative">
+      <section className="flex flex-col items-center text-center px-5 sm:px-8 md:px-12 py-16 sm:py-20 md:py-28 relative">
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 700, height: 500, background: 'radial-gradient(ellipse, rgba(124,58,237,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px', borderRadius: 999, fontSize: 13, fontWeight: 500, background: 'rgba(124,58,237,.15)', color: '#a78bfa', border: '1px solid rgba(124,58,237,.3)', marginBottom: 24 }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px', borderRadius: 999, fontSize: 12, fontWeight: 500, background: 'rgba(124,58,237,.15)', color: '#a78bfa', border: '1px solid rgba(124,58,237,.3)', marginBottom: 20 }}>
           ✦ Gratis beginnen — geen creditcard nodig
         </div>
 
-        <h1 className="text-6xl font-extrabold leading-tight max-w-3xl mb-6" style={{ letterSpacing: '-1.5px' }}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight max-w-3xl mb-5 md:mb-6" style={{ letterSpacing: '-1px' }}>
           Bouw je eigen AI-tools en{' '}
           <em style={{ fontStyle: 'normal', color: '#a855f7' }}>verkoop ze aan klanten</em>
         </h1>
 
-        <p className="text-lg max-w-xl mb-10 leading-relaxed" style={{ color: '#6b7280' }}>
+        <p className="text-base md:text-lg max-w-xl mb-8 md:mb-10 leading-relaxed" style={{ color: '#6b7280' }}>
           Leer stap voor stap hoe je met Claude en VS Code echte AI-tools maakt — zonder jaren aan ervaring. Van Chrome extensie tot volledige SEO agent.
         </p>
 
-        <div className="flex gap-4 items-center">
-          <Link href="/sign-up">
-            <button style={{ background: '#7c3aed', border: 'none', color: '#fff', borderRadius: 12, padding: '14px 30px', fontSize: 16, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto">
+          <Link href="/sign-up" className="w-full sm:w-auto">
+            <button style={{ background: '#7c3aed', border: 'none', color: '#fff', borderRadius: 12, padding: '14px 30px', fontSize: 16, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%' }}>
               🚀 Start gratis vandaag
             </button>
           </Link>
-          <a href="#cursus">
-            <button style={{ background: 'transparent', border: '1px solid #1e1e30', color: '#e5e7eb', borderRadius: 12, padding: '12px 24px', fontSize: 14, fontWeight: 500, cursor: 'pointer' }}>
+          <a href="#cursus" className="w-full sm:w-auto">
+            <button style={{ background: 'transparent', border: '1px solid #1e1e30', color: '#e5e7eb', borderRadius: 12, padding: '12px 24px', fontSize: 14, fontWeight: 500, cursor: 'pointer', width: '100%' }}>
               Bekijk de modules
             </button>
           </a>
@@ -102,21 +82,21 @@ export default function LandingPage() {
       </section>
 
       {/* HOE HET WERKT */}
-      <section id="hoe-het-werkt" style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-12 py-20">
+      <section id="hoe-het-werkt" style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 md:px-12 py-14 md:py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <div style={{ color: '#a855f7', fontSize: 13, fontWeight: 600, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Hoe het werkt</div>
-            <h2 className="text-3xl font-bold">Van nul naar je eerste klant in 5 modules</h2>
+            <h2 className="text-2xl md:text-3xl font-bold">Van nul naar je eerste klant in 5 modules</h2>
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {steps.map((step) => (
-              <div key={step.n} className="flex gap-6 items-start" style={{ background: '#16161f', border: '1px solid #1e1e30', borderRadius: 16, padding: '24px 28px' }}>
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(124,58,237,.15)', border: '1px solid rgba(124,58,237,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a855f7', fontWeight: 800, fontSize: 14, flexShrink: 0 }}>
+              <div key={step.n} className="flex gap-4 md:gap-6 items-start" style={{ background: '#16161f', border: '1px solid #1e1e30', borderRadius: 16, padding: '20px 20px' }}>
+                <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(124,58,237,.15)', border: '1px solid rgba(124,58,237,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a855f7', fontWeight: 800, fontSize: 13, flexShrink: 0 }}>
                   {step.n}
                 </div>
                 <div>
-                  <div className="font-semibold text-base mb-1">{step.title}</div>
-                  <div style={{ color: '#6b7280', fontSize: 14, lineHeight: 1.6 }}>{step.desc}</div>
+                  <div className="font-semibold text-sm md:text-base mb-1">{step.title}</div>
+                  <div style={{ color: '#6b7280', fontSize: 13, lineHeight: 1.6 }}>{step.desc}</div>
                 </div>
               </div>
             ))}
@@ -125,23 +105,23 @@ export default function LandingPage() {
       </section>
 
       {/* MODULES */}
-      <section id="cursus" style={{ borderTop: '1px solid #1e1e30' }} className="px-12 py-20">
+      <section id="cursus" style={{ borderTop: '1px solid #1e1e30' }} className="px-5 sm:px-8 md:px-12 py-14 md:py-20">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <div style={{ color: '#a855f7', fontSize: 13, fontWeight: 600, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.1em' }}>De cursus</div>
-            <h2 className="text-3xl font-bold mb-3">5 modules. Van basis tot verkopen.</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">5 modules. Van basis tot verkopen.</h2>
             <p style={{ color: '#6b7280', fontSize: 15 }}>Modules 1 en 2 zijn gratis. Upgrade voor de geavanceerde modules.</p>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 md:gap-4">
             {modules.map((mod) => (
-              <div key={mod.num} className="flex items-start gap-5" style={{ background: '#111118', border: `1px solid ${mod.free ? '#1e1e30' : 'rgba(124,58,237,.2)'}`, borderRadius: 16, padding: '22px 26px' }}>
-                <div style={{ width: 40, height: 40, borderRadius: 10, background: mod.free ? '#16161f' : 'rgba(124,58,237,.12)', border: `1px solid ${mod.free ? '#2a2a3a' : 'rgba(124,58,237,.3)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 13, color: mod.free ? '#6b7280' : '#a855f7', flexShrink: 0 }}>
+              <div key={mod.num} className="flex items-start gap-4" style={{ background: '#111118', border: `1px solid ${mod.free ? '#1e1e30' : 'rgba(124,58,237,.2)'}`, borderRadius: 16, padding: '18px 20px' }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: mod.free ? '#16161f' : 'rgba(124,58,237,.12)', border: `1px solid ${mod.free ? '#2a2a3a' : 'rgba(124,58,237,.3)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 12, color: mod.free ? '#6b7280' : '#a855f7', flexShrink: 0 }}>
                   {mod.num}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-1">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className="font-semibold text-sm">{mod.title}</span>
-                    <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, background: mod.free ? 'rgba(16,185,129,.12)' : 'rgba(124,58,237,.15)', color: mod.free ? '#34d399' : '#a78bfa', border: `1px solid ${mod.free ? 'rgba(16,185,129,.3)' : 'rgba(124,58,237,.3)'}` }}>
+                    <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, background: mod.free ? 'rgba(16,185,129,.12)' : 'rgba(124,58,237,.15)', color: mod.free ? '#34d399' : '#a78bfa', border: `1px solid ${mod.free ? 'rgba(16,185,129,.3)' : 'rgba(124,58,237,.3)'}`, whiteSpace: 'nowrap' }}>
                       {mod.tag}
                     </span>
                   </div>
@@ -154,19 +134,19 @@ export default function LandingPage() {
       </section>
 
       {/* VOOR WIE */}
-      <section style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-12 py-20">
+      <section style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 md:px-12 py-14 md:py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <div style={{ color: '#a855f7', fontSize: 13, fontWeight: 600, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Voor wie</div>
-            <h2 className="text-3xl font-bold">Je hoeft geen programmeur te zijn</h2>
+            <h2 className="text-2xl md:text-3xl font-bold">Je hoeft geen programmeur te zijn</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { icon: <Zap size={20} />, title: 'Beginners', desc: 'Nog nooit geprogrammeerd? Geen probleem. Claude schrijft de code — jij geeft de instructies.' },
               { icon: <Bot size={20} />, title: 'Freelancers', desc: 'Voeg AI-tools toe aan je diensten en vraag er meer voor. Klanten betalen voor resultaat, niet voor code.' },
               { icon: <TrendingUp size={20} />, title: 'Ondernemers', desc: 'Automatiseer processen in je eigen bedrijf of bouw tools voor klanten in jouw branche.' },
             ].map((item, i) => (
-              <div key={i} style={{ background: '#16161f', border: '1px solid #1e1e30', borderRadius: 16, padding: '28px 24px' }}>
+              <div key={i} style={{ background: '#16161f', border: '1px solid #1e1e30', borderRadius: 16, padding: '24px 20px' }}>
                 <div style={{ width: 44, height: 44, background: 'rgba(124,58,237,.12)', border: '1px solid rgba(124,58,237,.25)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a855f7', marginBottom: 16 }}>
                   {item.icon}
                 </div>
@@ -179,16 +159,16 @@ export default function LandingPage() {
       </section>
 
       {/* PRIJZEN */}
-      <section id="prijzen" style={{ borderTop: '1px solid #1e1e30' }} className="px-12 py-20">
+      <section id="prijzen" style={{ borderTop: '1px solid #1e1e30' }} className="px-5 sm:px-8 md:px-12 py-14 md:py-20">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <div style={{ color: '#a855f7', fontSize: 13, fontWeight: 600, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Prijzen</div>
-            <h2 className="text-3xl font-bold mb-3">Begin gratis. Upgrade wanneer je klaar bent.</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Begin gratis. Upgrade wanneer je klaar bent.</h2>
             <p style={{ color: '#6b7280', fontSize: 15 }}>Geen creditcard nodig om te starten.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             {/* Gratis */}
-            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 20, padding: 32 }}>
+            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 20, padding: '28px 24px' }}>
               <div className="text-sm font-semibold mb-1" style={{ color: '#6b7280' }}>Gratis</div>
               <div className="text-4xl font-bold mb-1">€0</div>
               <div className="text-sm mb-6" style={{ color: '#6b7280' }}>Voor altijd gratis</div>
@@ -207,7 +187,7 @@ export default function LandingPage() {
               </Link>
             </div>
             {/* Premium */}
-            <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: 32, position: 'relative', overflow: 'hidden' }}>
+            <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: 16, right: 16, fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999, background: '#7c3aed', color: '#fff' }}>POPULAIR</div>
               <div className="text-sm font-semibold mb-1" style={{ color: '#a855f7' }}>Premium</div>
               <div className="text-4xl font-bold mb-1">€97</div>
@@ -231,11 +211,11 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-12 py-20 text-center">
-        <div style={{ position: 'relative', display: 'inline-block' }}>
+      <section style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 py-14 md:py-20 text-center">
+        <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 300, background: 'radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, transparent 70%)', pointerEvents: 'none' }} />
-          <h2 className="text-4xl font-bold mb-4 relative">Klaar om te beginnen?</h2>
-          <p className="text-lg mb-8 relative" style={{ color: '#6b7280' }}>Module 1 en 2 zijn gratis. Geen creditcard nodig.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative">Klaar om te beginnen?</h2>
+          <p className="text-base md:text-lg mb-8 relative" style={{ color: '#6b7280' }}>Module 1 en 2 zijn gratis. Geen creditcard nodig.</p>
           <Link href="/sign-up">
             <button style={{ background: '#7c3aed', border: 'none', color: '#fff', borderRadius: 12, padding: '14px 36px', fontSize: 16, fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, position: 'relative' }}>
               🚀 Start gratis <ArrowRight size={16} />
@@ -245,9 +225,9 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ borderTop: '1px solid #1e1e30' }} className="px-12 py-8 flex items-center justify-between">
+      <footer style={{ borderTop: '1px solid #1e1e30' }} className="px-5 sm:px-8 md:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
         <div className="text-sm font-bold">Clavi<span style={{ color: '#a855f7' }}>fy</span></div>
-        <div className="text-xs" style={{ color: '#4b5563' }}>© 2026 Clavify. Alle rechten voorbehouden.</div>
+        <div className="text-xs order-last sm:order-none" style={{ color: '#4b5563' }}>© 2026 Clavify. Alle rechten voorbehouden.</div>
         <div className="flex gap-6">
           {['Privacybeleid', 'Voorwaarden'].map(l => (
             <a key={l} href="#" className="text-xs" style={{ color: '#4b5563' }}>{l}</a>

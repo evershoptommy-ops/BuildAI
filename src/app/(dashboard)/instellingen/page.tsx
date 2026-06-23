@@ -24,21 +24,21 @@ export default async function InstellingenPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-9 py-6" style={{ borderBottom: '1px solid #1e1e30' }}>
+      <div className="px-4 sm:px-6 md:px-9 py-5 md:py-6" style={{ borderBottom: '1px solid #1e1e30' }}>
         <h2 className="text-xl font-bold">Instellingen</h2>
         <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Jouw account en abonnement</p>
       </div>
 
-      <div className="p-9 flex flex-col gap-6 max-w-2xl">
+      <div className="p-4 sm:p-6 md:p-9 flex flex-col gap-5 md:gap-6 w-full md:max-w-2xl">
 
         {/* Profiel */}
-        <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: 28 }}>
+        <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '22px 20px' }}>
           <div className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: '#6b7280' }}>Profiel</div>
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4 mb-5">
             <UserButton />
-            <div>
-              <div className="font-semibold">{name}</div>
-              <div className="text-sm mt-0.5" style={{ color: '#6b7280' }}>{email}</div>
+            <div className="min-w-0">
+              <div className="font-semibold truncate">{name}</div>
+              <div className="text-sm mt-0.5 truncate" style={{ color: '#6b7280' }}>{email}</div>
             </div>
           </div>
           <div style={{ fontSize: 13, color: '#6b7280' }}>
@@ -47,7 +47,7 @@ export default async function InstellingenPage() {
         </div>
 
         {/* Abonnement */}
-        <div style={{ background: '#111118', border: `1px solid ${hasPremium ? 'rgba(124,58,237,.35)' : '#1e1e30'}`, borderRadius: 16, padding: 28 }}>
+        <div style={{ background: '#111118', border: `1px solid ${hasPremium ? 'rgba(124,58,237,.35)' : '#1e1e30'}`, borderRadius: 16, padding: '22px 20px' }}>
           <div className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: '#6b7280' }}>Abonnement</div>
 
           <div className="flex items-center gap-3 mb-4">

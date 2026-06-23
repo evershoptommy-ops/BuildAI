@@ -35,17 +35,17 @@ export default async function UpgradenPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-9 py-6" style={{ borderBottom: '1px solid #1e1e30' }}>
+      <div className="px-4 sm:px-6 md:px-9 py-5 md:py-6" style={{ borderBottom: '1px solid #1e1e30' }}>
         <h2 className="text-xl font-bold">Upgrade naar Premium</h2>
         <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Eenmalig — levenslang toegang tot alle modules</p>
       </div>
 
-      <div className="p-9">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, maxWidth: 900 }}>
+      <div className="p-4 sm:p-6 md:p-9">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 max-w-4xl">
 
           {/* Links: wat je krijgt */}
           <div className="flex flex-col gap-5">
-            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: 28 }}>
+            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '22px 20px' }}>
               <div className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: '#6b7280' }}>Inbegrepen bij Premium</div>
               <div className="flex flex-col gap-3">
                 {included.map(item => (
@@ -57,7 +57,7 @@ export default async function UpgradenPage() {
               </div>
             </div>
 
-            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: 28 }}>
+            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '22px 20px' }}>
               <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#6b7280' }}>Premium modules</div>
               <div className="flex flex-col gap-4">
                 {premiumModules.map(m => (
@@ -77,7 +77,7 @@ export default async function UpgradenPage() {
 
           {/* Rechts: prijs + CTA */}
           <div>
-            <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: 32, position: 'sticky', top: 24 }}>
+            <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: '28px 24px' }}>
               <div className="text-sm font-semibold mb-1" style={{ color: '#a855f7' }}>Clavify Premium</div>
               <div className="text-5xl font-extrabold mb-1" style={{ letterSpacing: '-2px' }}>€97</div>
               <div className="text-sm mb-2" style={{ color: '#6b7280' }}>Eenmalig — levenslang toegang</div>
@@ -85,15 +85,15 @@ export default async function UpgradenPage() {
               <div style={{ height: 1, background: '#1e1e30', margin: '20px 0' }} />
 
               <div className="flex flex-col gap-2 mb-6">
-                <div className="text-xs flex items-center gap-2" style={{ color: '#6b7280' }}>
-                  <Check size={12} style={{ color: '#34d399' }} /> Geen maandelijkse kosten
-                </div>
-                <div className="text-xs flex items-center gap-2" style={{ color: '#6b7280' }}>
-                  <Check size={12} style={{ color: '#34d399' }} /> Alle toekomstige modules inbegrepen
-                </div>
-                <div className="text-xs flex items-center gap-2" style={{ color: '#6b7280' }}>
-                  <Check size={12} style={{ color: '#34d399' }} /> Direct toegang na betaling
-                </div>
+                {[
+                  'Geen maandelijkse kosten',
+                  'Alle toekomstige modules inbegrepen',
+                  'Direct toegang na betaling',
+                ].map(f => (
+                  <div key={f} className="text-xs flex items-center gap-2" style={{ color: '#6b7280' }}>
+                    <Check size={12} style={{ color: '#34d399', flexShrink: 0 }} /> {f}
+                  </div>
+                ))}
               </div>
 
               <CheckoutButton />

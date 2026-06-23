@@ -1,7 +1,6 @@
 import { currentUser } from '@clerk/nextjs/server'
 import { createClient } from '@supabase/supabase-js'
 import { modules } from '@/lib/modules'
-import Link from 'next/link'
 import CheckoutButton from '@/components/CheckoutButton'
 import { getIsAdmin } from '@/lib/isAdmin'
 
@@ -34,58 +33,59 @@ export default async function VoortgangPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-9 py-6" style={{ borderBottom: '1px solid #1e1e30' }}>
+      <div className="px-4 sm:px-6 md:px-9 py-5 md:py-6" style={{ borderBottom: '1px solid #1e1e30' }}>
         <h2 className="text-xl font-bold">Voortgang</h2>
         <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Jouw leertraject in één overzicht</p>
       </div>
 
-      <div className="p-9">
+      <div className="p-4 sm:p-6 md:p-9">
 
-        {/* PROFIEL HEADER */}
-        <div className="flex items-center gap-5 p-6 mb-6 rounded-2xl" style={{ background: '#111118', border: '1px solid #1e1e30' }}>
-          <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'linear-gradient(135deg, #7c3aed, #a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, flexShrink: 0 }}>
+        {/* Profiel header */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 md:p-6 mb-6 rounded-2xl" style={{ background: '#111118', border: '1px solid #1e1e30' }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg, #7c3aed, #a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 700, flexShrink: 0 }}>
             {user?.firstName?.[0] ?? 'U'}
           </div>
           <div className="flex-1">
-            <div className="text-xl font-bold mb-1">{user?.firstName} {user?.lastName}</div>
+            <div className="text-lg font-bold mb-0.5">{user?.firstName} {user?.lastName}</div>
             <div className="text-sm" style={{ color: '#6b7280' }}>{isAdmin ? '⚡ Admin' : hasPremium ? '💎 Premium' : 'Gratis plan'} · Lid sinds {new Date(user?.createdAt ?? '').toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })}</div>
           </div>
-          <div className="flex gap-10 text-center">
+          <div className="flex gap-6 sm:gap-10 text-center">
             <div>
-              <div className="text-2xl font-bold">{totalProgress}%</div>
+              <div className="text-xl md:text-2xl font-bold">{totalProgress}%</div>
               <div className="text-xs mt-1" style={{ color: '#6b7280' }}>Voltooid</div>
             </div>
             <div>
-              <div className="text-2xl font-bold">{completedCount}</div>
+              <div className="text-xl md:text-2xl font-bold">{completedCount}</div>
               <div className="text-xs mt-1" style={{ color: '#6b7280' }}>Lessen</div>
             </div>
             <div>
-              <div className="text-2xl font-bold" style={{ color: '#fbbf24' }}>🔥 {currentStreak}</div>
+              <div className="text-xl md:text-2xl font-bold" style={{ color: '#fbbf24' }}>🔥 {currentStreak}</div>
               <div className="text-xs mt-1" style={{ color: '#6b7280' }}>Streak</div>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        {/* Grid: 1 kolom op mobile, 2 op md+ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
 
-          {/* MODULE VOORTGANG */}
-          <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: 24 }}>
+          {/* Module voortgang */}
+          <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '20px 20px' }}>
             <div className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: '#6b7280' }}>Module voortgang</div>
             {modules.map(m => {
               const done = m.lessons.filter(l => completedIds.has(l.id)).length
               const pct = Math.round((done / m.lessons.length) * 100)
               return (
                 <div key={m.id} className="flex items-center gap-3 mb-4">
-                  <div style={{ fontSize: 18, width: 24, textAlign: 'center' }}>
+                  <div style={{ fontSize: 16, width: 22, textAlign: 'center', flexShrink: 0 }}>
                     {pct === 100 ? '✅' : (m.premium && !hasPremium) ? '🔒' : pct > 0 ? '⚡' : '○'}
                   </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium mb-1">{m.title}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium mb-1 truncate">{m.title}</div>
                     <div style={{ height: 4, background: '#1e1e30', borderRadius: 999, overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: `${pct}%`, background: 'linear-gradient(90deg, #7c3aed, #a855f7)', borderRadius: 999 }} />
                     </div>
                   </div>
-                  <div className="text-xs w-8 text-right" style={{ color: pct === 100 ? '#34d399' : '#6b7280' }}>
+                  <div className="text-xs w-8 text-right" style={{ color: pct === 100 ? '#34d399' : '#6b7280', flexShrink: 0 }}>
                     {(m.premium && !hasPremium) ? '—' : `${pct}%`}
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export default async function VoortgangPage() {
             })}
 
             {!hasPremium && (
-              <div className="mt-6 p-4 rounded-xl" style={{ background: 'rgba(124,58,237,.08)', border: '1px solid rgba(124,58,237,.2)' }}>
+              <div className="mt-5 p-4 rounded-xl" style={{ background: 'rgba(124,58,237,.08)', border: '1px solid rgba(124,58,237,.2)' }}>
                 <div className="text-sm font-semibold mb-1">Upgrade naar Premium</div>
                 <div className="text-xs mb-3" style={{ color: '#6b7280' }}>Ontgrendel alle modules en ontvang een certificaat</div>
                 <CheckoutButton />
@@ -101,19 +101,19 @@ export default async function VoortgangPage() {
             )}
           </div>
 
-          {/* RECHTER KOLOM */}
+          {/* Rechter kolom */}
           <div className="flex flex-col gap-5">
 
-            {/* STREAK */}
-            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: 24 }}>
+            {/* Streak */}
+            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '20px 20px' }}>
               <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#6b7280' }}>Dagelijkse streak</div>
-              <div className="flex justify-center gap-2 mb-4">
+              <div className="flex justify-center gap-1.5 sm:gap-2 mb-4">
                 {days.map((day, i) => {
                   const isDone = currentStreak > 0 && i <= todayIndex && i > todayIndex - currentStreak
                   const isToday = i === todayIndex
                   return (
                     <div key={day} style={{
-                      width: 36, height: 36, borderRadius: 8,
+                      width: 34, height: 34, borderRadius: 8,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: 11, fontWeight: 600,
                       background: isToday ? '#a855f7' : isDone ? '#7c3aed' : '#1e1e30',
@@ -134,8 +134,8 @@ export default async function VoortgangPage() {
               </div>
             </div>
 
-            {/* PRESTATIES */}
-            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: 24 }}>
+            {/* Prestaties */}
+            <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '20px 20px' }}>
               <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#6b7280' }}>Prestaties</div>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -144,11 +144,11 @@ export default async function VoortgangPage() {
                   { icon: '🔌', name: 'Builder', desc: 'Eerste extensie', unlocked: modules[1].lessons.every(l => completedIds.has(l.id)) },
                   { icon: '💶', name: 'Eerste klant', desc: 'Betaald project', unlocked: false },
                 ].map(a => (
-                  <div key={a.name} className="flex items-center gap-3 p-3 rounded-xl" style={{ background: '#16161f', border: '1px solid #1e1e30', opacity: a.unlocked ? 1 : 0.4 }}>
-                    <div style={{ fontSize: 22 }}>{a.icon}</div>
-                    <div>
-                      <div className="text-xs font-semibold">{a.name}</div>
-                      <div className="text-xs mt-0.5" style={{ color: '#6b7280' }}>{a.desc}</div>
+                  <div key={a.name} className="flex items-center gap-2 p-3 rounded-xl" style={{ background: '#16161f', border: '1px solid #1e1e30', opacity: a.unlocked ? 1 : 0.4 }}>
+                    <div style={{ fontSize: 20, flexShrink: 0 }}>{a.icon}</div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold truncate">{a.name}</div>
+                      <div className="text-xs mt-0.5 truncate" style={{ color: '#6b7280' }}>{a.desc}</div>
                     </div>
                   </div>
                 ))}
