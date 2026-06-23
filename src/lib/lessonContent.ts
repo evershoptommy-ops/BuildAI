@@ -276,6 +276,38 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '2-5': {
+    intro: 'Je extensie sluit nu elke keer als je ernaast klikt. Dat is irritant als je hem open wil houden terwijl je iets op de pagina bekijkt. In deze les bouwen we hem om naar een zwevend paneel dat in de hoek van je scherm blijft staan — totdat jij op het kruisje klikt.',
+    sections: [
+      {
+        title: 'Waarom dit professioneler is',
+        body: 'Een gewone extensie-popup verdwijnt zodra je ernaast klikt. Dat werkt voor een snelle actie, maar niet als je de tool open wil houden terwijl je werkt.\n\nEen zwevend paneel blijft staan. Je kunt ernaast klikken, scrollen, en op andere dingen klikken. Het verdwijnt alleen als jij op het kruisje klikt.\n\nDit is exact hoe chat-ballonnen op webshops werken, hoe feedback-knoppen in de hoek van websites zitten, en hoe professionele browser tools zijn gebouwd.',
+      },
+      {
+        title: 'Stap 1: Huidige bestanden verzamelen',
+        body: 'Open je `screenshot-extensie` map in VS Code. Je hebt straks de inhoud van je huidige bestanden nodig om aan Claude te geven. Open `manifest.json`, `popup.html` en `popup.js` en laat ze open staan als tabbladen.',
+      },
+      {
+        title: 'Stap 2: Claude vragen om de ombouw',
+        body: 'Ga naar claude.ai. Kopieer de volledige inhoud van al je bestanden en stuur dit mee:',
+        code: 'Ik heb een Chrome extensie (Manifest V3) die screenshots maakt. Hieronder staan mijn huidige bestanden. Bouw de extensie om zodat hij werkt als een zwevend paneel dat rechtsonder in het scherm staat in plaats van een popup. Het paneel blijft zichtbaar als de gebruiker ernaast klikt. Er is een kruisje rechtsboven in het paneel om het te sluiten. De screenshot- en downloadknop blijven werken. Voeg GEEN icons toe aan manifest.json. Lever alles als één ZIP bestand.\n\n[plak hier de inhoud van je manifest.json]\n[plak hier de inhoud van je popup.html]\n[plak hier de inhoud van je popup.js]',
+      },
+      {
+        title: 'Stap 3: Nieuwe bestanden opslaan',
+        body: 'Download de ZIP van Claude en pak hem uit. Overschrijf je bestaande bestanden in de `screenshot-extensie` map met de nieuwe versie.',
+      },
+      {
+        title: 'Stap 4: Extensie herladen',
+        body: 'Ga naar `chrome://extensions/` en klik op het ververs-icoontje (↺) bij je extensie.\n\nGa daarna naar een willekeurige website. Klik op je extensie-icoontje. Het paneel verschijnt rechtsonder — en blijft staan als je ernaast klikt.',
+      },
+    ],
+    checklist: [
+      'Het paneel blijft staan als ik ernaast klik',
+      'Het kruisje sluit het paneel',
+      'De screenshot- en downloadknop werken nog steeds',
+    ],
+  },
+
+  '2-6': {
     intro: 'Je hebt nu de basis. Hier zijn vier extensies die je vandaag kunt bouwen met exact dezelfde aanpak als de screenshot tool. Kies er één en bouw hem af voor het einde van deze les.',
     sections: [
       {
