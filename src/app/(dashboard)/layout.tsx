@@ -50,9 +50,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Settings size={16} /> Instellingen
             </div>
           </Link>
-          <div className="flex items-center gap-3 px-6 py-[10px] text-sm cursor-pointer" style={{ color: '#a78bfa' }}>
-            <Gem size={16} /> Upgraden
-          </div>
+          <Link href="/upgraden">
+            <div className="flex items-center gap-3 px-6 py-[10px] text-sm cursor-pointer" style={{ color: '#a78bfa' }}>
+              <Gem size={16} /> Upgraden
+            </div>
+          </Link>
         </nav>
 
         <div className="px-6 py-5" style={{ borderTop: '1px solid #1e1e30' }}>
