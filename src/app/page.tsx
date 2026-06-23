@@ -2,6 +2,7 @@ import { ArrowRight, Zap, Bot, TrendingUp, Check } from 'lucide-react'
 import Link from 'next/link'
 import LandingNav from '@/components/LandingNav'
 import TestimonialsSlider from '@/components/TestimonialsSlider'
+import FAQ from '@/components/FAQ'
 
 const modules = [
   { num: 1, title: 'De Basis', tag: 'Gratis', desc: 'VS Code, Claude en Python installeren. Je eerste werkende tool bouwen — een factuurberekening die je meteen kunt gebruiken.', free: true },
@@ -193,7 +194,7 @@ export default function LandingPage() {
             <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: 16, right: 16, fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999, background: '#7c3aed', color: '#fff' }}>POPULAIR</div>
               <div className="text-sm font-semibold mb-1" style={{ color: '#a855f7' }}>Premium</div>
-              <div className="text-4xl font-bold mb-1">€97</div>
+              <div className="text-4xl font-bold mb-1">€197</div>
               <div className="text-sm mb-6" style={{ color: '#6b7280' }}>Eenmalig — levenslang toegang</div>
               <div className="flex flex-col gap-3 mb-8">
                 {premiumFeatures.map(f => (
@@ -212,6 +213,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <FAQ />
 
       {/* CTA */}
       <section style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 py-14 md:py-20 text-center">
