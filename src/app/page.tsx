@@ -1,6 +1,7 @@
 import { ArrowRight, Zap, Bot, TrendingUp, Check } from 'lucide-react'
 import Link from 'next/link'
 import LandingNav from '@/components/LandingNav'
+import TestimonialsSlider from '@/components/TestimonialsSlider'
 
 const modules = [
   { num: 1, title: 'De Basis', tag: 'Gratis', desc: 'VS Code, Claude en Python installeren. Je eerste werkende tool bouwen — een factuurberekening die je meteen kunt gebruiken.', free: true },
@@ -157,6 +158,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <TestimonialsSlider />
 
       {/* PRIJZEN */}
       <section id="prijzen" style={{ borderTop: '1px solid #1e1e30' }} className="px-5 sm:px-8 md:px-12 py-14 md:py-20">
