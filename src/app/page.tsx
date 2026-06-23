@@ -3,6 +3,7 @@ import Link from 'next/link'
 import LandingNav from '@/components/LandingNav'
 import TestimonialsSlider from '@/components/TestimonialsSlider'
 import FAQ from '@/components/FAQ'
+import Footer from '@/components/Footer'
 
 const modules = [
   { num: 1, title: 'De Basis', tag: 'Gratis', desc: 'VS Code, Claude en Python installeren. Je eerste werkende tool bouwen — een factuurberekening die je meteen kunt gebruiken.', free: true },
@@ -253,16 +254,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer style={{ borderTop: '1px solid #1e1e30' }} className="px-5 sm:px-8 md:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
-        <div className="text-sm font-bold">Clavi<span style={{ color: '#a855f7' }}>fy</span></div>
-        <div className="text-xs order-last sm:order-none" style={{ color: '#4b5563' }}>© 2026 Clavify. Alle rechten voorbehouden.</div>
-        <div className="flex gap-6">
-          {['Privacybeleid', 'Voorwaarden'].map(l => (
-            <a key={l} href="#" className="text-xs" style={{ color: '#4b5563' }}>{l}</a>
-          ))}
-        </div>
-      </footer>
+      <Footer />
 
     </main>
   )
