@@ -370,7 +370,7 @@ export const lessonContent: Record<string, LessonContent> = {
     ],
     checklist: [
       'De Claude Code extensie is geïnstalleerd en ik ben ingelogd',
-      'Het chatvenster is zichtbaar in het paneel rechts',
+      'Het chatvenster is zichtbaar in het Claude-paneel rechts',
       'Shift+Tab is ingedrukt voor automatisch goedkeuren',
       'Claude kan de inhoud van mijn projectmap benoemen',
     ],
@@ -438,7 +438,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Plan mode herkennen',
-        body: 'Soms toont Claude eerst een plan voordat hij iets doet. Je ziet een overzicht van wat hij gaat aanpassen. Lees het door — ziet het er goed uit? Klik "Continue" of "Accept plan". Wil je iets aanpassen? Typ je opmerking in het paneel.',
+        body: 'Soms toont Claude eerst een plan voordat hij iets doet. Je ziet een overzicht van wat hij gaat aanpassen. Lees het door — ziet het er goed uit? Klik "Continue" of "Accept plan". Wil je iets aanpassen? Typ je opmerking in het Claude-paneel.',
       },
       {
         title: '"Over dit Project" zelf invullen',
@@ -452,7 +452,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Testen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees CLAUDE.md en leg me uit hoe jij werkt in dit project.\nNoem de 3 lagen, de werkprincipes, en de mappenstructuur.',
       },
     ],
@@ -520,22 +520,22 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Script bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/weer_rapport.md en bouw execution/weer_ophalen.py\n\nTechnisch:\n- argparse voor --stad en --output argumenten\n- load_dotenv() als allereerste actie\n- WEATHER_API_KEY laden via os.getenv()\n- Endpoint: https://api.weatherapi.com/v1/current.json?key={key}&q={stad}&lang=nl\n- Haal op: temperatuur (°C), feels like (°C), weerbeschrijving, luchtvochtigheid, windsnelheid (km/h)\n- Schrijf resultaat naar het outputbestand\n- Volg alle edge cases uit de directive\n- Commentaar bij elke sectie',
       },
       {
         title: 'load_dotenv() als eerste',
-        body: 'Controleer het script na aanmaken: de eerste regels van `execution/weer_ophalen.py` moeten zijn:\n\n`from dotenv import load_dotenv` en `load_dotenv()`\n\nZie je dit niet? Typ in het paneel: "Controleer dat load_dotenv() de allereerste actie is in execution/weer_ophalen.py."',
+        body: 'Controleer het script na aanmaken: de eerste regels van `execution/weer_ophalen.py` moeten zijn:\n\n`from dotenv import load_dotenv` en `load_dotenv()`\n\nZie je dit niet? Typ in het Claude-paneel: "Controleer dat load_dotenv() de allereerste actie is in execution/weer_ophalen.py."',
         type: 'warning',
       },
       {
         title: 'Stap 4: De agent draaien',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/weer_rapport.md en voer de taak uit voor de stad Utrecht.\nSla het resultaat op in .tmp/weer_rapport.txt',
       },
       {
         title: 'Als er iets fout gaat',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Er is een fout opgetreden. Voer de self-annealing procedure uit:\n1. Lees de foutmelding volledig\n2. Fix het script\n3. Test het opnieuw\n4. Update directives/weer_rapport.md met wat je hebt geleerd\nLeg daarna uit wat er mis was en wat je hebt gewijzigd.',
         type: 'tip',
       },
@@ -563,22 +563,22 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 2: E-mail directive en script laten bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/send_email.md aan met een volledige directive in het Nederlands.\nBouw daarna ook direct execution/send_email.py\n\nHet systeem verstuurt een e-mail via Gmail met inhoud uit een lokaal tekstbestand.\n\nDirective moet bevatten:\n- Input parameters: --to, --subject, --body (pad naar .txt bestand)\n- Vereisten: GMAIL_USER en GMAIL_APP_PASSWORD in .env\n- Edge cases: bestand niet gevonden, SMTP fout, ontbrekende .env variabelen,\n  ongeldig e-mailadres\n- Instructie voor zelfherstel\n\nScript technisch:\n- argparse voor --to, --subject, --body\n- load_dotenv() als allereerste actie\n- smtplib.SMTP_SSL op poort 465 (niet STARTTLS op 587)\n- Print bevestiging met tijdstip na succes',
       },
       {
         title: 'Stap 3: Testmail sturen',
-        body: 'Typ in het paneel (vervang het e-mailadres door jouw eigen adres):',
+        body: 'Typ in het Claude-paneel (vervang het e-mailadres door jouw eigen adres):',
         code: 'Voer de send_email directive uit.\nStuur een e-mail naar [jouw eigen e-mailadres]\nmet subject "Test Clavify Agent"\nen gebruik .tmp/weer_rapport.txt als inhoud.',
       },
       {
         title: '535 Authentication failed?',
-        body: 'Controleer: geen spaties in het App Password in `.env`, is 2-stapsverificatie echt actief, juist Gmail adres in GMAIL_USER. Typ daarna in het paneel: "535 authenticatiefout. Controleer of het script SMTP_SSL gebruikt op poort 465 en niet STARTTLS op 587."',
+        body: 'Controleer: geen spaties in het App Password in `.env`, is 2-stapsverificatie echt actief, juist Gmail adres in GMAIL_USER. Typ daarna in het Claude-paneel: "535 authenticatiefout. Controleer of het script SMTP_SSL gebruikt op poort 465 en niet STARTTLS op 587."',
         type: 'warning',
       },
       {
         title: 'Stap 4: De twee agents koppelen',
-        body: 'Typ in het paneel (vervang het e-mailadres):',
+        body: 'Typ in het Claude-paneel (vervang het e-mailadres):',
         code: 'Voer dit in volgorde uit via de directives:\n1. Haal het weerrapport op voor Rotterdam via weer_rapport directive\n   en sla op in .tmp/weer_rapport.txt\n2. Stuur het rapport naar [jouw e-mailadres]\n   met subject "Weerrapport Rotterdam" via send_email directive\n\nGebruik de directives als instructiebron.\nMeld na elke stap kort wat je hebt gedaan.',
       },
     ],
@@ -586,7 +586,7 @@ export const lessonContent: Record<string, LessonContent> = {
       'Gmail App Password aangemaakt en in `.env` zonder spaties, opgeslagen (Ctrl+S / Cmd+S)',
       '`directives/send_email.md` en `execution/send_email.py` aangemaakt door Claude',
       'Testmail ontvangen in eigen inbox',
-      'De twee agents werken samen via één opdracht in het paneel',
+      'De twee agents werken samen via één opdracht in het Claude-paneel',
     ],
   },
 
@@ -609,7 +609,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Oefening: breek je systeem bewust',
-        body: 'Open `.env` en verander je API key tijdelijk naar een nep-waarde (Ctrl+S op Windows, Cmd+S op Mac). Typ dan in het paneel:',
+        body: 'Open `.env` en verander je API key tijdelijk naar een nep-waarde (Ctrl+S op Windows, Cmd+S op Mac). Typ dan in het Claude-paneel:',
         code: 'Voer de weer_rapport directive uit voor Amsterdam.',
       },
       {
@@ -619,7 +619,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Leverbaar maken voor een klant',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak README.md aan voor een niet-technische klant. Schrijf in simpele taal.\n\nInhoud:\n- Wat doet dit systeem (2 zinnen)\n- Wat heb je nodig\n- Hoe .env instellen stap voor stap (verwijs naar .env.example)\n- Hoe gebruiken via het Claude-paneel in VS Code\n- Hoe automatisch inplannen:\n  Windows: via Taakplanner stap voor stap\n  Mac: via crontab zonder vim:\n  (crontab -l 2>/dev/null; echo "0 8 * * * cd /pad/naar/mijn-agent && claude -p \'voer het dagelijkse weerrapport uit\'") | crontab -\n  Leg uit dat ze /pad/naar/mijn-agent vervangen door het echte pad (te vinden via pwd)\n\nSla op in README.md',
       },
       {
@@ -650,7 +650,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 2: Test de HTML e-mail',
-        body: 'Typ in het paneel (vervang het e-mailadres):',
+        body: 'Typ in het Claude-paneel (vervang het e-mailadres):',
         code: 'Voer dit in volgorde uit:\n1. Haal weerrapport op voor Amsterdam via weer_rapport directive\n2. Stuur de gestylde HTML e-mail naar [jouw e-mailadres] via html_email directive\n   met subject "Weerrapport Amsterdam"',
       },
       {
@@ -708,7 +708,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 2: Projectstructuur aanmaken',
-        body: 'Open het Claude-paneel via het ✦ icoontje in de linker zijbalk of rechtsonder in de statusbalk. Geen bestand open? Open dan een bestand uit een eerder project zodat het icoontje actief wordt.\n\nTyp in het paneel:',
+        body: 'Open het Claude-paneel via het ✦ icoontje in de linker zijbalk of rechtsonder in de statusbalk. Geen bestand open? Open dan een bestand uit een eerder project zodat het icoontje actief wordt.\n\nTyp in het Claude-paneel:',
         code: 'Maak een nieuwe projectmap aan genaamd seo-agent\nin de huidige clavify-projecten map.\n\nMaak deze structuur aan:\nseo-agent/\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n├── rapporten/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
       },
       {
@@ -732,7 +732,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Testen',
-        body: 'Typ in het paneel om te controleren of Claude alles begrijpt:',
+        body: 'Typ in het Claude-paneel om te controleren of Claude alles begrijpt:',
         code: 'Lees CLAUDE.md en leg me uit hoe dit SEO project werkt.\nNoem de 3 lagen, de API\'s, en de mappenstructuur.',
       },
     ],
@@ -814,17 +814,17 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 2: Script bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/zoekwoorden_ophalen.md en bouw execution/zoekwoorden_ophalen.py\n\nTechnisch:\n- argparse voor --zoekterm en --output\n- load_dotenv() als allereerste actie\n- POST request naar het endpoint uit de directive\n- Haal uit tasks[0].result[0].items elk item op:\n  keyword uit item["keyword_data"]["keyword"]\n  search_volume uit item["keyword_data"]["keyword_info"]["search_volume"]\n  als search_volume None is: gebruik 0\n- Sorteer op search_volume van hoog naar laag\n- Schrijf naar outputbestand:\n  "Zoekwoorden voor: [zoekterm]"\n  "Opgehaald op: [datum]"\n  dan per zoekwoord: "zoekwoord     [volume] zoekacties/maand"\n- Volg alle edge cases\n- Commentaar bij elke sectie',
       },
       {
         title: 'Stap 3: De agent draaien',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/zoekwoorden_ophalen.md en voer de taak uit.\nZoekterm: "loodgieter Utrecht"\nSla op in .tmp/zoekwoorden.txt',
       },
       {
         title: 'Als de zoekwoorden niet verschijnen',
-        body: 'DataForSEO heeft een geneste response structuur. Als het script wel draait maar het outputbestand leeg of fout is, typ dan in het paneel:\n\n"Controleer dat het script de keyword en search_volume correct uithaalt uit de DataForSEO response — het pad is tasks[0].result[0].items[n].keyword_data.keyword en .keyword_info.search_volume"',
+        body: 'DataForSEO heeft een geneste response structuur. Als het script wel draait maar het outputbestand leeg of fout is, typ dan in het Claude-paneel:\n\n"Controleer dat het script de keyword en search_volume correct uithaalt uit de DataForSEO response — het pad is tasks[0].result[0].items[n].keyword_data.keyword en .keyword_info.search_volume"',
         type: 'tip',
       },
       {
@@ -850,12 +850,12 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Directive schrijven',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/pagina_analyseren.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Een URL ontvangt als input\n- De pagina bezoekt via requests met een User-Agent header\n- Met BeautifulSoup uithaalt:\n  * Paginatitel (title tag)\n  * Meta beschrijving (content van <meta name="description">)\n  * Eerste H1 tag\n  * Alle H2 tags (maximaal 5)\n  * Totaal aantal woorden in de body tekst\n  * De eerste 300 woorden als tekst-preview\n- Resultaat opslaat in .tmp/pagina_analyse.txt\n- Voor ontbrekende elementen schrijft: "Niet gevonden"\n\nEdge cases: URL niet bereikbaar, 403 geblokkeerd, geen title tag,\nredirect, time-out na 10 seconden',
       },
       {
         title: 'Stap 2: Script bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/pagina_analyseren.md en bouw execution/pagina_analyseren.py\n\nTechnisch:\n- argparse voor --url en --output\n- load_dotenv() als allereerste actie\n- requests.get() met:\n  headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}\n  timeout = 10\n- BeautifulSoup(response.text, "html.parser")\n- title via soup.find("title")\n- meta description via soup.find("meta", attrs={"name": "description"}) → .get("content")\n- H1 via soup.find("h1")\n- H2 via soup.find_all("h2", limit=5)\n- Body tekst via soup.get_text(), verwijder extra witruimte, tel woorden\n- Alles netjes geformatteerd naar outputbestand\n- Volg alle edge cases',
       },
       {
@@ -865,12 +865,12 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Testen met example.com',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/pagina_analyseren.md en voer de taak uit.\nURL: https://www.example.com\nSla op in .tmp/pagina_analyse.txt',
       },
       {
         title: 'Stap 4: Testen met een echte URL',
-        body: 'Typ in het paneel met een echte URL — de website van een lokaal bedrijf of jouw eigen website:',
+        body: 'Typ in het Claude-paneel met een echte URL — de website van een lokaal bedrijf of jouw eigen website:',
         code: 'Lees directives/pagina_analyseren.md en voer de taak uit.\nURL: [een echte website URL]\nSla op in .tmp/pagina_analyse.txt',
       },
     ],
@@ -891,17 +891,17 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Directive schrijven',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/rapport_schrijven.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- .tmp/zoekwoorden.txt en .tmp/pagina_analyse.txt inleest\n- Controleert of beide bestanden bestaan\n- Via Anthropic API (claude-sonnet-4-6, max_tokens: 2000) een SEO rapport schrijft\n- System prompt: "Je bent een SEO specialist die rapporten schrijft voor\n  Nederlandse MKB-eigenaren. Schrijf altijd in duidelijk Nederlands zonder\n  technisch jargon. Wees concreet en geef altijd uitvoerbare aanbevelingen."\n- Rapport bevat:\n  * Samenvatting (wat gaat goed, wat kan beter — 3-5 zinnen)\n  * Zoekwoorden analyse (welke gevonden zoekwoorden passen, welke ontbreken)\n  * Pagina bevindingen (beoordeling van titel, meta, H1, woordcount)\n  * Top 3 aanbevelingen (concrete acties)\n- Slaat op in rapporten/ als: seo_rapport_YYYY-MM-DD.txt\n\nEdge cases: inputbestanden niet gevonden (print welke les eerst uitgevoerd moet\nworden), API fout, lege inputbestanden',
       },
       {
         title: 'Stap 2: Script bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/rapport_schrijven.md en bouw execution/rapport_schrijven.py\n\nTechnisch:\n- load_dotenv() als allereerste actie\n- Controleer of .tmp/zoekwoorden.txt en .tmp/pagina_analyse.txt bestaan\n  als een van beide ontbreekt: print welk bestand mist en welke les\n  de student eerst moet uitvoeren, daarna sys.exit(1)\n- Lees beide bestanden in als string\n- client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))\n- Model: claude-sonnet-4-6, max_tokens: 2000\n- Combineer beide inputbestanden in de user message\n- Haal response op via response.content[0].text\n- Maak rapporten/ aan als die niet bestaat\n- Sla op als rapporten/seo_rapport_YYYY-MM-DD.txt\n- Print bevestiging met bestandspad\n- Volg alle edge cases',
       },
       {
         title: 'Stap 3: De agent draaien',
-        body: 'Zorg dat `.tmp/zoekwoorden.txt` en `.tmp/pagina_analyse.txt` allebei bestaan (aangemaakt in les 4-4 en 4-5). Typ dan in het paneel:',
+        body: 'Zorg dat `.tmp/zoekwoorden.txt` en `.tmp/pagina_analyse.txt` allebei bestaan (aangemaakt in les 4-4 en 4-5). Typ dan in het Claude-paneel:',
         code: 'Lees directives/rapport_schrijven.md en voer de taak uit.',
       },
       {
@@ -923,12 +923,12 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: Alles in één opdracht uitvoeren',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Voer de volledige SEO analyse uit in deze volgorde:\n\n1. Haal zoekwoorden op voor "loodgieter Utrecht"\n   via directives/zoekwoorden_ophalen.md\n   Sla op in .tmp/zoekwoorden.txt\n\n2. Analyseer de pagina https://www.example.com\n   via directives/pagina_analyseren.md\n   Sla op in .tmp/pagina_analyse.txt\n\n3. Schrijf het SEO rapport\n   via directives/rapport_schrijven.md\n\nMeld na elke stap kort wat je hebt gedaan.',
       },
       {
         title: 'Stap 2: Overkoepelende directive aanmaken',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/volledige_seo_analyse.md aan in het Nederlands.\n\nDit is de overkoepelende directive voor de complete SEO analyse.\n\nInhoud:\n- Doel: volledige SEO analyse uitvoeren voor een website\n- Input: zoekterm en URL van de te analyseren pagina\n- Stappen in volgorde:\n  1. Voer directives/zoekwoorden_ophalen.md uit\n  2. Voer directives/pagina_analyseren.md uit\n  3. Voer directives/rapport_schrijven.md uit\n- Output: SEO rapport in rapporten/ klaar om te sturen\n- Bij fout in een stap: voer self-annealing uit',
       },
       {
@@ -938,7 +938,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: README aanmaken voor de klant',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak README.md aan voor een niet-technische klant. Schrijf in simpele taal.\n\nInhoud:\n- Wat doet dit systeem (2 zinnen)\n- Wat heb je nodig (Python, packages, twee API keys)\n- Hoe .env instellen stap voor stap (verwijs naar .env.example)\n- Hoe een analyse uitvoeren:\n  open VS Code → open seo-agent map → open Claude-paneel →\n  typ de opdracht met zoekterm en URL → wacht op bevestiging →\n  open het rapport in de rapporten/ map\n\nSla op in README.md',
       },
       {
@@ -953,7 +953,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
     ],
     checklist: [
-      'De drie agents werken samen via één opdracht in het paneel',
+      'De drie agents werken samen via één opdracht in het Claude-paneel',
       '`directives/volledige_seo_analyse.md` is aangemaakt',
       '`README.md` is aangemaakt voor de klant',
       '`CLAUDE.md` is bijgewerkt met klantgegevens (Ctrl+S / Cmd+S)',
@@ -984,7 +984,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: Projectstructuur aanmaken',
-        body: 'Open VS Code. Ga naar File → Open Folder → navigeer naar je `clavify-projecten` map.\n\nOpen het Claude-paneel. Zorg dat een bestand open staat (open anders een bestand uit een eerder project). Typ in het paneel:',
+        body: 'Open VS Code. Ga naar File → Open Folder → navigeer naar je `clavify-projecten` map.\n\nOpen het Claude-paneel. Zorg dat een bestand open staat (open anders een bestand uit een eerder project). Typ in het Claude-paneel:',
         code: 'Maak een nieuwe projectmap aan genaamd content-agent\nin de huidige clavify-projecten map.\n\nStructuur:\ncontent-agent/\n├── CLAUDE.md\n├── .env\n├── .env.example\n├── .gitignore\n├── directives/\n├── execution/\n├── content/\n└── .tmp/\n\nVul .gitignore in met: .env, .tmp/, __pycache__/, *.pyc\nLaat de andere bestanden leeg.\nBevestig als alles klaar is.',
       },
       {
@@ -1003,7 +1003,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 4: CLAUDE.md schrijven',
-        body: 'Klik op `CLAUDE.md` in de Explorer links. Typ in het paneel:',
+        body: 'Klik op `CLAUDE.md` in de Explorer links. Typ in het Claude-paneel:',
         code: 'Schrijf de inhoud voor CLAUDE.md voor dit content project en sla het direct op.\nSchrijf in het Nederlands.\n\nInhoud:\n1. Uitleg 3-laagse architectuur (directives, orchestratie, execution)\n2. Werkprincipes: check execution/ eerst, zelfherstellend, directives updaten,\n   .env nooit committen\n3. Mappenstructuur als tekstdiagram inclusief content/ map\n4. Over dit Project:\n   Dit systeem schrijft SEO-geoptimaliseerde blogartikelen en publiceert ze\n   direct op WordPress of Shopify via hun API.\n   Deliverable: gepubliceerde blogpost op de website van de klant.\n5. API overzicht:\n   - Anthropic API: content schrijven (ANTHROPIC_API_KEY)\n   - WordPress REST API: publiceren op WordPress\n   - Shopify Admin API: publiceren op Shopify\n6. Platform keuze:\n   Gebruik WordPress scripts als de klant WordPress heeft.\n   Gebruik Shopify scripts als de klant Shopify heeft.',
       },
     ],
@@ -1034,17 +1034,17 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 3: Directive schrijven',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/content_schrijven.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Een onderwerp en een lijst zoekwoorden ontvangt\n- Via Anthropic API (claude-sonnet-4-6, max_tokens: 4000) een blogartikel schrijft\n- Artikel bevat:\n  * SEO-titel (max 60 tekens, bevat hoofdzoekwoord)\n  * Meta beschrijving (max 160 tekens)\n  * Introductie van minimaal 100 woorden\n  * Minimaal 4 H2-tussenkopjes met gerelateerde zoekwoorden\n  * Conclusie met call-to-action\n  * Minimaal 600 woorden totaal\n- Output slaat op in content/ als: artikel_YYYY-MM-DD_[onderwerp].txt\n  (spaties vervangen door koppeltekens)\n- Output heeft duidelijke secties: TITEL:, META BESCHRIJVING:, ARTIKEL:\n- System prompt: je bent een Nederlandse SEO-copywriter voor MKB-bedrijven,\n  toegankelijke vriendelijke toon, verwerk zoekwoorden natuurlijk\n\nInclusief edge cases en self-annealing',
       },
       {
         title: 'Stap 4: Script bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/content_schrijven.md en bouw execution/content_schrijven.py\n\nTechnisch:\n- argparse voor --onderwerp en --zoekwoorden\n- load_dotenv() als allereerste actie\n- Anthropic client met os.getenv("ANTHROPIC_API_KEY")\n- Model: claude-sonnet-4-6, max_tokens: 4000\n- User message: "Schrijf een blogartikel over: [onderwerp].\n  Verwerk deze zoekwoorden natuurlijk in de tekst: [zoekwoorden].\n  Begin direct met de output in dit formaat:\n  TITEL: [de titel]\n  META BESCHRIJVING: [de meta beschrijving]\n  ARTIKEL:\n  [het volledige artikel]"\n- Maak content/ aan als die niet bestaat\n- Sla op als content/artikel_YYYY-MM-DD_[onderwerp-met-koppeltekens].txt\n- Print bevestiging met bestandspad',
       },
       {
         title: 'Stap 5: De agent draaien',
-        body: 'Zorg dat je API key in `.env` staat. Typ in het paneel:',
+        body: 'Zorg dat je API key in `.env` staat. Typ in het Claude-paneel:',
         code: 'Lees directives/content_schrijven.md en voer de taak uit.\nOnderwerp: loodgieter Utrecht\nZoekwoorden: loodgieter Utrecht, loodgieter spoed Utrecht, lekkage loodgieter Utrecht',
       },
       {
@@ -1111,17 +1111,17 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Directive schrijven',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/publiceren_wordpress.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Het meest recente bestand in content/ leest (of een specifiek bestand)\n- TITEL, META BESCHRIJVING en ARTIKEL secties uithaalt\n- Artikeltekst omzet naar HTML:\n  * ## Koppen → <h2>\n  * ### Koppen → <h3>\n  * Lege regels scheiden alinea\'s → <p>\n- Blogpost aanmaakt op WordPress via REST API:\n  * Endpoint: WP_URL/wp-json/wp/v2/posts\n  * Auth: Basic Auth met base64(WP_USERNAME:WP_APP_PASSWORD)\n  * Status: "draft" (standaard) zodat klant eerst naleest\n  * Optionele --direct-live vlag voor "publish"\n- Na succes de URL van de draft post print\n\nEdge cases: contentbestand niet gevonden, WordPress geeft fout,\nauthenticatie mislukt',
       },
       {
         title: 'Stap 2: Script bouwen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/publiceren_wordpress.md en bouw execution/publiceren_wordpress.py\n\nTechnisch:\n- argparse voor --bestand (optioneel) en --direct-live (store_true)\n- load_dotenv() als allereerste actie\n- Als geen --bestand: meest recente bestand in content/ via os.listdir() en max() met getmtime()\n- Lees bestand en split op "TITEL:\\n", "META BESCHRIJVING:\\n", "ARTIKEL:\\n"\n- Converteer markdown naar HTML\n- Authorization: base64(gebruikersnaam:wachtwoord)\n- POST naar WP_URL/wp-json/wp/v2/posts\n- Status: "publish" als --direct-live, anders "draft"\n- Print: "Post aangemaakt: [URL]"',
       },
       {
         title: 'Stap 3: De agent draaien',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/publiceren_wordpress.md en voer de taak uit.\nGebruik het meest recente artikel in de content/ map.\nMaak het aan als concept (draft) zodat de klant het eerst kan nalezen.',
       },
       {
@@ -1134,7 +1134,7 @@ export const lessonContent: Record<string, LessonContent> = {
       '`directives/publiceren_wordpress.md` is aangemaakt',
       '`execution/publiceren_wordpress.py` is gebouwd',
       'De agent maakt een draft post aan op WordPress',
-      'De URL van de post verschijnt in het paneel na uitvoering',
+      'De URL van de post verschijnt in het Claude-paneel na uitvoering',
     ],
   },
 
@@ -1162,12 +1162,12 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 4: Directive schrijven',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/publiceren_shopify.md aan met een volledige directive\nin het Nederlands.\n\nDe directive beschrijft een Python script dat:\n- Meest recente bestand in content/ leest (of specifiek bestand)\n- TITEL, META BESCHRIJVING en ARTIKEL uithaalt\n- Tekst omzet naar HTML (zelfde als WordPress publisher)\n- Blogartikel aanmaakt via Shopify Admin API:\n  * Endpoint: https://SHOPIFY_STORE/admin/api/2026-01/blogs/SHOPIFY_BLOG_ID/articles.json\n  * Header: X-Shopify-Access-Token: SHOPIFY_ACCESS_TOKEN\n  * Concept (geen published_at): {"article": {"title": TITEL, "body_html": HTML, "summary_html": META}}\n  * Direct live (--direct-live): voeg "published_at": datetime.now().isoformat() toe\n- Na succes de artikel-URL print\n\nEdge cases: bestand niet gevonden, API fout, ongeldige token, ontbrekende BLOG_ID',
       },
       {
         title: 'Stap 5: Script bouwen en draaien',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/publiceren_shopify.md en bouw execution/publiceren_shopify.py\n\nTechnisch:\n- argparse voor --bestand (optioneel) en --direct-live (store_true)\n- load_dotenv() als allereerste actie\n- Meest recente bestand in content/ ophalen als geen --bestand\n- Markdown naar HTML conversie\n- POST naar Shopify Articles endpoint\n- Geen published_at voor concept, datetime.now().isoformat() voor --direct-live\n- Print na succes de artikel URL',
       },
     ],
@@ -1190,12 +1190,12 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 1: Overkoepelende directives aanmaken',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak directives/volledige_pipeline_wordpress.md aan in het Nederlands.\n\nOverkoepelende directive voor de complete WordPress content pipeline.\n\nInhoud:\n- Doel: blogartikel schrijven en publiceren op WordPress\n- Input: onderwerp en lijst zoekwoorden (kommagescheiden)\n- Stappen:\n  1. Voer directives/content_schrijven.md uit\n  2. Voer directives/publiceren_wordpress.md uit\n- Output: concept blogpost op WordPress klaar voor controle\n- Bij fout in een stap: voer self-annealing uit',
       },
       {
         title: 'Stap 2: Pipeline testen',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Lees directives/volledige_pipeline_wordpress.md en voer de pipeline uit voor:\nOnderwerp: thuisbezorging bloemen Amsterdam\nZoekwoorden: bloemen bezorgen Amsterdam, boeket bezorgen Amsterdam, bloemen thuisbezorging Amsterdam zelfde dag',
       },
       {
@@ -1205,7 +1205,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
       {
         title: 'Stap 4: README en CLAUDE.md aanpassen voor de klant',
-        body: 'Typ in het paneel:',
+        body: 'Typ in het Claude-paneel:',
         code: 'Maak README.md aan voor een niet-technische klant. Schrijf in simpele taal.\n\nInhoud:\n- Wat doet dit systeem (2 zinnen)\n- Vereisten (Python, packages, API keys)\n- Hoe .env instellen (verwijs naar .env.example)\n- Hoe een artikel schrijven en publiceren:\n  open VS Code → open content-agent → open Claude-paneel →\n  typ de pipeline opdracht → wacht op bevestiging →\n  ga naar WordPress/Shopify om het concept na te lezen\n\nSla op in README.md',
       },
       {
