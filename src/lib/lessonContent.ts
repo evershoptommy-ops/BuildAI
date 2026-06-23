@@ -1142,12 +1142,12 @@ export const lessonContent: Record<string, LessonContent> = {
     intro: 'Heeft de klant Shopify in plaats van WordPress? Dan gebruik je deze les. De content schrijver uit les 5-3 is hetzelfde — alleen de publisher verschilt.',
     sections: [
       {
-        title: 'Stap 1: Shopify Access Token aanmaken',
-        body: 'Log in op het Shopify dashboard van de klant:\n\n1. Ga naar **Instellingen** (tandwiel icoon linksonder)\n2. Klik op **"Apps en verkoopkanalen"**\n3. Klik op **"Apps ontwikkelen"** rechtsbovenin\n4. Klik **"Een app maken"** → geef hem een naam zoals "Clavify Agent"\n5. Klik op **"Configuratie"** (bovenaan de app pagina)\n6. Scroll naar **"Beheerdersrechten voor API-toegang"** → klik op "Bewerken"\n7. Zoek **"Store content"** en zet `write_content` en `read_content` aan\n8. Klik **"Opslaan"** → ga terug naar het overzicht → klik **"App installeren"**\n9. Na installatie: klik **"Token weergeven"** → kopieer direct (begint met `shpat_`) — maar één keer zichtbaar',
+        title: 'Stap 1: App aanmaken in Dev Dashboard',
+        body: 'Shopify gebruikt nu een apart Dev Dashboard voor apps. Zo maak je een access token aan:\n\n1. Ga naar **dev.shopify.com** en log in met je Shopify account\n2. Klik op **"Create app"** rechtsbovenin\n3. Kies **"Start from Dev Dashboard"** (rechterkolom)\n4. Geef de app een naam zoals "Clavify Agent" → klik **"Create"**\n5. Je komt op de **"Create version"** pagina\n6. Scroll naar **"Access → Scopes"** en vul in: `write_content, read_content`\n7. Klik onderaan op **"Release"** → geef versienaam "v1" → klik **"Release"**\n8. Ga terug naar het app-overzicht → klik **"Install app"** (rechtsboven bij "Installs")\n9. Kies de store van de klant → klik **"Install"** op de bevestigingspagina\n10. Ga naar **Settings** (linkermenu) → scroll naar **"App automation token"**\n11. Klik **"Create automation token"** → kies vervaldatum (6 maanden aanbevolen) → klik **"Generate token"**\n12. Kopieer de token direct (begint met `atkn_`) — je kunt hem maar één keer zien',
       },
       {
-        title: 'Eerste keer: aangepaste apps inschakelen',
-        body: 'Als je "Apps ontwikkelen" niet ziet: klik op **"Aangepaste app-ontwikkeling toestaan"** en bevestig. Daarna verschijnt de knop.',
+        title: 'Token verloopt na 6 maanden',
+        body: 'De automation token is maximaal 6 maanden geldig. Maak een herinnering in je agenda om hem op tijd te vernieuwen via Settings → App automation token → Rotate.',
         type: 'tip',
       },
       {
@@ -1158,7 +1158,7 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Stap 3: Gegevens invullen in .env',
         body: 'Voeg toe aan `.env` en sla op (Ctrl+S / Cmd+S):',
-        code: 'SHOPIFY_STORE=jouw-store.myshopify.com\nSHOPIFY_ACCESS_TOKEN=shpat_xxxx\nSHOPIFY_BLOG_ID=123456789',
+        code: 'SHOPIFY_STORE=jouw-store.myshopify.com\nSHOPIFY_ACCESS_TOKEN=atkn_xxxx\nSHOPIFY_BLOG_ID=123456789',
       },
       {
         title: 'Stap 4: Directive schrijven',
