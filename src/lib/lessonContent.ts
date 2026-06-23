@@ -256,8 +256,7 @@ export const lessonContent: Record<string, LessonContent> = {
     sections: [
       {
         title: 'Stap 1: Screenshot van je extensie maken',
-        body: 'Klik op je screenshot extensie terwijl de popup open is. Je hebt nu een screenshot van je eigen extensie in je clipboard.\n\nOpen claude.ai en plak het screenshot met **Ctrl+V** (Windows) of **Cmd+V** (Mac) in het chatvenster.',
-        type: 'tip',
+        body: 'Je extensie sluit zodra je ergens anders klikt — dus je kunt hem niet fotograferen met je eigen tool. Gebruik in plaats daarvan de ingebouwde screenshot functie van je systeem:\n\n• **Windows:** druk op **Windows + Shift + S**. Je scherm wordt donker, sleep een selectie over je extensie-popup. Het screenshot staat dan in je clipboard.\n• **Mac:** druk op **Cmd + Shift + 4**. Je cursor verandert in een kruisje, sleep een selectie over je extensie-popup. Het bestand wordt opgeslagen op je bureaublad.\n\nOpen daarna claude.ai en plak het screenshot met **Ctrl+V** (Windows) of sleep het bestand vanuit je bureaublad naar het chatvenster (Mac).',
       },
       {
         title: 'Stap 2: Claude vragen om een redesign',
