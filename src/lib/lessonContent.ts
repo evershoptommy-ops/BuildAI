@@ -474,18 +474,18 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Packages installeren',
         body: 'Typ deze commando\'s één voor één:',
-        code: 'pip install requests\npip install python-dotenv',
+        code: 'pip install requests\npip install python-dotenv\npip install anthropic',
       },
       {
         title: 'Werkt pip niet?',
         body: 'Probeer `pip3` of `python -m pip`:',
-        code: 'pip3 install requests\npip3 install python-dotenv',
+        code: 'pip3 install requests\npip3 install python-dotenv\npip3 install anthropic',
         type: 'tip',
       },
       {
         title: 'Controleren of het werkt',
         body: 'Voer dit commando uit — je moet "Klaar" zien:',
-        code: 'python -c "import requests; from dotenv import load_dotenv; print(\'Klaar\')"',
+        code: 'python -c "import requests; from dotenv import load_dotenv; import anthropic; print(\'Klaar\')"',
       },
       {
         title: 'Foutmelding bij installatie?',
@@ -495,7 +495,7 @@ export const lessonContent: Record<string, LessonContent> = {
       },
     ],
     checklist: [
-      '`requests` en `python-dotenv` zijn geïnstalleerd',
+      '`requests`, `python-dotenv` en `anthropic` zijn geïnstalleerd',
       'Het testcommando geeft "Klaar"',
     ],
   },
