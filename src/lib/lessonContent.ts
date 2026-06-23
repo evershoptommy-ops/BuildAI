@@ -207,39 +207,43 @@ export const lessonContent: Record<string, LessonContent> = {
   },
 
   '2-3': {
-    intro: 'We bouwen een woordenteller. De gebruiker kan tekst invoeren, en de extensie telt woorden, tekens, en zinnen. Simpel maar nuttig.',
+    intro: 'We bouwen een screenshot tool. Met één klik maak je een screenshot van de pagina die je aan het bekijken bent — en die staat direct in je clipboard, klaar om te plakken. Geen account, geen betaalde app, gewoon jouw eigen extensie.',
     sections: [
+      {
+        title: 'Waarom dit bizar handig is',
+        body: 'Dit klinkt simpel, maar bedenk wat je hiermee kunt:\n\n• Je ziet een bug of foutmelding op een website — screenshot maken en direct in **Claude plakken**. Claude ziet precies wat jij ziet en vertelt je wat er mis is.\n• Je ontwerpt iets in de browser en wil feedback — plak het screenshot in Claude voor direct commentaar.\n• Klant heeft een probleem — één screenshot, direct doorgestuurd.\n\nJe bouwt iets wat je dagelijks gaat gebruiken. En je hebt het zelf gemaakt.',
+        type: 'tip',
+      },
       {
         title: 'Stap 1: Projectmap aanmaken',
         body: 'Open de terminal in VS Code:',
-        code: 'cd clavify-projecten\nmkdir woordenteller-extensie\ncd woordenteller-extensie',
+        code: 'cd clavify-projecten\nmkdir screenshot-extensie\ncd screenshot-extensie',
       },
       {
         title: 'Stap 2: Vraag Claude om de complete extensie',
         body: 'Ga naar claude.ai en stuur:',
-        code: 'Bouw een complete Chrome extensie (Manifest V3) die werkt als een woordenteller. De popup toont een tekstvak waar de gebruiker tekst kan invoeren of plakken. Terwijl de gebruiker typt, toont de extensie live het aantal woorden, tekens (met en zonder spaties), en zinnen. Maak het ontwerp minimalistisch en professioneel met een donker kleurenschema. Geef me alle drie de bestanden: manifest.json, popup.html, en popup.js.',
+        code: 'Bouw een complete Chrome extensie (Manifest V3) die een screenshot maakt van de huidige webpagina en die direct naar het clipboard kopieert. Gebruik html2canvas via een CDN (geen npm). Als de screenshot klaar is, toont de popup een groen vinkje met de tekst "Gekopieerd naar clipboard!". Voeg ook een knop toe om de screenshot te downloaden als PNG. Maak het ontwerp minimalistisch en professioneel. Geef me alle bestanden: manifest.json, popup.html, popup.js, en een content.js als dat nodig is.',
       },
       {
         title: 'Stap 3: Bestanden opslaan',
-        body: 'Claude geeft je de drie bestanden terug. Klik in de Claude chat op **Download all** (onderaan de bestandenlijst) om de ZIP te downloaden.\n\nPak de ZIP uit en zet de bestanden (`manifest.json`, `popup.html`, `popup.js`) in je `woordenteller-extensie` map in `clavify-projecten`.\n\n⚠️ Let op: je hebt alleen de losse bestanden nodig, niet een submap. Zorg dat `manifest.json` direct in de `woordenteller-extensie` map staat.',
+        body: 'Claude geeft je de bestanden terug. Klik in de Claude chat op **Download all** (onderaan de bestandenlijst) om de ZIP te downloaden.\n\nPak de ZIP uit en zet de bestanden in je `screenshot-extensie` map in `clavify-projecten`.\n\n⚠️ Let op: zorg dat `manifest.json` direct in de `screenshot-extensie` map staat, niet in een submap.',
         type: 'warning',
       },
       {
         title: 'Stap 4: Extensie laden in Chrome',
-        body: '1. Open Chrome\n2. Ga naar `chrome://extensions/`\n3. Zet "Ontwikkelaarsmodus" aan (rechts bovenin)\n4. Klik "Uitgepakte extensie laden"\n5. Selecteer je `woordenteller-extensie` map\n\nJe extensie verschijnt nu in Chrome. Klik op het puzzelstukje rechtsboven om hem vast te zetten.',
+        body: '1. Open Chrome\n2. Ga naar `chrome://extensions/`\n3. Zet "Ontwikkelaarsmodus" aan (rechts bovenin)\n4. Klik "Uitgepakte extensie laden"\n5. Selecteer je `screenshot-extensie` map\n\nJe extensie verschijnt nu in Chrome. Klik op het puzzelstukje rechtsboven om hem vast te zetten.',
       },
       {
-        title: 'Iets aanpassen?',
-        body: 'Vraag het aan Claude:',
-        code: 'In mijn Chrome extensie wil ik ook het gemiddeld aantal woorden per zin tonen. Hoe pas ik popup.js aan?',
+        title: 'Stap 5: Testen met Claude',
+        body: 'Ga naar een willekeurige website. Klik op je extensie-icoontje. Je ziet het groene vinkje verschijnen.\n\nOpen nu claude.ai, klik op het paperclip-icoontje of druk **Ctrl+V** (Windows) / **Cmd+V** (Mac) in het chatvenster. Het screenshot staat er direct in.\n\nTyp erbij: "Wat zie je op dit screenshot?" — en Claude beschrijft precies wat er op staat.',
         type: 'tip',
       },
     ],
     checklist: [
-      'De drie bestanden zijn aangemaakt',
       'De extensie is geladen in Chrome',
-      'De woordenteller werkt correct',
-      'Ik heb minstens één aanpassing gemaakt',
+      'De screenshot knop werkt en kopieert naar clipboard',
+      'Ik heb het screenshot in Claude geplakt en een vraag gesteld',
+      'De download-als-PNG knop werkt',
     ],
   },
 
@@ -253,28 +257,28 @@ export const lessonContent: Record<string, LessonContent> = {
       {
         title: 'Claude vragen om een redesign',
         body: 'Stuur dit naar Claude:',
-        code: 'Mijn Chrome extensie woordenteller ziet er basic uit. Redesign de popup.html en CSS zodat het er professioneel uitziet. Gebruik een wit/grijs kleurenschema met blauwe accenten. Voeg subtiele hover-effecten toe aan de statistieken. Maak het modern en clean, vergelijkbaar met een SaaS product. Behoud alle bestaande functionaliteit.',
+        code: 'Mijn Chrome extensie screenshot-tool ziet er basic uit. Redesign de popup.html en CSS zodat het er professioneel uitziet. Gebruik een donker kleurenschema met paarse accenten. Voeg een laad-animatie toe terwijl de screenshot wordt gemaakt. Maak het modern en clean, vergelijkbaar met een SaaS product. Behoud alle bestaande functionaliteit.',
       },
       {
         title: 'Het nieuwe bestand opslaan',
-        body: 'Claude geeft je een nieuw `popup.html` terug. Doe het volgende:\n\n1. Klik op **Download all** onderaan de bestandenlijst in Claude\n2. Pak de ZIP uit\n3. Kopieer het nieuwe `popup.html` bestand naar je `woordenteller-extensie` map — overschrijf het oude bestand\n4. Ga naar `chrome://extensions/` en klik op het ververs-icoontje (↺) bij je extensie\n5. Klik opnieuw op je extensie om het nieuwe ontwerp te zien',
+        body: 'Claude geeft je een nieuw `popup.html` terug. Doe het volgende:\n\n1. Kopieer de nieuwe code naar je `popup.html` in VS Code en sla op (Ctrl+S / Cmd+S)\n2. Ga naar `chrome://extensions/`\n3. Klik op het ververs-icoontje (↺) bij je extensie\n4. Klik opnieuw op je extensie om het nieuwe ontwerp te zien',
         type: 'tip',
       },
       {
         title: 'Een icoontje toevoegen',
-        body: 'Download een 128x128px PNG van emojipng.com of flaticon.com. Sla het bestand op als `icon.png` direct in je `woordenteller-extensie` map — dus niet in een submap.\n\nOpen daarna je `manifest.json` in VS Code. Zoek het stuk met `"action"` en voeg het `"icons"` blok eronder toe, zodat het er zo uitziet:',
-        code: '{\n  "manifest_version": 3,\n  "name": "Mijn Eerste Extensie",\n  "version": "1.0",\n  "action": {\n    "default_popup": "popup.html"\n  },\n  "icons": {\n    "16": "icon.png",\n    "48": "icon.png",\n    "128": "icon.png"\n  }\n}',
+        body: 'Download een 128x128px PNG van emojipng.com of flaticon.com. Sla het bestand op als `icon.png` direct in je `screenshot-extensie` map.\n\nOpen daarna je `manifest.json` in VS Code en voeg het `"icons"` blok toe:',
+        code: '{\n  "manifest_version": 3,\n  "name": "Screenshot Tool",\n  "version": "1.0",\n  "action": {\n    "default_popup": "popup.html"\n  },\n  "icons": {\n    "16": "icon.png",\n    "48": "icon.png",\n    "128": "icon.png"\n  }\n}',
       },
       {
         title: 'Extensie herladen na wijziging',
-        body: 'Na elke wijziging aan `manifest.json` moet je het bestand eerst opslaan en dan de extensie herladen in Chrome:\n\n1. Sla `manifest.json` op in VS Code (Ctrl+S op Windows, Cmd+S op Mac)\n2. Ga naar `chrome://extensions/`\n3. Klik op het ververs-icoontje (↺) bij je extensie\n4. Klik opnieuw op het extensie-icoontje om het resultaat te zien\n\nJe icoontje verschijnt nu in de Chrome extensiebalk.',
+        body: 'Na elke wijziging aan `manifest.json` moet je de extensie herladen in Chrome:\n\n1. Sla `manifest.json` op (Ctrl+S / Cmd+S)\n2. Ga naar `chrome://extensions/`\n3. Klik op het ververs-icoontje (↺) bij je extensie\n4. Klik opnieuw op het extensie-icoontje\n\nJe icoontje verschijnt nu in de Chrome extensiebalk.',
         type: 'tip',
       },
     ],
     checklist: [
       'Mijn extensie heeft een professioneel ontwerp',
+      'Er is een laad-animatie toegevoegd',
       'Er is een icoontje toegevoegd',
-      'Ik kan uitleggen hoe ik CSS gebruik in een extensie',
     ],
   },
 
