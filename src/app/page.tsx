@@ -235,17 +235,19 @@ export default function LandingPage() {
       <FAQ />
 
       {/* CTA */}
-      <section style={{ borderTop: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 py-14 md:py-20 text-center">
-        <div style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 300, background: 'radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, transparent 70%)', pointerEvents: 'none' }} />
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative">Klaar om te beginnen?</h2>
-          <p className="text-base md:text-lg mb-8 relative" style={{ color: '#6b7280' }}>Module 1 en 2 zijn gratis. Geen creditcard nodig.</p>
-          <Link href="/sign-up">
-            <button style={{ background: '#7c3aed', border: 'none', color: '#fff', borderRadius: 12, padding: '14px 36px', fontSize: 16, fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, position: 'relative' }}>
-              🚀 Start gratis <ArrowRight size={16} />
-            </button>
-          </Link>
-        </div>
+      <section className="px-5 sm:px-8 py-16 md:py-24 text-center" style={{ background: '#7c3aed' }}>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Begin vandaag. Het kost je niets.</h2>
+        <p className="text-base md:text-lg mb-8 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.8)' }}>
+          Module 1 en 2 zijn volledig gratis — 11 lessen en meer dan 2,5 uur praktisch materiaal. Geen creditcard, geen verplichtingen.
+        </p>
+        <Link href="/sign-up">
+          <button style={{ background: '#fff', border: 'none', color: '#7c3aed', borderRadius: 12, padding: '14px 36px', fontSize: 16, fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            🚀 Gratis starten <ArrowRight size={16} />
+          </button>
+        </Link>
+        <p className="mt-5 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          Of heb je een vraag? Mail naar <a href="mailto:support@clavify.io" style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'underline' }}>support@clavify.io</a>
+        </p>
       </section>
 
       {/* FOOTER */}
