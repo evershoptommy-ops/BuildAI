@@ -13,6 +13,49 @@ function adminClient() {
   )
 }
 
+async function getLiveStats() {
+  const db = adminClient()
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+
+  const fiveMinAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString()
+  const thirtyMinAgo = new Date(Date.now() - 30 * 60 * 1000).toISOString()
+  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+
+  // Live bezoekers — unieke sessies actief in laatste 5 min
+  const { data: liveRows } = await db
+    .from('page_views')
+    .select('session_id, path')
+    .gte('last_seen', fiveMinAgo)
+
+  const liveSessions = new Map<string, string>()
+  liveRows?.forEach(r => liveSessions.set(r.session_id, r.path))
+  const liveVisitors = Array.from(liveSessions.entries()).map(([sid, path]) => ({ sid, path }))
+
+  // Stripe: checkouts geopend laatste 30 min
+  const allSessions = await stripe.checkout.sessions.list({ limit: 100 })
+  const inCheckout = allSessions.data.filter(s =>
+    s.status === 'open' && s.created * 1000 > Date.now() - 30 * 60 * 1000
+  )
+
+  // Stripe: betalingen laatste 24u
+  const recentPaid = allSessions.data.filter(s =>
+    s.payment_status === 'paid' && s.created * 1000 > Date.now() - 24 * 60 * 60 * 1000
+  )
+
+  // Top pagina's afgelopen uur
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString()
+  const { data: recentViews } = await db
+    .from('page_views')
+    .select('path')
+    .gte('last_seen', oneHourAgo)
+
+  const pageCounts: Record<string, number> = {}
+  recentViews?.forEach(r => { pageCounts[r.path] = (pageCounts[r.path] ?? 0) + 1 })
+  const topPages = Object.entries(pageCounts).sort((a, b) => b[1] - a[1]).slice(0, 6)
+
+  return { liveVisitors, inCheckout, recentPaid, topPages }
+}
+
 async function getStats() {
   const db = adminClient()
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
@@ -116,7 +159,7 @@ export default async function AdminPage() {
   const isAdmin = await getIsAdmin()
   if (!isAdmin) redirect('/dashboard')
 
-  const stats = await getStats()
+  const [stats, live] = await Promise.all([getStats(), getLiveStats()])
   const maxBar = Math.max(...stats.days.map(d => d.revenue), 1)
 
   return (
@@ -132,6 +175,83 @@ export default async function AdminPage() {
           {new Date().toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
         </div>
       </div>
+
+      {/* Live sectie */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+
+        {/* Live bezoekers */}
+        <div style={{ background: '#0d1117', border: '1px solid #1a2a1a', borderRadius: 16, padding: '20px 22px' }}>
+          <div className="flex items-center gap-2 mb-4">
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#6b7280' }}>Live bezoekers</div>
+            <div className="ml-auto text-2xl font-bold" style={{ color: '#22c55e' }}>{live.liveVisitors.length}</div>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            {live.liveVisitors.length === 0 && <div style={{ color: '#6b7280', fontSize: 12 }}>Niemand actief</div>}
+            {live.liveVisitors.map((v, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', opacity: 0.7, flexShrink: 0 }} />
+                <div style={{ fontSize: 12, color: '#9ca3af', fontFamily: 'monospace' }} className="truncate">{v.path}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* In checkout */}
+        <div style={{ background: '#111108', border: '1px solid #2a2a10', borderRadius: 16, padding: '20px 22px' }}>
+          <div className="flex items-center gap-2 mb-4">
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#fbbf24', boxShadow: '0 0 8px #fbbf24' }} />
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#6b7280' }}>In checkout</div>
+            <div className="ml-auto text-2xl font-bold" style={{ color: '#fbbf24' }}>{live.inCheckout.length}</div>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            {live.inCheckout.length === 0 && <div style={{ color: '#6b7280', fontSize: 12 }}>Niemand in checkout</div>}
+            {live.inCheckout.map(s => (
+              <div key={s.id} className="flex items-center justify-between">
+                <div style={{ fontSize: 12, color: '#9ca3af', fontFamily: 'monospace' }}>{s.id.slice(-8)}</div>
+                <div style={{ fontSize: 11, color: '#6b7280' }}>
+                  {Math.round((Date.now() - s.created * 1000) / 60000)}m geleden
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Betaald laatste 24u */}
+        <div style={{ background: '#0d1118', border: '1px solid #1a1a2a', borderRadius: 16, padding: '20px 22px' }}>
+          <div className="flex items-center gap-2 mb-4">
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 8px #a855f7' }} />
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#6b7280' }}>Betaald (24u)</div>
+            <div className="ml-auto text-2xl font-bold" style={{ color: '#a855f7' }}>{live.recentPaid.length}</div>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            {live.recentPaid.length === 0 && <div style={{ color: '#6b7280', fontSize: 12 }}>Nog geen betalingen vandaag</div>}
+            {live.recentPaid.map(s => (
+              <div key={s.id} className="flex items-center justify-between">
+                <div style={{ fontSize: 12, color: '#9ca3af' }}>€{((s.amount_total ?? 0) / 100).toFixed(0)}</div>
+                <div style={{ fontSize: 11, color: '#6b7280' }}>
+                  {new Date(s.created * 1000).toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Top pagina's */}
+      {live.topPages.length > 0 && (
+        <div style={{ background: '#111118', border: '1px solid #1e1e30', borderRadius: 16, padding: '20px 24px', marginBottom: 24 }}>
+          <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#6b7280' }}>Populairste pagina's afgelopen uur</div>
+          <div className="flex flex-wrap gap-2">
+            {live.topPages.map(([path, count]) => (
+              <div key={path} style={{ background: '#1e1e30', borderRadius: 8, padding: '4px 12px', fontSize: 12, color: '#9ca3af', display: 'flex', gap: 8 }}>
+                <span style={{ fontFamily: 'monospace' }}>{path}</span>
+                <span style={{ color: '#a855f7', fontWeight: 600 }}>{count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import ScrollProgress from '@/components/ScrollProgress'
+import Beacon from '@/components/Beacon'
 
 export const metadata: Metadata = {
   title: 'Clavify — Bouw tools met AI',
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className="min-h-full flex flex-col">
           {children}
           <ScrollProgress />
+          <Beacon />
         </body>
       </html>
     </ClerkProvider>
