@@ -6,31 +6,31 @@ const testimonials = [
   {
     name: 'Daan V.',
     role: 'Freelance marketeer',
-    avatar: 'D',
+    avatar: '/avatars/random-person (1).jpeg',
     text: 'Na module 2 had ik al een Chrome extensie die ik aan een klant heb laten zien. Die wilde hem direct hebben. Eerste opdracht binnen — €250.',
   },
   {
     name: 'Sara M.',
     role: 'ZZP\'er — tekstschrijver',
-    avatar: 'S',
+    avatar: '/avatars/random-person (2).jpeg',
     text: 'Ik dacht dat dit iets was voor developers. Maar de manier waarop het wordt uitgelegd maakt het voor iedereen toegankelijk. Na module 3 automatiseer ik mijn hele rapportage.',
   },
   {
     name: 'Joren B.',
     role: 'Ondernemer — webshop eigenaar',
-    avatar: 'J',
+    avatar: '/avatars/random-person (3).jpeg',
     text: 'De SEO agent uit module 4 schrijft nu automatisch mijn productbeschrijvingen. Wat vroeger 2 uur kostte, doet de agent in 30 seconden. Letterlijk.',
   },
   {
     name: 'Lisa K.',
     role: 'VA — Virtueel assistent',
-    avatar: 'L',
+    avatar: '/avatars/random-person (4).jpeg',
     text: 'Ik bied nu AI-automatisering aan als extra dienst. Klanten vragen er zelf naar. Clavify heeft me in 5 modules iets geleerd wat ik in geen enkele andere cursus heb gevonden.',
   },
   {
     name: 'Thomas R.',
     role: 'Marketingbureau eigenaar',
-    avatar: 'T',
+    avatar: '/avatars/random-person (5).jpeg',
     text: 'Mijn team gebruikt de content agent uit module 5 dagelijks. We publiceren nu 3x meer blogposts zonder extra werkuren. De ROI was er al na de eerste week.',
   },
 ]
@@ -85,14 +85,11 @@ export default function TestimonialsSlider() {
           </p>
 
           <div className="flex items-center gap-3">
-            <div style={{
-              width: 42, height: 42, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 15, fontWeight: 700, flexShrink: 0,
-            }}>
-              {t.avatar}
-            </div>
+            <img
+              src={t.avatar}
+              alt={t.name}
+              style={{ width: 42, height: 42, borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '2px solid rgba(168,85,247,0.3)' }}
+            />
             <div>
               <div style={{ fontSize: 14, fontWeight: 600 }}>{t.name}</div>
               <div style={{ fontSize: 12, color: '#6b7280' }}>{t.role}</div>
