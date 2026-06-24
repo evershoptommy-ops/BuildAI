@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import ScrollProgress from '@/components/ScrollProgress'
 import Beacon from '@/components/Beacon'
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <ScrollProgress />
           <Beacon />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
