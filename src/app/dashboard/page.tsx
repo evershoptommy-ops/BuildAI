@@ -92,13 +92,20 @@ export default async function DashboardPage() {
             const isActive = pct > 0 && pct < 100
             const isLocked = m.premium && !hasPremium
 
+            const firstLesson = m.lessons[0]
+            const nextUnfinished = m.lessons.find(l => !completedIds.has(l.id)) ?? firstLesson
+            const href = isLocked ? '/upgraden' : `/modules/${m.id}/${nextUnfinished.id}`
+
             return (
-              <div key={m.id} style={{
+              <Link key={m.id} href={href} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div style={{
                 background: '#111118',
                 border: `1px solid ${isActive ? '#7c3aed' : '#1e1e30'}`,
                 borderRadius: 14, padding: '18px 20px',
                 display: 'flex', alignItems: 'flex-start', gap: 14,
                 opacity: isLocked ? 0.5 : 1,
+                cursor: 'pointer',
+                transition: 'border-color 0.2s',
               }}>
                 <div style={{
                   width: 38, height: 38, borderRadius: 12, flexShrink: 0,
@@ -121,6 +128,7 @@ export default async function DashboardPage() {
                   </div>
                 </div>
               </div>
+              </Link>
             )
           })}
         </div>
