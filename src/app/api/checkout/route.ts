@@ -15,7 +15,7 @@ export async function POST() {
       {
         price_data: {
           currency: 'eur',
-          unit_amount: 9700, // €97.00
+          unit_amount: 19700, // €197.00
           product_data: {
             name: 'Clavify Premium',
             description: 'Toegang tot alle modules + certificaat',

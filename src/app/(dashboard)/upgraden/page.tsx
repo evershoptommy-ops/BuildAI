@@ -79,7 +79,7 @@ export default async function UpgradenPage() {
           <div>
             <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: '28px 24px' }}>
               <div className="text-sm font-semibold mb-1" style={{ color: '#a855f7' }}>Clavify Premium</div>
-              <div className="text-5xl font-extrabold mb-1" style={{ letterSpacing: '-2px' }}>€97</div>
+              <div className="text-5xl font-extrabold mb-1" style={{ letterSpacing: '-2px' }}>€197</div>
               <div className="text-sm mb-2" style={{ color: '#6b7280' }}>Eenmalig — levenslang toegang</div>
 
               <div style={{ height: 1, background: '#1e1e30', margin: '20px 0' }} />
