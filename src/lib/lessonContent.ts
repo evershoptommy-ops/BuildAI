@@ -13,25 +13,34 @@ export interface Section {
 
 export const lessonContent: Record<string, LessonContent> = {
   '1-1': {
-    intro: 'Welkom. Je hebt net een beslissing gemaakt die 99% van de mensen nooit nemen: je gaat leren hoe je AI écht kunt inzetten — niet als chatbot, maar als bouwpartner.',
+    intro: 'Welkom bij Clavify.\n\nJe hebt de knop geklikt. Dat is het moeilijkste wat je vandaag hoeft te doen.\n\nVanaf nu ga jij tools bouwen met AI. Echte tools — dingen die werken, die je kunt laten zien, en die je kunt verkopen aan klanten. Geen theorie, geen slides vol tekst. Gewoon bouwen.\n\nJe hoeft niet te kunnen programmeren. Je hoeft geen developer te zijn. Je hoeft alleen te weten wat je wil maken — de rest doet Claude.\n\nDit is het moment waarop de meeste mensen wachten. Wachten tot het makkelijker wordt. Wachten tot ze er klaar voor zijn. Wachten tot iemand anders het eerst probeert.\n\nMaar jij bent hier. Dat betekent dat jij niet wacht.\n\nDe mensen die dit nu leren, zijn over vijf jaar de mensen die les geven aan de rest. Ze bouwen tools die bedrijven gebruiken. Ze verdienen geld met dingen die ze in een weekend hebben gemaakt. Ze zitten niet meer vast aan wat ze kunnen — alleen aan wat ze bedenken.\n\nDat begint hier. Met deze les. Vandaag.\n\nLaten we beginnen.',
     sections: [
       {
-        body: 'De meeste mensen gebruiken Claude of ChatGPT om een e-mail te schrijven of een vraag te stellen. Jij gaat het anders doen. Jij gaat Claude gebruiken om software te maken. Echte software. Tools die bedrijven willen hebben en waarvoor ze betalen.\n\nJe hoeft geen programmeur te zijn. Je hebt geen technische achtergrond nodig. Wat je wel nodig hebt: nieuwsgierigheid, geduld, en de bereidheid om dingen uit te proberen die soms niet meteen werken.',
+        title: 'Waarom deze cursus anders is',
+        body: 'De meeste AI-cursussen leren je praten met ChatGPT. Deze cursus leert je iets bouwen.\n\nNa module 1 heb je een werkende tool op je computer — iets wat je kunt laten zien, gebruiken, of verkopen. Geen slides, geen theorie. Gewoon resultaat.',
       },
       {
-        title: 'Hoe de cursus werkt',
-        body: 'De cursus bestaat uit 4 modules:\n\n• **Module 1** (gratis): Installatie en je eerste tool\n• **Module 2** (gratis): Je eerste Chrome extensie\n• **Module 3** (premium): Gevorderde tools en automatisering\n• **Module 4** (premium): Verkopen aan klanten en schalen\n\nElke les heeft een korte uitleg, een oefening, en een checklist. Doe de oefeningen. Dat is waar het echte leren gebeurt.',
+        title: 'Je hoeft niet te kunnen coderen',
+        body: 'Vroeger had je jaren studie nodig om een tool te bouwen. Dat is voorbij.\n\nClaude schrijft de code. Jij vertelt in gewone taal wat je wil hebben — zoals je een collega een opdracht geeft. Claude begrijpt wat je bedoelt en bouwt het voor je.\n\nJij hoeft alleen te weten wat je wil maken.',
+      },
+      {
+        title: 'Wat is VS Code?',
+        body: 'VS Code is de werkplek waar alles gebeurt. Zie het als een slim kladblok voor je computer. Hier typ je je opdrachten, hier zie je wat Claude bouwt, en hier draai je je tool.\n\nHet ziet er technisch uit, maar je gebruikt maar een klein deel. We laten je precies zien wat je nodig hebt — niet meer.',
+      },
+      {
+        title: 'Wat is Claude?',
+        body: 'Claude is de AI die voor jou bouwt. Je geeft een instructie in gewone taal, Claude schrijft de code, en jij ziet direct wat het doet.\n\nGeen programmeerkennis nodig. Alleen een idee.',
       },
     ],
     checklist: [
       'Ik heb mijn account aangemaakt',
-      'Ik heb de cursusstructuur bekeken',
+      'Ik begrijp wat VS Code en Claude zijn',
       'Ik ben klaar om te beginnen',
     ],
   },
 
   '1-2': {
-    intro: 'VS Code is je werkplaats. Het is een gratis programma van Microsoft waarin je al je code schrijft en je projecten beheert. Het ziet er misschien intimiderend uit, maar je hebt maar een klein deel nodig.',
+    intro: 'We vragen je twee programma\'s te installeren: VS Code en Claude. Daarna nog één klein dingetje dat op de achtergrond werkt. Klinkt misschien als veel — het is het niet.\n\nWe lopen er samen doorheen. Stap voor stap, schermafbeelding voor schermafbeelding. Je hoeft niet te begrijpen wat alles doet. Je hoeft alleen te doen wat er staat.\n\nVijftien minuten later zit je klaar om je eerste tool te bouwen.\n\nEn als er iets misgaat? Geen stress. De AI-assistent in dit platform weet precies wat je bedoelt als je zegt "het werkt niet" — en helpt je er doorheen.',
     sections: [
       {
         title: 'Stap 1: Downloaden',
