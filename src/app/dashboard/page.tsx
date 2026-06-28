@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 import { modules } from '@/lib/modules'
 import { getIsAdmin } from '@/lib/isAdmin'
+import DashboardModules from '@/components/DashboardModules'
 
 async function getUserData(userId: string) {
   const client = createClient(
@@ -82,55 +83,9 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        {/* Modules: 1 kolom op mobile, 2 op md+ */}
+        {/* Modules */}
         <div className="text-base font-bold mb-4">Jouw modules</div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-          {modules.map((m) => {
-            const done = m.lessons.filter(l => completedIds.has(l.id)).length
-            const pct = Math.round((done / m.lessons.length) * 100)
-            const isDone = pct === 100
-            const isActive = pct > 0 && pct < 100
-            const isLocked = m.premium && !hasPremium
-
-            const firstLesson = m.lessons[0]
-            const nextUnfinished = m.lessons.find(l => !completedIds.has(l.id)) ?? firstLesson
-            const href = isLocked ? '/upgraden' : `/modules/${m.id}/${nextUnfinished.id}`
-
-            return (
-              <Link key={m.id} href={href} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{
-                background: '#111118',
-                border: `1px solid ${isActive ? '#7c3aed' : '#1e1e30'}`,
-                borderRadius: 14, padding: '18px 20px',
-                display: 'flex', alignItems: 'flex-start', gap: 14,
-                opacity: isLocked ? 0.5 : 1,
-                cursor: 'pointer',
-                transition: 'border-color 0.2s',
-              }}>
-                <div style={{
-                  width: 38, height: 38, borderRadius: 12, flexShrink: 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 14, fontWeight: 700,
-                  background: isDone ? 'rgba(16,185,129,.12)' : 'rgba(124,58,237,.15)',
-                  border: `1px solid ${isDone ? 'rgba(16,185,129,.3)' : 'rgba(124,58,237,.3)'}`,
-                  color: isDone ? '#34d399' : '#a78bfa',
-                }}>
-                  {isDone ? '✓' : m.id}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold mb-1">Module {m.id} — {m.title}</div>
-                  <div className="text-xs leading-relaxed mb-3" style={{ color: '#6b7280' }}>{m.description}</div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {isDone && <span style={{ display: 'inline-flex', padding: '3px 10px', borderRadius: 999, fontSize: 11, fontWeight: 500, background: 'rgba(16,185,129,.12)', color: '#34d399', border: '1px solid rgba(16,185,129,.25)' }}>Voltooid</span>}
-                    {isActive && <span style={{ display: 'inline-flex', padding: '3px 10px', borderRadius: 999, fontSize: 11, fontWeight: 500, background: 'rgba(245,158,11,.12)', color: '#fbbf24', border: '1px solid rgba(245,158,11,.25)' }}>Bezig — {done}/{m.lessons.length}</span>}
-                    {!isDone && !isActive && !isLocked && <span style={{ display: 'inline-flex', padding: '3px 10px', borderRadius: 999, fontSize: 11, fontWeight: 500, background: 'rgba(124,58,237,.15)', color: '#a78bfa', border: '1px solid rgba(124,58,237,.3)' }}>Nog niet gestart</span>}
-                    {isLocked && <span style={{ display: 'inline-flex', padding: '3px 10px', borderRadius: 999, fontSize: 11, fontWeight: 500, background: 'rgba(124,58,237,.15)', color: '#a78bfa', border: '1px solid rgba(124,58,237,.3)' }}>💎 Premium</span>}
-                  </div>
-                </div>
-              </div>
-              </Link>
-            )
-          })}
+        <DashboardModules modules={modules} completedIds={[...completedIds]} hasPremium={hasPremium} />
         </div>
       </div>
     </div>

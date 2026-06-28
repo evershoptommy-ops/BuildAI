@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import ScrollProgress from '@/components/ScrollProgress'
 import Beacon from '@/components/Beacon'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'Clavify — Bouw tools met AI',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <ScrollProgress />
           <Beacon />
+          <Toaster theme="dark" position="bottom-right" richColors />
         </body>
       </html>
     </ClerkProvider>
