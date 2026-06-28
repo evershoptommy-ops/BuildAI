@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider signUpForceRedirectUrl="/welkom" signInFallbackRedirectUrl="/dashboard">
       <html lang="nl" className="h-full">
         <body className="min-h-full flex flex-col">
           {children}
