@@ -5,6 +5,7 @@ import TestimonialsSlider from '@/components/TestimonialsSlider'
 import FAQ from '@/components/FAQ'
 import Footer from '@/components/Footer'
 import HeroSection from '@/components/HeroSection'
+import NumberTicker from '@/components/NumberTicker'
 
 const modules = [
   { num: 1, title: 'De Basis', tag: 'Gratis', desc: 'VS Code, Claude en Python installeren. Je eerste werkende tool bouwen — een factuurberekening die je meteen kunt gebruiken.', free: true },
@@ -47,20 +48,37 @@ export default function LandingPage() {
       <HeroSection />
 
       {/* STATS BAR */}
-      <div style={{ borderTop: '1px solid #1e1e30', borderBottom: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 md:px-12 py-4">
-        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-x-8 gap-y-3">
+      <div style={{ borderTop: '1px solid #1e1e30', borderBottom: '1px solid #1e1e30', background: '#111118' }} className="px-5 sm:px-8 md:px-12 py-5">
+        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-x-10 gap-y-4">
           {[
-            { icon: '👥', label: '840+ studenten' },
-            { icon: '📖', label: '33 lessen' },
-            { icon: '⏱️', label: '9+ uur materiaal' },
-            { icon: '🎁', label: 'Gratis te starten' },
-            { icon: '∞', label: 'Levenslang toegang' },
+            { icon: '👥', value: 840, suffix: '+', label: 'studenten' },
+            { icon: '📖', value: 33, suffix: '', label: 'lessen' },
+            { icon: '⏱️', value: 9, suffix: '+', label: 'uur materiaal' },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-2" style={{ color: '#a855f7', fontSize: 13, fontWeight: 500 }}>
-              <span>{item.icon}</span>
-              <span style={{ color: '#9ca3af' }}>{item.label}</span>
+            <div key={item.label} className="flex items-center gap-3">
+              <span style={{ fontSize: 20 }}>{item.icon}</span>
+              <div>
+                <div style={{ color: '#e5e7eb', fontSize: 20, fontWeight: 800, lineHeight: 1 }}>
+                  <NumberTicker value={item.value} suffix={item.suffix} />
+                </div>
+                <div style={{ color: '#6b7280', fontSize: 12, marginTop: 2 }}>{item.label}</div>
+              </div>
             </div>
           ))}
+          <div className="flex items-center gap-3">
+            <span style={{ fontSize: 20 }}>🎁</span>
+            <div>
+              <div style={{ color: '#e5e7eb', fontSize: 15, fontWeight: 700, lineHeight: 1 }}>Gratis</div>
+              <div style={{ color: '#6b7280', fontSize: 12, marginTop: 2 }}>te starten</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <span style={{ fontSize: 20 }}>∞</span>
+            <div>
+              <div style={{ color: '#e5e7eb', fontSize: 15, fontWeight: 700, lineHeight: 1 }}>Levenslang</div>
+              <div style={{ color: '#6b7280', fontSize: 12, marginTop: 2 }}>toegang</div>
+            </div>
+          </div>
         </div>
       </div>
 

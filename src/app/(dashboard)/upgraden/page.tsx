@@ -77,30 +77,45 @@ export default async function UpgradenPage() {
 
           {/* Rechts: prijs + CTA */}
           <div>
-            <div style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.35)', borderRadius: 20, padding: '28px 24px' }}>
+            <div style={{ position: 'relative', background: 'linear-gradient(145deg, rgba(124,58,237,.12), rgba(168,85,247,.06))', border: '1px solid rgba(168,85,247,.4)', borderRadius: 20, padding: '28px 24px', overflow: 'hidden' }}>
+              {/* Glow achtergrond */}
+              <div style={{ position: 'absolute', top: -60, right: -60, width: 200, height: 200, background: 'radial-gradient(ellipse, rgba(168,85,247,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+              {/* Populair badge */}
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 12px', borderRadius: 999, fontSize: 11, fontWeight: 700, background: 'rgba(168,85,247,.2)', color: '#c4b5fd', border: '1px solid rgba(168,85,247,.4)', marginBottom: 16 }}>
+                ✦ Meest gekozen
+              </div>
+
               <div className="text-sm font-semibold mb-1" style={{ color: '#a855f7' }}>Clavify Premium</div>
-              <div className="text-5xl font-extrabold mb-1" style={{ letterSpacing: '-2px' }}>€197</div>
-              <div className="text-sm mb-2" style={{ color: '#6b7280' }}>Eenmalig — levenslang toegang</div>
 
-              <div style={{ height: 1, background: '#1e1e30', margin: '20px 0' }} />
+              <div className="flex items-end gap-2 mb-1">
+                <div className="text-5xl font-extrabold" style={{ letterSpacing: '-2px' }}>€197</div>
+                <div className="text-sm mb-2" style={{ color: '#6b7280' }}>eenmalig</div>
+              </div>
+              <div className="text-xs mb-1" style={{ color: '#6b7280' }}>Levenslang toegang — geen abonnement</div>
 
-              <div className="flex flex-col gap-2 mb-6">
+              <div style={{ height: 1, background: 'rgba(168,85,247,.2)', margin: '20px 0' }} />
+
+              <div className="flex flex-col gap-3 mb-6">
                 {[
                   'Geen maandelijkse kosten',
                   'Alle toekomstige modules inbegrepen',
                   'Direct toegang na betaling',
+                  '14 dagen niet-goed-geld-terug garantie',
                 ].map(f => (
-                  <div key={f} className="text-xs flex items-center gap-2" style={{ color: '#6b7280' }}>
-                    <Check size={12} style={{ color: '#34d399', flexShrink: 0 }} /> {f}
+                  <div key={f} className="text-sm flex items-center gap-2">
+                    <Check size={14} style={{ color: '#34d399', flexShrink: 0 }} />
+                    <span style={{ color: '#d1d5db' }}>{f}</span>
                   </div>
                 ))}
               </div>
 
               <CheckoutButton />
 
-              <p className="text-xs text-center mt-4" style={{ color: '#4b5563' }}>
-                Veilige betaling via Stripe
-              </p>
+              <div className="flex items-center justify-center gap-4 mt-4">
+                <span className="text-xs" style={{ color: '#4b5563' }}>🔒 Stripe</span>
+                <span className="text-xs" style={{ color: '#4b5563' }}>🛡️ 14 dagen garantie</span>
+              </div>
             </div>
           </div>
 

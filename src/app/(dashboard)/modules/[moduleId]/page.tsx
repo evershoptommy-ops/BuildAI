@@ -2,6 +2,7 @@ import { modules } from '@/lib/modules'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Clock, ChevronRight, ChevronLeft } from 'lucide-react'
+import AnimatedProgressBar from '@/components/AnimatedProgressBar'
 
 const mockProgress: Record<string, boolean> = {
   '1-1': true, '1-2': true, '1-3': true, '1-4': true,
@@ -41,9 +42,7 @@ export default async function ModuleDetailPage({ params }: { params: Promise<{ m
             </button>
           </Link>
         </div>
-        <div style={{ height: 6, background: '#1e1e30', borderRadius: 999, marginTop: 16, overflow: 'hidden', maxWidth: 400 }}>
-          <div style={{ height: '100%', width: `${progress}%`, background: 'linear-gradient(90deg, #7c3aed, #a855f7)', borderRadius: 999 }} />
-        </div>
+        <AnimatedProgressBar value={progress} />
       </div>
 
       <div className="p-9">
