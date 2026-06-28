@@ -144,7 +144,9 @@ export default function LessonPage() {
             )
             return (
               <div className="max-w-2xl">
-                <p className="text-base mb-8 leading-relaxed" style={{ color: '#9ca3af' }}>{content.intro}</p>
+                <div className="prose prose-clavify max-w-none mb-8">
+                  <p style={{ color: '#9ca3af', whiteSpace: 'pre-line' }}>{content.intro}</p>
+                </div>
 
                 {content.sections.map((section, i) => (
                   <div key={i} className="mb-8">

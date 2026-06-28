@@ -1,20 +1,55 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-jakarta), system-ui, sans-serif;
+}
 
 :root {
-  --accent: #7c3aed;
-  --accent-light: #a855f7;
-  --surface: #111118;
-  --surface2: #16161f;
-  --border-color: #1e1e30;
-  --muted: #6b7280;
-  --green: #10b981;
+  /* Brand */
+  --accent:        #7c3aed;
+  --accent-light:  #a855f7;
+  --accent-dim:    rgba(124, 58, 237, 0.15);
+
+  /* Surfaces */
+  --surface:       #111118;
+  --surface2:      #16161f;
+  --surface3:      #1e1e30;
+
+  /* Text */
+  --text:          #e5e7eb;
+  --text-muted:    #6b7280;
+  --text-faint:    #4b5563;
+
+  /* Borders */
+  --border-color:  #1e1e30;
+  --border-strong: #2a2a3a;
+
+  /* Status */
+  --green:         #10b981;
+  --green-dim:     rgba(16, 185, 129, 0.12);
+  --yellow:        #fbbf24;
+  --yellow-dim:    rgba(245, 158, 11, 0.12);
+  --red:           #f87171;
+
+  /* Radius */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
 }
 
 body {
   background: #0a0a0f;
-  color: #e5e7eb;
-  font-family: system-ui, sans-serif;
+  color: var(--text);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
 * {
@@ -24,3 +59,19 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #111118; }
 ::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
+
+/* Prose thema voor lespagina's */
+.prose-clavify {
+  --tw-prose-body:        var(--text);
+  --tw-prose-headings:    #f3f4f6;
+  --tw-prose-links:       var(--accent-light);
+  --tw-prose-bold:        #f3f4f6;
+  --tw-prose-code:        var(--accent-light);
+  --tw-prose-pre-bg:      var(--surface2);
+  --tw-prose-pre-code:    #e5e7eb;
+  --tw-prose-bullets:     var(--accent-light);
+  --tw-prose-counters:    var(--accent-light);
+  --tw-prose-hr:          var(--border-color);
+  --tw-prose-quotes:      var(--text-muted);
+  --tw-prose-quote-borders: var(--accent);
+}
