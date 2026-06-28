@@ -86,7 +86,6 @@ export default async function DashboardPage() {
         {/* Modules */}
         <div className="text-base font-bold mb-4">Jouw modules</div>
         <DashboardModules modules={modules} completedIds={[...completedIds]} hasPremium={hasPremium} />
-        </div>
       </div>
     </div>
   )

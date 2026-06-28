@@ -1,41 +1,44 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-})
 
 export default function HeroSection() {
   return (
-    <section className="flex flex-col items-center text-center px-5 sm:px-8 md:px-12 py-16 sm:py-20 md:py-28 relative">
+    <section className="flex flex-col items-center text-center px-5 sm:px-8 md:px-12 py-16 sm:py-20 md:py-28 relative" style={{ overflow: 'hidden' }}>
       {/* Glow */}
       <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 700, height: 500, background: 'radial-gradient(ellipse, rgba(124,58,237,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-item { animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+        .hero-item:nth-child(1) { animation-delay: 0ms; }
+        .hero-item:nth-child(2) { animation-delay: 120ms; }
+        .hero-item:nth-child(3) { animation-delay: 240ms; }
+        .hero-item:nth-child(4) { animation-delay: 360ms; }
+        .hero-item:nth-child(5) { animation-delay: 480ms; }
+      `}</style>
+
       {/* Badge */}
-      <motion.div {...fadeUp(0)}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px', borderRadius: 999, fontSize: 12, fontWeight: 500, background: 'rgba(124,58,237,.15)', color: '#a78bfa', border: '1px solid rgba(124,58,237,.3)', marginBottom: 20 }}>
-          ✦ Gratis beginnen — geen creditcard nodig
-        </div>
-      </motion.div>
+      <div className="hero-item" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px', borderRadius: 999, fontSize: 12, fontWeight: 500, background: 'rgba(124,58,237,.15)', color: '#a78bfa', border: '1px solid rgba(124,58,237,.3)', marginBottom: 20 }}>
+        ✦ Gratis beginnen — geen creditcard nodig
+      </div>
 
       {/* Headline */}
-      <motion.h1 {...fadeUp(0.1)} className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight max-w-3xl mb-5 md:mb-6" style={{ letterSpacing: '-1px' }}>
+      <h1 className="hero-item text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight max-w-3xl mb-5 md:mb-6" style={{ letterSpacing: '-1px' }}>
         Bouw je eigen AI-tools en{' '}
         <em style={{ fontStyle: 'normal', color: '#a855f7' }}>verkoop ze aan klanten</em>
-      </motion.h1>
+      </h1>
 
       {/* Subtekst */}
-      <motion.p {...fadeUp(0.2)} className="text-base md:text-lg max-w-xl mb-8 md:mb-10 leading-relaxed" style={{ color: '#6b7280' }}>
+      <p className="hero-item text-base md:text-lg max-w-xl mb-8 md:mb-10 leading-relaxed" style={{ color: '#6b7280' }}>
         Leer stap voor stap hoe je met Claude en VS Code echte AI-tools maakt — zonder jaren aan ervaring. Van Chrome extensie tot volledige SEO agent.
-      </motion.p>
+      </p>
 
       {/* CTA knoppen */}
-      <motion.div {...fadeUp(0.3)} className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto">
+      <div className="hero-item flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto">
         <Link href="/sign-up" className="w-full sm:w-auto">
           <button style={{ background: '#7c3aed', border: 'none', color: '#fff', borderRadius: 12, padding: '14px 30px', fontSize: 16, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%' }}>
             🚀 Start gratis vandaag
@@ -46,10 +49,10 @@ export default function HeroSection() {
             Bekijk de modules
           </button>
         </a>
-      </motion.div>
+      </div>
 
-      {/* Social proof avatars */}
-      <motion.div {...fadeUp(0.4)} className="flex items-center gap-3 mt-8" style={{ fontSize: 13, color: '#6b7280' }}>
+      {/* Social proof */}
+      <div className="hero-item flex items-center gap-3 mt-8" style={{ fontSize: 13, color: '#6b7280' }}>
         <div className="flex">
           {['T', 'M', 'S', 'J', 'A'].map((l, i) => (
             <div key={l} style={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #0a0a0f', marginLeft: i === 0 ? 0 : -8, background: 'linear-gradient(135deg, #7c3aed, #a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>
@@ -58,7 +61,7 @@ export default function HeroSection() {
           ))}
         </div>
         <span>840+ cursisten gestart</span>
-      </motion.div>
+      </div>
     </section>
   )
 }
